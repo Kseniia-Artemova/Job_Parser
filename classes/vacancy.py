@@ -96,16 +96,34 @@ class FindVacancyHH(FindVacancy):
         return vacancies[:self.quantity]
 
     @staticmethod
-    def get_city_codes_hh():
+    def load_areas_info():
         url = "https://api.hh.ru/areas"
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"}
 
         response = requests.get(url, headers=headers)
 
         if response.status_code == 200:
-            areas = response.json()
-        else:
-            raise requests.RequestException("Ошибка при получении списка кодов")
+            return response.json()
+        raise requests.RequestException("Ошибка при получении списка кодов")
+
+    @staticmethod
+    def get_city_codes():
+        areas = FindVacancyHH.load_areas_info()
+
+        json_exp = jp.parse('$..id')
+        matches = json_exp.find(areas)
+        codes = [match.value for match in matches]
+        return codes
+
+    # @staticmethod
+    # def get_city_id(name):
+    #     areas = FindVacancyHH.load_areas_info()
+    #     json_exp = jp.parse(f"$..areas[?(@.name=='{name}')].id")
+    #     result = json_exp.find(areas)
+    #     print(result)
+
+
+
 
 
 class FindVacancySJ(FindVacancy):
@@ -120,6 +138,6 @@ keywords = {
     "per_page": 4
 }
 vac = FindVacancyHH("Курьер", 0, 4)
-FindVacancyHH.get_city_codes_hh()
+FindVacancyHH.get_city_id("Салават")
 
 
