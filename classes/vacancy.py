@@ -87,12 +87,17 @@ class FindVacancyHH(FindVacancy):
 
     def get_vacancies(self) -> list:
         vacancies = []
-        if self.quantity > self._PARAMETERS["per_page"]:
-            while len(vacancies) < self.quantity:
-                vacancies.extend(self.get_info()['items'])
-                self._PARAMETERS["page"] += 1
+
+        vacancies.extend(self.get_info()['items'])
+        while len(vacancies) < self.quantity:
+            if self._PARAMETERS["page"] == self.get_info()['pages']:
+                break
+            self._PARAMETERS["page"] += 1
+            vacancies.extend(self.get_info()['items'])
+
         print(len(vacancies))
         print(len(vacancies[:self.quantity]))
+
         return vacancies[:self.quantity]
 
     @staticmethod
@@ -137,7 +142,7 @@ keywords = {
     "page": 1,
     "per_page": 4
 }
-vac = FindVacancyHH("Курьер", 0, 4)
-FindVacancyHH.get_city_id("Салават")
+vac = FindVacancyHH("Курьер", 2, 4)
+pprint(vac.get_vacancies())
 
 
