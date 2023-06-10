@@ -120,15 +120,14 @@ class FindVacancyHH(FindVacancy):
         codes = [match.value for match in matches]
         return codes
 
-    # @staticmethod
-    # def get_city_id(name):
-    #     areas = FindVacancyHH.load_areas_info()
-    #     json_exp = jp.parse(f"$..areas[?(@.name=='{name}')].id")
-    #     result = json_exp.find(areas)
-    #     print(result)
+    @staticmethod
+    def get_city_id(name):
+        regions = FindVacancyHH.load_areas_info()
 
+        json_exp = jp.parse("$..areas[*]")
+        matches = [match.value for match in json_exp.find(regions) if match.value.get('name') == name]
 
-
+        return int(matches[0].get("id"))
 
 
 class FindVacancySJ(FindVacancy):
@@ -136,13 +135,16 @@ class FindVacancySJ(FindVacancy):
     _PARAMETERS = {}
 
 
-keywords = {
-    "text": "NAME:курьер",
-    "area": 1,
-    "page": 1,
-    "per_page": 4
-}
-vac = FindVacancyHH("Курьер", 2, 4)
-pprint(vac.get_vacancies())
+if __name__ == '__main__':
+
+    keywords = {
+        "text": "NAME:курьер",
+        "area": 1,
+        "page": 1,
+        "per_page": 4
+    }
+    vac = FindVacancyHH("Курьер", 2, 4)
+    FindVacancyHH.get_city_id("Пермь")
+
 
 
