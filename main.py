@@ -1,4 +1,4 @@
-from classes.vacancy import VacancyHH, VacancySJ
+from classes.request_api import VacancyHH, VacancySJ
 
 
 if __name__ == '__main__':

@@ -1,150 +1,197 @@
+from dataclasses import dataclass
 import requests
-import json
-from pprint import pprint
 from abc import ABC, abstractmethod
+from sources.headhunter import urls_hh
+from sources.superjob import urls_sj
 import jsonpath_ng as jp
+from pprint import pprint
 
 
-class FindVacancy(ABC):
-    _PARAMETERS = {}
+class Vacancy(ABC):
 
-    def get_parameters(self) -> dict:
-        return self._PARAMETERS
-
-    def reset_parameters(self) -> None:
-        self._PARAMETERS = self.__class__._PARAMETERS
-
+    @classmethod
     @abstractmethod
-    def _set_parameters(self, parameters: dict) -> None:
+    def build_filter(cls, values: dict):
         pass
 
     @abstractmethod
-    def get_info(self):
+    def get_parameters(self):
         pass
 
+    @classmethod
     @abstractmethod
-    def get_vacancies(self):
+    def get_filter_dictionary(cls) -> dict:
         pass
-
-
-class FindVacancyHH(FindVacancy):
-    __URL = "https://api.hh.ru/vacancies"
-    __HOSTS = ("hh.ru",
-               "rabota.by",
-               "hh1.az",
-               "hh.uz",
-               "hh.kz",
-               "headhunter.ge",
-               "headhunter.kg"
-               )
-    _PARAMETERS = {
-        "page": 0,
-        "per_page": 50,
-        "text": "",
-        "area": 0,
-        "host": "hh.ru"
-    }
-
-    def __init__(self, text, quantity, area=0, host="hh.ru"):
-        self.quantity = quantity
-        parameters = {"text": text,
-                      "area": area,
-                      "host": host}
-
-        self._set_parameters(parameters)
-
-    @property
-    def quantity(self):
-        return self.__quantity
-
-    @quantity.setter
-    def quantity(self, quantity: int):
-        if type(quantity) is int and quantity >= 0:
-            self.__quantity = quantity
-
-    def _set_parameters(self, parameters: dict) -> None:
-        for key, value in parameters.items():
-            if self.__check_parameters(key, value):
-                self._PARAMETERS[key] = value
-
-    def __check_parameters(self, key: str, value: int | str):
-        default_parameters = self.__class__._PARAMETERS
-        if key not in default_parameters:
-            return False
-        if type(value) is not type(default_parameters[key]):
-            return False
-        if key == "area" and value < 0:
-            return False
-        if key == "host" and value not in self.__HOSTS:
-            return False
-        return True
-
-    def get_info(self) -> dict:
-        with requests.get(self.__URL, self._PARAMETERS) as request:
-            response = request.content.decode("utf-8")
-            response = json.loads(response)
-        return response
-
-    def get_vacancies(self) -> list:
-        vacancies = []
-
-        vacancies.extend(self.get_info()['items'])
-        while len(vacancies) < self.quantity:
-            if self._PARAMETERS["page"] == self.get_info()['pages']:
-                break
-            self._PARAMETERS["page"] += 1
-            vacancies.extend(self.get_info()['items'])
-
-        print(len(vacancies))
-        print(len(vacancies[:self.quantity]))
-
-        return vacancies[:self.quantity]
 
     @staticmethod
-    def load_areas_info():
-        url = "https://api.hh.ru/areas"
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"}
+    @abstractmethod
+    def get_areas_info() -> dict:
+        pass
 
-        response = requests.get(url, headers=headers)
+    @classmethod
+    @abstractmethod
+    def get_areas_names(cls):
+        pass
 
+    @classmethod
+    @abstractmethod
+    def get_area_id(cls, name):
+        pass
+
+
+@dataclass
+class VacancyHeadHunter(Vacancy):
+
+    HOSTS = ("hh.ru",
+             "rabota.by",
+             "hh1.az",
+             "hh.uz",
+             "hh.kz",
+             "headhunter.ge",
+             "headhunter.kg"
+             )
+
+    # обязательные параметры
+    page: int = 0       # номер страницы
+    per_page: int = 100     # количество элементов
+    text: str = ""      # переданное значение ищется в полях вакансии, указанных в параметре search_field
+    host: str = "hh.ru"     # доменное имя сайта
+    only_with_salary: bool = False      # показывать вакансии только с указанием зарплаты, по умолчанию False
+
+    # дополнительные параметры
+    search_field: str | None = None     # область поиска
+    experience: str | None = None       # опыт работы
+    employment: str | None = None       # тип занятости
+    schedule: str | None = None     # график работы
+    area: str | None = None     # регион, можно указать несколько значений
+    salary: int | None = None       # размер заработной платы
+    currency: str | None = None     # код валюты, имеет смысл указывать только вместе с salary
+    period: int | None = None       # количество дней, в пределах которых производится поиск по вакансиям
+    order_by: str | None = None     # сортировка списка вакансий
+    locale: str | None = None       # идентификатор локали
+
+    @classmethod
+    def get_filter_dictionary(cls) -> dict:
+        url = urls_hh.FILTER_DICTIONARY
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.json()
+        raise requests.RequestException("Ошибка при получении словаря дополнительных значений")
+
+    @staticmethod
+    def get_areas_info() -> dict:
+        url = urls_hh.AREA_CODES
+        response = requests.get(url)
         if response.status_code == 200:
             return response.json()
         raise requests.RequestException("Ошибка при получении списка кодов")
 
-    @staticmethod
-    def get_city_codes():
-        areas = FindVacancyHH.load_areas_info()
+    @classmethod
+    def get_areas_names(cls) -> list[str]:
+        areas = cls.get_areas_info()
 
-        json_exp = jp.parse('$..id')
+        json_exp = jp.parse('$..name')
         matches = json_exp.find(areas)
-        codes = [match.value for match in matches]
-        return codes
+        names = [match.value for match in matches]
 
-    @staticmethod
-    def get_city_id(name):
-        regions = FindVacancyHH.load_areas_info()
+        return names
+
+    @classmethod
+    def get_area_id(cls, name: str) -> str:
+        name = name.capitalize()
+        regions = cls.get_areas_info()
 
         json_exp = jp.parse("$..areas[*]")
         matches = [match.value for match in json_exp.find(regions) if match.value.get('name') == name]
 
-        return int(matches[0].get("id"))
+        if matches:
+            return matches[0].get("id")
+
+    @classmethod
+    def build_filter(cls, values: dict) -> "VacancyHeadHunter":
+        return cls(**values)
+
+    def get_parameters(self) -> dict:
+        return self.__dict__
 
 
-class FindVacancySJ(FindVacancy):
-    __WEBSITE = "https://www.superjob.ru/"
-    _PARAMETERS = {}
+@dataclass
+class VacancySuperJob(Vacancy):
 
+    # обязательные параметры
+    # page: int = 0
+    # per_page: int = 100
+    keyword: str = ""       # ключевое слово, ищет по всей вакансии
 
-if __name__ == '__main__':
+    # only_with_salary: bool = False
+    no_agreement: int = 1       # не показывать оклад «по договоренности» (когда установлено значение 1)
 
-    keywords = {
-        "text": "NAME:курьер",
-        "area": 1,
-        "page": 1,
-        "per_page": 4
-    }
-    vac = FindVacancyHH("Курьер", 2, 4)
-    FindVacancyHH.get_city_id("Пермь")
+    # дополнительные параметры
+
+    # search_field: str | None = None
+    keywords: dict | None = None        # расширенный поиск ключевых слов
+
+    # experience: str | None = None
+    experience: int | None = None       # опыт работы
+
+    # employment: str | None = None
+    type_of_work: int | None = None     # тип занятости
+
+    schedule: str | None = None
+    area: str | None = None
+
+    # salary: int | None = None
+    payment_from: int | None = None     # сумма оклада от
+    payment_to: int | None = None       # сумма оклада до
+
+    currency: str | None = None
+
+    # period: int | None = None
+    period: int | None = None       # период публикации
+
+    # order_by: str | None = None
+    order_field: str | None = None      # сортировка: по дате публикации/по сумме оклада
+    order_direction: str | None = None      # направление сортировки: прямая/обратная
+
+    locale: str | None = None
+
+    @classmethod
+    def get_filter_dictionary(cls) -> dict:
+        url = urls_sj.FILTER_DICTIONARY
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.json()
+        raise requests.RequestException("Ошибка при получении словаря дополнительных значений")
+
+    @staticmethod
+    def get_areas_info() -> dict:
+        url = urls_sj.AREA_CODES
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.json()
+        raise requests.RequestException("Ошибка при получении списка кодов")
+
+    @classmethod
+    def get_areas_names(cls) -> list[str]:
+        areas = cls.get_areas_info()
+
+        json_exp = jp.parse('$..title')
+        matches = json_exp.find(areas)
+        codes = [match.value for match in matches]
+
+        return codes
+
+    @classmethod
+    def get_area_id(cls, name: str) -> int:
+        name = name.capitalize()
+        regions = cls.get_areas_info()
+
+        json_exp = jp.parse("$..towns[*]")
+        matches = [match.value for match in json_exp.find(regions) if match.value.get('title') == name]
+
+        if matches:
+            return matches[0].get("id")
+
 
 
 
