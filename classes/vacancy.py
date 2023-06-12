@@ -122,38 +122,20 @@ class VacancySuperJob(Vacancy):
     # page: int = 0
     # per_page: int = 100
     keyword: str = ""       # ключевое слово, ищет по всей вакансии
-
-    # only_with_salary: bool = False
     no_agreement: int = 1       # не показывать оклад «по договоренности» (когда установлено значение 1)
 
     # дополнительные параметры
 
-    # search_field: str | None = None
     keywords: dict | None = None        # расширенный поиск ключевых слов
-
-    # experience: str | None = None
     experience: int | None = None       # опыт работы
-
-    # employment: str | None = None
     type_of_work: int | None = None     # тип занятости
-
-    schedule: str | None = None
-    area: str | None = None
-
-    # salary: int | None = None
+    town: str | int | None = None       # название города или его ID
     payment_from: int | None = None     # сумма оклада от
     payment_to: int | None = None       # сумма оклада до
-
     currency: str | None = None
-
-    # period: int | None = None
     period: int | None = None       # период публикации
-
-    # order_by: str | None = None
     order_field: str | None = None      # сортировка: по дате публикации/по сумме оклада
     order_direction: str | None = None      # направление сортировки: прямая/обратная
-
-    locale: str | None = None
 
     @classmethod
     def get_filter_dictionary(cls) -> dict:
@@ -191,6 +173,13 @@ class VacancySuperJob(Vacancy):
 
         if matches:
             return matches[0].get("id")
+
+    @classmethod
+    def build_filter(cls, values: dict) -> "VacancySuperJob":
+        return cls(**values)
+
+    def get_parameters(self) -> dict:
+        return self.__dict__
 
 
 
