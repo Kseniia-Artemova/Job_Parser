@@ -15,6 +15,8 @@ class API(ABC):
     def __init__(self, max_quantity=10):
         self.max_quantity = max_quantity
         self.set_filter_dictionary()
+        filters = self.choice_filters()
+        self.set_parameters(filters)
 
     @property
     def max_quantity(self) -> int:
@@ -65,6 +67,10 @@ class API(ABC):
     def get_vacancies(self):
         pass
 
+    @abstractmethod
+    def choice_filters(self):
+        pass
+
 
 class HeadHunterAPI(API):
     _URL = urls_hh.VACANCIES
@@ -85,7 +91,6 @@ class HeadHunterAPI(API):
         "host": "hh.ru",
         "only_with_salary": False,
 
-        "search_field": "",
         "experience": "",
         "employment": "",
         "schedule": "",
@@ -161,7 +166,26 @@ class HeadHunterAPI(API):
         return True
 
     def choice_filters(self):
-        pass
+        filters = {}
+
+        filters["text"] = self.ask_text()
+        filters["host"] = self.ask_host()
+        filters["only_with_salary"] = self.ask_only_with_salary()
+        filters["experience"] = self.ask_experience()
+        filters["employment"] = self.ask_employment()
+        filters["schedule"] = self.ask_schedule()
+        filters["area"] = self.ask_area()
+        filters["salary"] = self.ask_salary()
+        filters["currency"] = self.ask_currency()
+        filters["period"] = self.ask_period()
+        filters["order_by"] = self.ask_order_by()
+        filters["locale"] = self.ask_locale()
+
+        print(self._PARAMETERS)
+        print()
+        print(filters)
+
+        return filters
 
     @staticmethod
     def ask_text():
@@ -169,38 +193,21 @@ class HeadHunterAPI(API):
 
     def ask_host(self):
         hosts = "\n".join([f"{num} - {host}" for num, host in self._HOSTS.items()])
-        print(f"\nКакое доменное имя сайта использовать для запроса?\n"
-              f"По умолчанию используется 'hh.ru'.\n"
-              f"Доступны варианты:\n{hosts}\n"
-              f"Введите номер выбранного домена или '0' чтобы оставить значение по умолчанию.")
-        choice = input()
+        choice = input(f"\nКакое доменное имя сайта использовать для запроса?"
+                       f"По умолчанию используется 'hh.ru'.\n"
+                       f"Доступны варианты:\n{hosts}\n"
+                       f"Введите номер выбранного домена или '0' чтобы оставить значение по умолчанию.\n")
         while choice not in self._HOSTS:
             choice = input("Неверный номер. Пожалуйста, повторите попытку:\n")
         return self._HOSTS[choice]
 
     @staticmethod
     def ask_only_with_salary():
-        answer = input(f"\nВыводить только вакансии с указанием заработной платы?\n"
-                       f"Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+        answer = input("\nВыводить только вакансии с указанием заработной платы? "
+                       "Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
         while answer not in ("да", "нет"):
             answer = input("Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
         return True if answer == "да" else False
-
-    def ask_search_field(self):
-        fields = self._filter_dictionary["resume_search_fields"]
-        variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(fields)])
-
-        choice = input(f"\nВыберите, где искать ключевое слово:\n{variations}\n"
-                       f"Введите номер, либо нажмите Enter для пропуска.\n")
-
-        while choice != "":
-            if choice.isdigit() and 0 <= int(choice) < len(fields):
-                break
-
-            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
-                           f"{variations}\n")
-
-        return fields[int(choice)]["id"] if choice.isdigit() else None
 
     def ask_experience(self):
         experience = self._filter_dictionary["experience"]
@@ -215,7 +222,7 @@ class HeadHunterAPI(API):
             choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
-        return experience[int(choice)]["id"] if choice.isdigit() else None
+        return experience[int(choice)]["id"] if choice.isdigit() else ""
 
     def ask_employment(self):
         employment = self._filter_dictionary["employment"]
@@ -230,7 +237,7 @@ class HeadHunterAPI(API):
             choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
-        return employment[int(choice)]["id"] if choice.isdigit() else None
+        return employment[int(choice)]["id"] if choice.isdigit() else ""
 
     def ask_schedule(self):
         schedule = self._filter_dictionary["schedule"]
@@ -245,27 +252,97 @@ class HeadHunterAPI(API):
             choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
-        return schedule[int(choice)]["id"] if choice.isdigit() else None
+        return schedule[int(choice)]["id"] if choice.isdigit() else ""
 
     def ask_area(self):
         all_areas = self.get_areas_names()
-        name = input("\nВведите город или населенный пункт:\n")
-        while name not in all_areas:
-            print(f"Не могу найти такой населенный пункт.\n"
-                  f"Для вызова списка городов введите 'list'.\n"
-                  f"Соблюдайте регистр.")
-            name = input("Попробуйте ещё раз:\n")
-            if name == "List":
+        name = input("\nВведите город или населенный пункт, либо нажмите Enter для пропуска:\n")
+
+        while name != "":
+
+            if name == "list":
                 print()
                 print(*sorted(all_areas), sep="\n")
+                print()
+                name = input("Попробуйте ещё раз:\n")
+
+            elif name not in all_areas:
+                print(f"Не могу найти такой населенный пункт.\n"
+                      f"Для вызова списка городов введите 'list'.\n"
+                      f"Соблюдайте регистр.")
+                name = input("Попробуйте ещё раз:\n")
+
+            else:
+                break
+
         return self.get_area_id(name)
 
-    #     "salary": 0,
-    #     "currency": "",
-    #     "period": 0,
-    #     "order_by": "",
-    #     "locale": ""
-    # }
+    @staticmethod
+    def ask_salary():
+        salary = input("\nВведите сумму зарплаты для поиска (целое положительное число),\n"
+                       "либо нажмите Enter для пропуска:\n")
+        while salary != "":
+            if salary.isdigit():
+                salary = int(salary)
+                break
+            salary = input("Сумма должна быть целым положительным числом без каких-либо знаков.\n"
+                           "Попробуйте еще раз:\n")
+
+        return salary if salary else 0
+
+    def ask_currency(self):
+        currency = [field for field in self._filter_dictionary["currency"] if field["in_use"]]
+        variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(currency)])
+        choice = input(f"\nВыберите валюту зарплаты:\n{variations}\n"
+                       f"Введите номер, либо нажмите Enter для пропуска.\n")
+
+        while choice != "":
+            if choice.isdigit() and 0 <= int(choice) < len(currency):
+                break
+
+            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+                           f"{variations}\n")
+
+        return currency[int(choice)]["code"] if choice.isdigit() else ""
+
+    @staticmethod
+    def ask_period():
+        period = input("\nВведите количество дней, в пределах которых производится поиск по вакансиям,\n"
+                       "либо нажмите Enter для пропуска:\n")
+        while period != "":
+            if period.isdigit():
+                period = int(period)
+                break
+            period = input("Количество дней должно быть целым положительным числом без каких-либо знаков.\n"
+                           "Попробуйте еще раз:\n")
+
+        return period if period else 0
+
+    def ask_order_by(self):
+        order_by = [field for field in self._filter_dictionary["vacancy_search_order"] if field["id"] != "distance"]
+        variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(order_by)])
+        choice = input(f"\nВыберите способ сортировки:\n{variations}\n"
+                       f"Введите номер, либо нажмите Enter для пропуска.\n")
+
+        while choice != "":
+            if choice.isdigit() and 0 <= int(choice) < len(order_by):
+                break
+
+            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+                           f"{variations}\n")
+
+        return order_by[int(choice)]["id"] if choice.isdigit() else ""
+
+    @staticmethod
+    def ask_locale():
+        answer = input("\nТребуется ли изменить язык локализации на английский?\n"
+                       "По умолчанию стоит русская локализация. "
+                       "Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+
+        while answer not in ("да", "нет"):
+            answer = input("Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+
+        return "EN" if answer == "да" else "RU"
 
 
 class SuperJobAPI(API):
@@ -382,6 +459,10 @@ if __name__ == '__main__':
         "town": "Москва"
     }
 
-vac = HeadHunterAPI()
-
-print(vac.ask_area())
+    vac = HeadHunterAPI(20)
+    #
+    # vac.choice_filters()
+    piu = vac.get_vacancies()
+    pprint(piu)
+    print(len(piu))
+    print(piu)
