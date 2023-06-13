@@ -6,6 +6,7 @@ from sources.superjob import personal_data
 from sources.superjob import urls_sj
 from sources.headhunter import urls_hh
 import jsonpath_ng as jp
+from types import NoneType
 
 
 class API(ABC):
@@ -15,8 +16,7 @@ class API(ABC):
     def __init__(self, max_quantity=10):
         self.max_quantity = max_quantity
         self.set_filter_dictionary()
-        filters = self.choice_filters()
-        self.set_parameters(filters)
+        self.set_parameters()
 
     @property
     def max_quantity(self) -> int:
@@ -30,10 +30,14 @@ class API(ABC):
     def get_parameters(self) -> dict:
         return self._PARAMETERS
 
-    def set_parameters(self, filters: dict):
-        for key, value in filters.items():
-            if self._check_parameters(key, value):
-                self._PARAMETERS[key] = value
+    def set_parameters(self):
+        if self._PARAMETERS == self.__class__._PARAMETERS:
+            filters = self.choice_filters()
+            for key, value in filters.items():
+                if self._check_parameters(key, value):
+                    self._PARAMETERS[key] = value
+        else:
+            print("Сначала сбросьте фильтр при помощи reset_parameters().")
 
     @abstractmethod
     def _check_parameters(self, key, value):
@@ -73,6 +77,7 @@ class API(ABC):
 
 
 class HeadHunterAPI(API):
+
     _URL = urls_hh.VACANCIES
     _HOSTS = {"0": "hh.ru",
               "1": "rabota.by",
@@ -90,7 +95,9 @@ class HeadHunterAPI(API):
         "text": "",
         "host": "hh.ru",
         "only_with_salary": False,
+        "locale": "RU",
 
+        "search_field": "",
         "experience": "",
         "employment": "",
         "schedule": "",
@@ -98,12 +105,11 @@ class HeadHunterAPI(API):
         "salary": 0,
         "currency": "",
         "period": 0,
-        "order_by": "",
-        "locale": ""
+        "order_by": ""
     }
 
     def get_info(self) -> dict:
-        parameters = self._PARAMETERS
+        parameters = {key: value for key, value in self._PARAMETERS.items() if value}
         with requests.get(self._URL, parameters) as request:
             response = request.content.decode("utf-8")
             response = json.loads(response)
@@ -159,31 +165,30 @@ class HeadHunterAPI(API):
     def _check_parameters(self, key, value):
         if key not in self._PARAMETERS:
             return False
-        if type(value) != type(self._PARAMETERS[key]):
+        if type(value) not in (type(self._PARAMETERS[key]), NoneType):
             return False
-        if key in ("page", "salary", "period") and value < 0:
+        if key in ("page", "salary", "period") and (value is not None) and (value < 0):
             return False
         return True
 
     def choice_filters(self):
+
         filters = {}
 
         filters["text"] = self.ask_text()
         filters["host"] = self.ask_host()
         filters["only_with_salary"] = self.ask_only_with_salary()
+        filters["search_field"] = self.ask_search_field()
         filters["experience"] = self.ask_experience()
         filters["employment"] = self.ask_employment()
         filters["schedule"] = self.ask_schedule()
         filters["area"] = self.ask_area()
         filters["salary"] = self.ask_salary()
-        filters["currency"] = self.ask_currency()
+        if filters["salary"]:
+            filters["currency"] = self.ask_currency()
         filters["period"] = self.ask_period()
         filters["order_by"] = self.ask_order_by()
         filters["locale"] = self.ask_locale()
-
-        print(self._PARAMETERS)
-        print()
-        print(filters)
 
         return filters
 
@@ -209,6 +214,22 @@ class HeadHunterAPI(API):
             answer = input("Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
         return True if answer == "да" else False
 
+    def ask_search_field(self):
+        fields = self._filter_dictionary["vacancy_search_fields"]
+        variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(fields)])
+
+        choice = input(f"\nВыберите, где искать ключевое слово:\n{variations}\n"
+                       f"По умолчанию поиск везде. Введите номер, либо нажмите Enter для пропуска.\n")
+
+        while choice != "":
+            if choice.isdigit() and 0 <= int(choice) < len(fields):
+                break
+
+            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+                           f"{variations}\n")
+
+        return fields[int(choice)]["id"] if choice.isdigit() else None
+
     def ask_experience(self):
         experience = self._filter_dictionary["experience"]
         variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(experience)])
@@ -222,7 +243,7 @@ class HeadHunterAPI(API):
             choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
-        return experience[int(choice)]["id"] if choice.isdigit() else ""
+        return experience[int(choice)]["id"] if choice.isdigit() else None
 
     def ask_employment(self):
         employment = self._filter_dictionary["employment"]
@@ -237,7 +258,7 @@ class HeadHunterAPI(API):
             choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
-        return employment[int(choice)]["id"] if choice.isdigit() else ""
+        return employment[int(choice)]["id"] if choice.isdigit() else None
 
     def ask_schedule(self):
         schedule = self._filter_dictionary["schedule"]
@@ -252,7 +273,7 @@ class HeadHunterAPI(API):
             choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
-        return schedule[int(choice)]["id"] if choice.isdigit() else ""
+        return schedule[int(choice)]["id"] if choice.isdigit() else None
 
     def ask_area(self):
         all_areas = self.get_areas_names()
@@ -288,7 +309,7 @@ class HeadHunterAPI(API):
             salary = input("Сумма должна быть целым положительным числом без каких-либо знаков.\n"
                            "Попробуйте еще раз:\n")
 
-        return salary if salary else 0
+        return salary if salary else None
 
     def ask_currency(self):
         currency = [field for field in self._filter_dictionary["currency"] if field["in_use"]]
@@ -303,7 +324,7 @@ class HeadHunterAPI(API):
             choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
-        return currency[int(choice)]["code"] if choice.isdigit() else ""
+        return currency[int(choice)]["code"] if choice.isdigit() else None
 
     @staticmethod
     def ask_period():
@@ -316,7 +337,7 @@ class HeadHunterAPI(API):
             period = input("Количество дней должно быть целым положительным числом без каких-либо знаков.\n"
                            "Попробуйте еще раз:\n")
 
-        return period if period else 0
+        return period if period else None
 
     def ask_order_by(self):
         order_by = [field for field in self._filter_dictionary["vacancy_search_order"] if field["id"] != "distance"]
@@ -331,7 +352,7 @@ class HeadHunterAPI(API):
             choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
-        return order_by[int(choice)]["id"] if choice.isdigit() else ""
+        return order_by[int(choice)]["id"] if choice.isdigit() else None
 
     @staticmethod
     def ask_locale():
@@ -460,9 +481,5 @@ if __name__ == '__main__':
     }
 
     vac = HeadHunterAPI(20)
-    #
-    # vac.choice_filters()
-    piu = vac.get_vacancies()
-    pprint(piu)
-    print(len(piu))
-    print(piu)
+
+    pprint(vac.get_vacancies())
