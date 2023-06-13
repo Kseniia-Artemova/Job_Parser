@@ -14,6 +14,7 @@ class API(ABC):
 
     def __init__(self, max_quantity=10):
         self.max_quantity = max_quantity
+        self.set_filter_dictionary()
 
     @property
     def max_quantity(self) -> int:
@@ -39,9 +40,8 @@ class API(ABC):
     def reset_parameters(self):
         self._PARAMETERS = self.__class__._PARAMETERS
 
-    @classmethod
     @abstractmethod
-    def get_filter_dictionary(cls):
+    def set_filter_dictionary(self):
         pass
 
     @staticmethod
@@ -49,14 +49,12 @@ class API(ABC):
     def get_areas_info():
         pass
 
-    @classmethod
     @abstractmethod
-    def get_areas_names(cls):
+    def get_areas_names(self):
         pass
 
-    @classmethod
     @abstractmethod
-    def get_area_id(cls, name: str) -> str:
+    def get_area_id(self, name: str) -> str:
         pass
 
     @abstractmethod
@@ -69,35 +67,35 @@ class API(ABC):
 
 
 class HeadHunterAPI(API):
-
     _URL = urls_hh.VACANCIES
-    _HOSTS = ("hh.ru",
-              "rabota.by",
-              "hh1.az",
-              "hh.uz",
-              "hh.kz",
-              "headhunter.ge",
-              "headhunter.kg"
-              )
+    _HOSTS = {"0": "hh.ru",
+              "1": "rabota.by",
+              "2": "hh1.az",
+              "3": "hh.uz",
+              "4": "hh.kz",
+              "5": "headhunter.ge",
+              "6": "headhunter.kg"
+              }
 
     _PARAMETERS = {
-            "page": 0,
-            "per_page": 100,
-            "text": "",
-            "host": "hh.ru",
-            "only_with_salary": False,
+        "page": 0,
+        "per_page": 100,
 
-            "search_field": "",
-            "experience": "",
-            "employment": "",
-            "schedule": "",
-            "area": "",
-            "salary": 0,
-            "currency": "",
-            "period": 0,
-            "order_by": "",
-            "locale": ""
-        }
+        "text": "",
+        "host": "hh.ru",
+        "only_with_salary": False,
+
+        "search_field": "",
+        "experience": "",
+        "employment": "",
+        "schedule": "",
+        "area": "",
+        "salary": 0,
+        "currency": "",
+        "period": 0,
+        "order_by": "",
+        "locale": ""
+    }
 
     def get_info(self) -> dict:
         parameters = self._PARAMETERS
@@ -119,13 +117,12 @@ class HeadHunterAPI(API):
 
         return vacancies[:self.max_quantity]
 
-    @classmethod
-    def get_filter_dictionary(cls) -> dict:
+    def set_filter_dictionary(self):
         url = urls_hh.FILTER_DICTIONARY
         response = requests.get(url)
-        if response.status_code == 200:
-            return response.json()
-        raise requests.RequestException("Ошибка при получении словаря дополнительных значений")
+        if response.status_code != 200:
+            raise requests.RequestException("Ошибка при получении словаря дополнительных значений")
+        self._filter_dictionary = response.json()
 
     @staticmethod
     def get_areas_info() -> dict:
@@ -135,9 +132,8 @@ class HeadHunterAPI(API):
             return response.json()
         raise requests.RequestException("Ошибка при получении списка кодов")
 
-    @classmethod
-    def get_areas_names(cls) -> list[str]:
-        areas = cls.get_areas_info()
+    def get_areas_names(self) -> list[str]:
+        areas = self.get_areas_info()
 
         json_exp = jp.parse('$..name')
         matches = json_exp.find(areas)
@@ -145,10 +141,9 @@ class HeadHunterAPI(API):
 
         return names
 
-    @classmethod
-    def get_area_id(cls, name: str) -> str:
+    def get_area_id(self, name: str) -> str:
         name = name.capitalize()
-        regions = cls.get_areas_info()
+        regions = self.get_areas_info()
 
         json_exp = jp.parse("$..areas[*]")
         matches = [match.value for match in json_exp.find(regions) if match.value.get('name') == name]
@@ -165,9 +160,115 @@ class HeadHunterAPI(API):
             return False
         return True
 
+    def choice_filters(self):
+        pass
+
+    @staticmethod
+    def ask_text():
+        return input("\nВведите слово или фразу для ключевого запроса:\n")
+
+    def ask_host(self):
+        hosts = "\n".join([f"{num} - {host}" for num, host in self._HOSTS.items()])
+        print(f"\nКакое доменное имя сайта использовать для запроса?\n"
+              f"По умолчанию используется 'hh.ru'.\n"
+              f"Доступны варианты:\n{hosts}\n"
+              f"Введите номер выбранного домена или '0' чтобы оставить значение по умолчанию.")
+        choice = input()
+        while choice not in self._HOSTS:
+            choice = input("Неверный номер. Пожалуйста, повторите попытку:\n")
+        return self._HOSTS[choice]
+
+    @staticmethod
+    def ask_only_with_salary():
+        answer = input(f"\nВыводить только вакансии с указанием заработной платы?\n"
+                       f"Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+        while answer not in ("да", "нет"):
+            answer = input("Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+        return True if answer == "да" else False
+
+    def ask_search_field(self):
+        fields = self._filter_dictionary["resume_search_fields"]
+        variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(fields)])
+
+        choice = input(f"\nВыберите, где искать ключевое слово:\n{variations}\n"
+                       f"Введите номер, либо нажмите Enter для пропуска.\n")
+
+        while choice != "":
+            if choice.isdigit() and 0 <= int(choice) < len(fields):
+                break
+
+            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+                           f"{variations}\n")
+
+        return fields[int(choice)]["id"] if choice.isdigit() else None
+
+    def ask_experience(self):
+        experience = self._filter_dictionary["experience"]
+        variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(experience)])
+        choice = input(f"\nВыберите требуемый опыт работы:\n{variations}\n"
+                       f"Введите номер, либо нажмите Enter для пропуска.\n")
+
+        while choice != "":
+            if choice.isdigit() and 0 <= int(choice) < len(experience):
+                break
+
+            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+                           f"{variations}\n")
+
+        return experience[int(choice)]["id"] if choice.isdigit() else None
+
+    def ask_employment(self):
+        employment = self._filter_dictionary["employment"]
+        variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(employment)])
+        choice = input(f"\nВыберите требуемую занятость:\n{variations}\n"
+                       f"Введите номер, либо нажмите Enter для пропуска.\n")
+
+        while choice != "":
+            if choice.isdigit() and 0 <= int(choice) < len(employment):
+                break
+
+            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+                           f"{variations}\n")
+
+        return employment[int(choice)]["id"] if choice.isdigit() else None
+
+    def ask_schedule(self):
+        schedule = self._filter_dictionary["schedule"]
+        variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(schedule)])
+        choice = input(f"\nВыберите требуемый график:\n{variations}\n"
+                       f"Введите номер, либо нажмите Enter для пропуска.\n")
+
+        while choice != "":
+            if choice.isdigit() and 0 <= int(choice) < len(schedule):
+                break
+
+            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+                           f"{variations}\n")
+
+        return schedule[int(choice)]["id"] if choice.isdigit() else None
+
+    def ask_area(self):
+        all_areas = self.get_areas_names()
+        name = input("\nВведите город или населенный пункт:\n")
+        while name not in all_areas:
+            print(f"Не могу найти такой населенный пункт.\n"
+                  f"Для вызова списка городов введите 'list'.\n"
+                  f"Соблюдайте регистр.")
+            name = input("Попробуйте ещё раз:\n")
+            if name == "List":
+                print()
+                print(*sorted(all_areas), sep="\n")
+        return self.get_area_id(name)
+
+    #     "salary": 0,
+    #     "currency": "",
+    #     "period": 0,
+    #     "order_by": "",
+    #     "locale": ""
+    # }
+
 
 class SuperJobAPI(API):
-
     _URL = "https://api.superjob.ru/2.0/vacancies/"
     __MAX_QUANTITY = 500
 
@@ -227,13 +328,12 @@ class SuperJobAPI(API):
 
         return vacancies[:self.max_quantity]
 
-    @classmethod
-    def get_filter_dictionary(cls) -> dict:
+    def set_filter_dictionary(self):
         url = urls_sj.FILTER_DICTIONARY
         response = requests.get(url)
-        if response.status_code == 200:
-            return response.json()
-        raise requests.RequestException("Ошибка при получении словаря дополнительных значений")
+        if response.status_code != 200:
+            raise requests.RequestException("Ошибка при получении словаря дополнительных значений")
+        self._filter_dictionary = response.json()
 
     @staticmethod
     def get_areas_info() -> dict:
@@ -243,9 +343,8 @@ class SuperJobAPI(API):
             return response.json()
         raise requests.RequestException("Ошибка при получении списка кодов")
 
-    @classmethod
-    def get_areas_names(cls) -> list[str]:
-        areas = cls.get_areas_info()
+    def get_areas_names(self) -> list[str]:
+        areas = self.get_areas_info()
 
         json_exp = jp.parse('$..title')
         matches = json_exp.find(areas)
@@ -253,10 +352,9 @@ class SuperJobAPI(API):
 
         return codes
 
-    @classmethod
-    def get_area_id(cls, name: str) -> int:
+    def get_area_id(self, name: str) -> int:
         name = name.capitalize()
-        regions = cls.get_areas_info()
+        regions = self.get_areas_info()
 
         json_exp = jp.parse("$..towns[*]")
         matches = [match.value for match in json_exp.find(regions) if match.value.get('title') == name]
@@ -284,8 +382,6 @@ if __name__ == '__main__':
         "town": "Москва"
     }
 
-    api = SuperJobAPI(30)
-    api.set_parameters(keywords)
-    pprint(api.get_vacancies())
+vac = HeadHunterAPI()
 
-
+print(vac.ask_area())
