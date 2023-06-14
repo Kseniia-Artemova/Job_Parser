@@ -77,7 +77,6 @@ class API(ABC):
 
 
 class HeadHunterAPI(API):
-
     _URL = urls_hh.VACANCIES
     _HOSTS = {"0": "hh.ru",
               "1": "rabota.by",
@@ -382,10 +381,10 @@ class SuperJobAPI(API):
         "town": 0,
         "payment_from": 0,
         "payment_to": 0,
-        "currency": "",
+        "currency": "rub",
         "period": 0,
-        "order_field": "",
-        "order_direction": ""
+        "order_field": "date",
+        "order_direction": "desc"
     }
 
     @property
@@ -396,6 +395,9 @@ class SuperJobAPI(API):
     def max_quantity(self, max_quantity: int):
         if type(max_quantity) is int and 0 <= max_quantity <= self.__MAX_QUANTITY:
             self._max_quantity = max_quantity
+        else:
+            print("Запрошенное количество вакансий превышает максимально возможное (500).\n"
+                  "Установлен параметр по умолчанию = 10")
 
     def get_info(self):
         parameters = self._PARAMETERS
@@ -472,6 +474,189 @@ class SuperJobAPI(API):
             return False
         return True
 
+    def choice_filters(self):
+
+        filter = {}
+
+        filter["keyword"] = self.ask_keyword()
+        filter["no_agreement"] = self.ask_no_agreement()
+        filter["experience"] = self.ask_experience()
+        filter["type_of_work"] = self.ask_type_of_work()
+        filter["town"] = self.ask_town()
+        filter["payment_from"], filter["payment_to"] = self.ask_payment_from_to()
+        filter["period"] = self.ask_period()
+        filter["order_field"] = self.ask_order_field()
+        filter["order_direction"] = self.ask_order_direction()
+
+        return filter
+
+    @staticmethod
+    def ask_keyword():
+        key = input("\nВведите слово или фразу для ключевого запроса:\n")
+        keys = len(key.strip().split())
+        return key if keys == 1 else keys
+
+    @staticmethod
+    def ask_no_agreement():
+        answer = input("\nТребуется ли исключить вакансии с окладом «по договоренности»?\n"
+                       "Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+
+        while answer not in ("да", "нет"):
+            answer = input("Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+
+        return 1 if answer == "да" else 0
+
+    # @staticmethod
+    # def ask_keywords():
+    #     keywords = {
+    #         "srws": {
+    #             "1": "должность",
+    #             "2": "название компании",
+    #             "3": "должностные обязанности",
+    #             "4": "требования к квалификации",
+    #             "5": "условия работы",
+    #             "10": "весь текст вакансии"
+    #         },
+    #         "skwc": {
+    #             "and": "все слова",
+    #             "or": "хотя бы одно слово",
+    #             "particular": "точную фразу",
+    #             "nein": "слова-исключения",
+    #         }
+    #     }
+    #
+    #     srws = "\n".join([f"{key} - {value}" for key, value in keywords["srws"].items()])
+    #     answer_srws = input(f"\nВыберите, где искать ключевые слова. Введите число, соответсвующее ответу,\n"
+    #                         f"либо нажмите Enter для пропуска:\n{srws}\n")
+    #     while answer_srws not in keywords["srws"]:
+    #         if answer_srws == "":
+    #             break
+    #         answer_srws = input("Введите число, соответсвующее ответу,\n"
+    #                             "либо нажмите Enter для пропуска:\n")
+    #
+    #     skwc = "\n".join([f"{key} - {value}" for key, value in keywords["skwc"].items()])
+    #     answer_skwc = input(f"\nВыберите, как искать ключевые слова. Введите опцию, соответсвующую ответу,\n"
+    #                         f"либо нажмите Enter для пропуска:\n{skwc}\n").lower()
+    #     while answer_skwc not in keywords["skwc"]:
+    #         if answer_skwc == "":
+    #             break
+    #         answer_skwc = input("Введите опцию, соответсвующую ответу,\n"
+    #                             "либо нажмите Enter для пропуска:\n").lower()
+    #
+    #     return answer_srws, answer_skwc
+
+    def ask_experience(self):
+        experience = self._filter_dictionary["experience"]
+        variation = "\n".join([f"{key} - {value}" for key, value in experience.items()])
+
+        answer = input(f"\nВведите подходящее числовое значение для выбора опыта работы, "
+                       f"либо нажмите Enter для пропуска:\n{variation}\n")
+
+        while answer not in experience:
+            if answer == "":
+                break
+            answer = input("Пожалуйста, введите ответ в формате числа, либо нажмите Enter для пропуска:\n")
+
+        return answer
+
+    def ask_type_of_work(self):
+        type_of_work = self._filter_dictionary["type_of_work"]
+        variation = "\n".join([f"{key} - {value}" for key, value in type_of_work.items()])
+
+        answer = input(f"\nВведите подходящее числовое значение для выбора типа занятости, "
+                       f"либо нажмите Enter для пропуска:\n{variation}\n")
+
+        while answer not in type_of_work:
+            if answer == "":
+                break
+            answer = input("Пожалуйста, введите ответ в формате числа, либо нажмите Enter для пропуска:\n")
+
+        return answer
+
+    def ask_town(self):
+        all_towns = self.get_areas_names()
+        name = input("\nВведите город или населенный пункт, либо нажмите Enter для пропуска:\n")
+
+        while name != "":
+
+            if name == "list":
+                print()
+                print(*sorted(all_towns), sep="\n")
+                print()
+                name = input("Попробуйте ещё раз:\n")
+
+            elif name not in all_towns:
+                print(f"Не могу найти такой населенный пункт.\n"
+                      f"Для вызова списка городов введите 'list'.\n"
+                      f"Соблюдайте регистр.")
+                name = input("Попробуйте ещё раз:\n")
+
+            else:
+                break
+
+        return self.get_area_id(name)
+
+    @staticmethod
+    def ask_payment_from_to():
+        payment_from = input("\nВведите нижнюю границу суммы зарплаты для поиска (целое положительное число),\n"
+                             "либо нажмите Enter для пропуска:\n")
+        while payment_from != "":
+            if payment_from.isdigit():
+                payment_from = int(payment_from)
+                break
+            payment_from = input("Сумма должна быть целым положительным числом без каких-либо знаков.\n"
+                                 "Попробуйте еще раз:\n")
+
+        payment_to = input("\nВведите верхнюю границу суммы зарплаты для поиска (целое положительное число),\n"
+                           "либо нажмите Enter для пропуска:\n")
+        while payment_to != "":
+            if payment_to.isdigit():
+                payment_to = int(payment_to)
+                break
+            payment_to = input("Сумма должна быть целым положительным числом без каких-либо знаков.\n"
+                               "Попробуйте еще раз:\n")
+
+        try:
+            return sorted((payment_from, payment_to))
+        except TypeError:
+            return payment_from, payment_to
+
+    def ask_period(self):
+        period = self._filter_dictionary["period"]
+        variation = "\n".join([f"{key} - {value}" for key, value in period.items()])
+
+        answer = input(f"\nВведите подходящее числовое значение для выбора периода публикации, "
+                       f"либо нажмите Enter для пропуска:\n{variation}\n")
+
+        while answer not in period:
+            if answer == "":
+                break
+            answer = input("Пожалуйста, введите ответ в формате числа, либо нажмите Enter для пропуска:\n")
+
+        return answer
+
+    @staticmethod
+    def ask_order_field():
+        answer = input("\nСортировать вакансии по параметру '0 - дата' или '1 - сумма оклада'?\n"
+                       "Пожалуйста, введите соответствующее числовое значение.\n").lower()
+
+        while answer not in ("0", "1"):
+            answer = input("Пожалуйста, введите ответ в формате числа.\n").lower()
+
+        return "date" if answer == "0" else "payment"
+
+    @staticmethod
+    def ask_order_direction():
+        answer = input("\nВ каком направлении следует сортировать вакансии?\n"
+                       "Пожалуйста, введите соответствующее числовое значение:\n"
+                       "0 - в прямом\n"
+                       "1 - в обратном\n")
+
+        while answer not in ("0", "1"):
+            answer = input("Пожалуйста, введите ответ в формате числа.\n")
+
+        return "asc" if answer == "0" else "desc"
+
 
 if __name__ == '__main__':
     keywords = {
@@ -480,6 +665,5 @@ if __name__ == '__main__':
         "town": "Москва"
     }
 
-    vac = HeadHunterAPI(20)
-
-    pprint(vac.get_vacancies())
+    a = SuperJobAPI()
+    print(a.get_info())
