@@ -1,18 +1,34 @@
 import requests
-import json
-from pprint import pprint
 from abc import ABC, abstractmethod
-from sources.superjob import personal_data
 from sources.superjob import urls_sj
 from sources.headhunter import urls_hh
 import jsonpath_ng as jp
 from types import NoneType
-from dataclasses import dataclass
 
 
 class Filter(ABC):
     _AREA_CODES = None
     _FILTER_DICTIONARY = None
+
+    def __init__(self):
+
+        text = "Установить параметры по умолчанию как настройки фильтра?\n" \
+               "0 - нет\n" \
+               "1 - да"
+        answer = self._check_binary_answer(text)
+
+        if answer == "0":
+            self.set_obligatory_parameters()
+            self.set_extra_parameters()
+
+    @staticmethod
+    def _check_binary_answer(text):
+        answer = input(f"\n{text}\n")
+
+        while answer not in ("0", "1"):
+            answer = input("Пожалуйста, введите ответ в формате числа в заданном диапазоне значений.\n")
+
+        return answer
 
     @abstractmethod
     def get_filter_dictionary(self) -> dict:
@@ -71,8 +87,6 @@ class FilterHH(Filter):
         self.only_with_salary: bool = False  # показывать вакансии только с указанием зарплаты, по умолчанию False
         self.locale: str = "RU"  # идентификатор локали
 
-        self.set_obligatory_parameters()
-
         # дополнительные параметры
         self.experience: str | None = None  # опыт работы
         self.employment: str | None = None  # тип занятости
@@ -84,7 +98,7 @@ class FilterHH(Filter):
         self.salary: int | None = None  # размер заработной платы
         self.period: int | None = None  # количество дней, в пределах которых производится поиск по вакансиям
 
-        self.set_extra_parameters()
+        super().__init__()
 
     def get_filter_dictionary(self) -> dict:
         url = self._FILTER_DICTIONARY
@@ -153,24 +167,26 @@ class FilterHH(Filter):
             choice = input("Неверный номер. Пожалуйста, повторите попытку:\n")
         return self._HOSTS[choice]
 
-    @staticmethod
-    def ask_only_with_salary():
-        answer = input("\nВыводить только вакансии с указанием заработной платы? "
-                       "Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
-        while answer not in ("да", "нет"):
-            answer = input("Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
-        return True if answer == "да" else False
+    def ask_only_with_salary(self):
+        text = "Выводить только вакансии с указанием заработной платы? " \
+               "Пожалуйста, введите ответ в формате числа.\n" \
+               "0 - нет\n" \
+               "1 - да"
 
-    @staticmethod
-    def ask_locale():
-        answer = input("\nТребуется ли изменить язык локализации на английский?\n"
-                       "По умолчанию стоит русская локализация. "
-                       "Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+        answer = self._check_binary_answer(text)
 
-        while answer not in ("да", "нет"):
-            answer = input("Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+        return True if answer == "1" else False
 
-        return "EN" if answer == "да" else "RU"
+    def ask_locale(self):
+        text = "Требуется ли изменить язык локализации на английский?\n" \
+               "По умолчанию стоит русская локализация. " \
+               "Пожалуйста, введите ответ в формате числа.\n" \
+               "0 - нет\n" \
+               "1 - да"
+
+        answer = self._check_binary_answer(text)
+
+        return "EN" if answer == "1" else "RU"
 
     @staticmethod
     def _check_right_answer(parameter: list, text: str):
@@ -314,8 +330,6 @@ class FilterSJ(Filter):
         self.order_field: str = "date"  # сортировка: по дате публикации/по сумме оклада
         self.order_direction: str = "desc"  # направление сортировки: прямая/обратная
 
-        self.set_obligatory_parameters()
-
         # дополнительные параметры
         self.town: int | None = None  # ID города
         self.experience: int | None = None  # опыт работы
@@ -324,7 +338,7 @@ class FilterSJ(Filter):
         self.payment_to: int | None = None  # сумма оклада до
         self.period: int | None = None  # период публикации
 
-        self.set_extra_parameters()
+        super().__init__()
 
     def get_filter_dictionary(self) -> dict:
         url = self._FILTER_DICTIONARY
@@ -377,28 +391,21 @@ class FilterSJ(Filter):
     def ask_keyword():
         return input("\nВведите слово или фразу для ключевого запроса:\n")
 
-    @staticmethod
-    def ask_no_agreement():
-        answer = input("\nТребуется ли исключить вакансии с окладом «по договоренности»?\n"
-                       "Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+    def ask_no_agreement(self):
+        text = "Требуется ли исключить вакансии с окладом «по договоренности»?\n" \
+               "Пожалуйста, введите соответствующее числовое значение.\n" \
+               "0 - нет\n" \
+               "1 - да"
 
-        while answer not in ("да", "нет"):
-            answer = input("Пожалуйста, введите ответ в формате 'да'/'нет'.\n").lower()
+        answer = self._check_binary_answer(text)
 
         return 1 if answer == "да" else 0
 
-    @staticmethod
-    def _check_binary_answer(text):
-        answer = input(f"\n{text}\n").lower()
-
-        while answer not in ("0", "1"):
-            answer = input("Пожалуйста, введите ответ в формате числа.\n").lower()
-
-        return answer
-
     def ask_order_field(self):
-        text = "Сортировать вакансии по параметру '0 - дата' или '1 - сумма оклада'?\n" \
-               "Пожалуйста, введите соответствующее числовое значение."
+        text = "Сортировать вакансии по параметру:\n" \
+               "Пожалуйста, введите соответствующее числовое значение.\n" \
+               "0 - дата\n" \
+               "1 - сумма оклада" \
 
         answer = self._check_binary_answer(text)
 
@@ -416,17 +423,18 @@ class FilterSJ(Filter):
 
     @staticmethod
     def _check_right_answer(parameter, text):
-        variation = "\n".join([f"{key} - {value}" for key, value in parameter.items()])
+        variations = "\n".join([f"{key} - {value}" for key, value in parameter.items()])
 
-        answer = input(f"\nВведите подходящее числовое значение для выбора {text}, "
-                       f"либо нажмите Enter для пропуска:\n{variation}\n")
+        choice = input(f"\nВведите подходящее числовое значение для выбора {text}, "
+                       f"либо нажмите Enter для пропуска:\n{variations}\n")
 
-        while answer not in parameter:
-            if answer == "":
+        while choice not in parameter:
+            if choice == "":
                 break
-            answer = input("Пожалуйста, введите ответ в формате числа, либо нажмите Enter для пропуска:\n")
+            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+                           f"{variations}\n")
 
-        return answer
+        return choice
 
     def ask_experience(self):
         experience = self._filter_dictionary["experience"]
@@ -523,5 +531,7 @@ class FilterSJ(Filter):
         return parameters
 
 
+b = FilterHH()
 a = FilterSJ()
 print(a.get_parameters())
+print(b.get_parameters())
