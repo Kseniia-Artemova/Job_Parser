@@ -1,9 +1,10 @@
 import requests
 from abc import ABC, abstractmethod
-from sources.superjob import urls_sj
-from sources.headhunter import urls_hh
 import jsonpath_ng as jp
 from types import NoneType
+
+from sources.superjob import urls_sj
+from sources.headhunter import urls_hh
 
 
 class Filter(ABC):
@@ -12,12 +13,12 @@ class Filter(ABC):
 
     def __init__(self):
 
-        text = "Установить параметры по умолчанию как настройки фильтра?\n" \
-               "0 - нет\n" \
-               "1 - да"
+        text = "Настроить фильтр или использовать параметры по умолчанию?\n" \
+               "0 - использовать параметры по умолчанию\n" \
+               "1 - настроить фильтр самостоятельно"
         answer = self._check_binary_answer(text)
 
-        if answer == "0":
+        if answer == "1":
             self.set_obligatory_parameters()
             self.set_extra_parameters()
 
@@ -29,6 +30,9 @@ class Filter(ABC):
             answer = input("Пожалуйста, введите ответ в формате числа в заданном диапазоне значений.\n")
 
         return answer
+
+    def get_parameters(self) -> dict:
+        return {key: value for key, value in self.get_all_parameters().items() if value is not None}
 
     @abstractmethod
     def get_filter_dictionary(self) -> dict:
@@ -55,7 +59,7 @@ class Filter(ABC):
         pass
 
     @abstractmethod
-    def get_parameters(self):
+    def get_all_parameters(self):
         pass
 
 
@@ -78,11 +82,12 @@ class FilterHH(Filter):
         self._areas_info = self.get_areas_info()
         self._areas_names = self.get_areas_names()
 
+        self.text: str = self.ask_text()  # переданное значение ищется в полях вакансии, указанных в параметре search_field
+
         # обязательные параметры
         self.page: int = 0  # номер страницы
         self.per_page: int = 100  # количество элементов
 
-        self.text: str = ""  # переданное значение ищется в полях вакансии, указанных в параметре search_field
         self.host: str = "hh.ru"  # доменное имя сайта
         self.only_with_salary: bool = False  # показывать вакансии только с указанием зарплаты, по умолчанию False
         self.locale: str = "RU"  # идентификатор локали
@@ -134,7 +139,6 @@ class FilterHH(Filter):
 
     def set_obligatory_parameters(self):
 
-        self.text = self.ask_text()
         self.host = self.ask_host()
         self.only_with_salary = self.ask_only_with_salary()
         self.locale = self.ask_locale()
@@ -289,7 +293,7 @@ class FilterHH(Filter):
 
         return period if period else None
 
-    def get_parameters(self) -> dict:
+    def get_all_parameters(self) -> dict:
         parameters = {
             "page": self.page,
             "per_page": self.per_page,
@@ -320,10 +324,12 @@ class FilterSJ(Filter):
         self._areas_info = self.get_areas_info()
         self._areas_names = self.get_areas_names()
 
+        self.keyword: str = self.ask_keyword()  # ключевое слово, ищет по всей вакансии
+
         # обязательные параметры
         self.page: int = 0
         self.count: int = 100
-        self.keyword: str = ""  # ключевое слово, ищет по всей вакансии
+
         self.no_agreement: int = 1  # не показывать оклад «по договоренности» (когда установлено значение 1)
         self.currency: str = "rub"  # валюта
 
@@ -374,7 +380,6 @@ class FilterSJ(Filter):
 
     def set_obligatory_parameters(self):
 
-        self.keyword = self.ask_keyword()
         self.no_agreement = self.ask_no_agreement()
         self.order_field = self.ask_order_field()
         self.order_direction = self.ask_order_direction()
@@ -510,7 +515,7 @@ class FilterSJ(Filter):
         except TypeError:
             return payment_from, payment_to
 
-    def get_parameters(self) -> dict:
+    def get_all_parameters(self) -> dict:
         parameters = {
             "page": self.page,
             "count": self.count,
@@ -529,9 +534,3 @@ class FilterSJ(Filter):
         }
 
         return parameters
-
-
-b = FilterHH()
-a = FilterSJ()
-print(a.get_parameters())
-print(b.get_parameters())
