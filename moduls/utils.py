@@ -24,3 +24,11 @@ def find_value(collection, aim: str) -> str | None:
                         return result
         except TypeError:
             return None
+
+
+def i_input(*args, **kwargs):
+    result = input(*args, **kwargs)
+    if result == "stop":
+        print("\nСпасибо и всего доброго!")
+        quit()
+    return result

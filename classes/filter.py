@@ -5,6 +5,8 @@ import jsonpath_ng as jp
 from sources.superjob import urls_sj
 from sources.headhunter import urls_hh
 
+from moduls.utils import i_input
+
 
 class Filter(ABC):
     """Абстрактный класс для описания фильтра запроса"""
@@ -38,10 +40,10 @@ class Filter(ABC):
         :return: выбранный вариант ответа '0' или '1'
         """
 
-        answer = input(f"\n{text}\n")
+        answer = i_input(f"\n{text}\n")
 
         while answer not in ("0", "1"):
-            answer = input("Пожалуйста, введите ответ в формате числа в заданном диапазоне значений.\n")
+            answer = i_input("Пожалуйста, введите ответ в формате числа в заданном диапазоне значений.\n")
 
         return answer
 
@@ -236,7 +238,7 @@ class FilterHH(Filter):
     def ask_text() -> str:
         """Запрашивает у пользователя ключевые слова для поиска и возвращает их"""
 
-        return input("\nВведите слово или фразу для ключевого запроса:\n")
+        return i_input("\nВведите слово или фразу для ключевого запроса:\n")
 
     def ask_host(self) -> str:
         """
@@ -245,12 +247,12 @@ class FilterHH(Filter):
         """
 
         hosts = "\n".join([f"{num} - {host}" for num, host in self._HOSTS.items()])
-        choice = input(f"\nКакое доменное имя сайта использовать для запроса? "
+        choice = i_input(f"\nКакое доменное имя сайта использовать для запроса? "
                        f"По умолчанию используется 'hh.ru'.\n"
                        f"Доступны варианты:\n{hosts}\n"
                        f"Введите номер выбранного домена или '0' чтобы оставить значение по умолчанию.\n")
         while choice not in self._HOSTS:
-            choice = input("Неверный номер. Пожалуйста, повторите попытку:\n")
+            choice = i_input("Неверный номер. Пожалуйста, повторите попытку:\n")
         return self._HOSTS[choice]
 
     def ask_only_with_salary(self) -> bool:
@@ -292,14 +294,14 @@ class FilterHH(Filter):
         """
 
         variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(parameter)])
-        choice = input(f"\n{text}\n{variations}\n"
+        choice = i_input(f"\n{text}\n{variations}\n"
                        f"Введите номер, либо нажмите Enter для пропуска.\n")
 
         while choice != "":
             if choice.isdigit() and 0 <= int(choice) < len(parameter):
                 return choice
 
-            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+            choice = i_input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
         return choice
@@ -372,7 +374,7 @@ class FilterHH(Filter):
         """
 
         all_areas = sorted(self._areas_names)
-        name = input("\nВведите город или населенный пункт, либо нажмите Enter для пропуска:\n")
+        name = i_input("\nВведите город или населенный пункт, либо нажмите Enter для пропуска:\n")
 
         while name != "":
 
@@ -380,13 +382,13 @@ class FilterHH(Filter):
                 print()
                 print(*all_areas, sep="\n")
                 print()
-                name = input("Попробуйте ещё раз:\n")
+                name = i_input("Попробуйте ещё раз:\n")
 
             elif name not in all_areas:
                 print(f"Не могу найти такой населенный пункт.\n"
                       f"Для вызова списка городов введите 'list'.\n"
                       f"Соблюдайте регистр.")
-                name = input("Попробуйте ещё раз:\n")
+                name = i_input("Попробуйте ещё раз:\n")
 
             else:
                 break
@@ -401,14 +403,14 @@ class FilterHH(Filter):
         либо пустой строкой
         """
 
-        answer = input(f"\nВведите {text} (целое положительное число),\n"
+        answer = i_input(f"\nВведите {text} (целое положительное число),\n"
                        f"либо нажмите Enter для пропуска:\n")
 
         while answer != "":
             if answer.isdigit():
                 answer = int(answer)
                 break
-            answer = input("Введите целое положительное число без каких-либо знаков.\n"
+            answer = i_input("Введите целое положительное число без каких-либо знаков.\n"
                            "Попробуйте еще раз:\n")
 
         return answer
@@ -579,7 +581,7 @@ class FilterSJ(Filter):
     def ask_keyword() -> str:
         """Запрашивает у пользователя ключевые слова для поиска и возвращает их"""
 
-        return input("\nВведите слово или фразу для ключевого запроса:\n")
+        return i_input("\nВведите слово или фразу для ключевого запроса:\n")
 
     def ask_no_agreement(self) -> int:
         """
@@ -635,13 +637,13 @@ class FilterSJ(Filter):
 
         variations = "\n".join([f"{key} - {value}" for key, value in parameter.items()])
 
-        choice = input(f"\nВведите подходящее числовое значение для выбора {text}, "
+        choice = i_input(f"\nВведите подходящее числовое значение для выбора {text}, "
                        f"либо нажмите Enter для пропуска:\n{variations}\n")
 
         while choice not in parameter:
             if choice == "":
                 break
-            choice = input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
+            choice = i_input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
                            f"{variations}\n")
 
         return choice
@@ -693,7 +695,7 @@ class FilterSJ(Filter):
         """
 
         all_towns = sorted(self._areas_names)
-        name = input("\nВведите город или населенный пункт, либо нажмите Enter для пропуска:\n")
+        name = i_input("\nВведите город или населенный пункт, либо нажмите Enter для пропуска:\n")
 
         while name != "":
 
@@ -701,13 +703,13 @@ class FilterSJ(Filter):
                 print()
                 print(*all_towns, sep="\n")
                 print()
-                name = input("Попробуйте ещё раз:\n")
+                name = i_input("Попробуйте ещё раз:\n")
 
             elif name not in all_towns:
                 print(f"Не могу найти такой населенный пункт.\n"
                       f"Для вызова списка городов введите 'list'.\n"
                       f"Соблюдайте регистр.")
-                name = input("Попробуйте ещё раз:\n")
+                name = i_input("Попробуйте ещё раз:\n")
 
             else:
                 break
@@ -722,14 +724,14 @@ class FilterSJ(Filter):
         либо этот параметр будет пропущен (если выражен пустой строкой)
         """
 
-        payment = input(f"\nВведите {text} суммы зарплаты для поиска (целое положительное число),\n"
+        payment = i_input(f"\nВведите {text} суммы зарплаты для поиска (целое положительное число),\n"
                         f"либо нажмите Enter для пропуска:\n")
 
         while payment != "":
             if payment.isdigit():
                 payment = int(payment)
                 break
-            payment = input("Сумма должна быть целым положительным числом без каких-либо знаков.\n"
+            payment = i_input("Сумма должна быть целым положительным числом без каких-либо знаков.\n"
                             "Попробуйте еще раз:\n")
 
         return payment if payment else None
