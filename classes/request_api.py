@@ -19,17 +19,14 @@ class API(ABC):
 
     _URL = None  # ссылка на сайт для запроса вакансий
 
-    def __init__(self, filters, max_quantity: int) -> None:
+    def __init__(self, filters) -> None:
         """
         Инициализатор для объектов класса
 
         :param filters: объект какого-то из класса фильтров
-        :param max_quantity: желаемое количество вакансий
         """
 
         self.filters = filters
-        self._max_quantity = 10
-        self.max_quantity = max_quantity
 
     @property
     def filters(self):
@@ -38,15 +35,6 @@ class API(ABC):
     @filters.setter
     def filters(self, value):
         self._filters = value
-
-    @property
-    def max_quantity(self) -> int:
-        return self._max_quantity
-
-    @max_quantity.setter
-    def max_quantity(self, value: int) -> None:
-        if type(value) is int and value >= 0:
-            self._max_quantity = value
 
     def get_parameters(self) -> dict:
         """Возвращает установленные параметры фильтра"""
@@ -69,8 +57,8 @@ class API(ABC):
         pass
 
     @abstractmethod
-    def get_vacancies(self) -> list[dict]:
-        """Возвращает список вакансий"""
+    def get_vacancies(self, quantity=10) -> list[dict]:
+        """Возвращает список вакансий в заданном количестве, если это возможно"""
         pass
 
 
@@ -102,20 +90,26 @@ class HeadHunterAPI(API):
             response = json.loads(response)
         return response
 
-    def get_vacancies(self) -> list:
-        """Возвращает список вакансий"""
+    def get_vacancies(self, quantity: int = 10) -> list:
+        """Возвращает список вакансий в заданном количестве, если это возможно"""
+
+        if type(quantity) is not int or quantity < 0:
+            quantity = 10
+            print("Не соблюдены условия указания количества вакансий:"
+                  "Количество должно быть выражено целым неотрицательным числом."
+                  "Установлен параметр по умолчанию = 10")
 
         vacancies = []
 
         vacancies.extend(self.get_info()['items'])
-        while len(vacancies) < self.max_quantity:
+        while len(vacancies) < quantity:
             if self.filters.page == self.get_info()['pages']:
                 break
 
             self.filters.page += 1
             vacancies.extend(self.get_info()['items'])
 
-        return vacancies[:self.max_quantity]
+        return vacancies[:quantity]
 
 
 class SuperJobAPI(API):
@@ -138,24 +132,6 @@ class SuperJobAPI(API):
         if isinstance(value, (FilterSJ, NoneType)):
             self._filters = value
 
-    @property
-    def max_quantity(self) -> int:
-        return self._max_quantity
-
-    @max_quantity.setter
-    def max_quantity(self, value: int) -> None:
-        """Устанавливает запрашиваемое количество вакансий,
-        если оно больше нуля и меньше максимального допустимого значения"""
-
-        if type(value) is int and 0 <= value <= self.__MAX_QUANTITY:
-            self._max_quantity = value
-        elif value > self.__MAX_QUANTITY:
-            print("Запрошенное количество вакансий превышает максимально возможное (500).\n"
-                  "Установлен параметр по умолчанию = 10")
-        else:
-            print("Отрицательное число использовать нельзя.\n"
-                  "Установлен параметр по умолчанию = 10")
-
     def get_info(self) -> dict:
         """Возвращает ответ на запрос, отправленный на сайт с вакансиями"""
 
@@ -169,8 +145,18 @@ class SuperJobAPI(API):
 
         return response
 
-    def get_vacancies(self) -> list:
-        """Возвращает список вакансий"""
+    def get_vacancies(self, quantity: int = 10) -> list:
+        """Возвращает список вакансий в заданном количестве, если это возможно"""
+
+        if type(quantity) is not int or quantity < 0:
+            quantity = 10
+            print("Не соблюдены условия указания количества вакансий:"
+                  "Количество должно быть выражено целым неотрицательным числом."
+                  "Установлен параметр по умолчанию = 10")
+        elif quantity > self.__MAX_QUANTITY:
+            quantity = 10
+            print("Запрошенное количество вакансий превышает максимально возможное (500).\n"
+                  "Установлен параметр по умолчанию = 10")
 
         vacancies = []
 
@@ -183,11 +169,11 @@ class SuperJobAPI(API):
 
         vacancies.extend(self.get_info()['objects'])
 
-        while len(vacancies) < self.max_quantity:
+        while len(vacancies) < quantity:
             if self.filters.page == last_page:
                 break
 
             self.filters.page += 1
             vacancies.extend(self.get_info()['objects'])
 
-        return vacancies[:self.max_quantity]
+        return vacancies[:quantity]
