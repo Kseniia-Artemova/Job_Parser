@@ -1,21 +1,27 @@
 import requests
 from abc import ABC, abstractmethod
 import jsonpath_ng as jp
-from types import NoneType
 
 from sources.superjob import urls_sj
 from sources.headhunter import urls_hh
 
 
 class Filter(ABC):
-    _AREA_CODES = None
-    _FILTER_DICTIONARY = None
+    """Абстрактный класс для описания фильтра запроса"""
 
-    def __init__(self):
+    _AREA_CODES = None  # ссылка на ресурс, возвращающий весь перечень регионов/городов
+    _FILTER_DICTIONARY = None  # ссылка на ресурс, возвращающий словари со значениями для фильтра
+
+    def __init__(self) -> None:
+        """
+        Инициализатор фильтра. Устанавливает значения фильтра по умолчанию,
+        либо запрашивает более специализированную настройку у пользователя
+        """
 
         text = "Настроить фильтр или использовать параметры по умолчанию?\n" \
                "0 - использовать параметры по умолчанию\n" \
                "1 - настроить фильтр самостоятельно"
+
         answer = self._check_binary_answer(text)
 
         if answer == "1":
@@ -23,7 +29,15 @@ class Filter(ABC):
             self.set_extra_parameters()
 
     @staticmethod
-    def _check_binary_answer(text):
+    def _check_binary_answer(text: str) -> str:
+        """
+        Вспомогательная функция для валидации бинарных ответов
+        (да/нет, 0/1, то/это)
+
+        :param text: строка с вопросом, описывающая ситуацию и варианты ответа
+        :return: выбранный вариант ответа '0' или '1'
+        """
+
         answer = input(f"\n{text}\n")
 
         while answer not in ("0", "1"):
@@ -32,41 +46,67 @@ class Filter(ABC):
         return answer
 
     def get_parameters(self) -> dict:
+        """
+        Возвращает словарь, содержащий только те значения,
+        которые не равны None
+        """
+
         return {key: value for key, value in self.get_all_parameters().items() if value is not None}
 
     @abstractmethod
     def get_filter_dictionary(self) -> dict:
+        """Возвращает словарь, содержащий надлежащие значения для фильтра"""
         pass
 
     @abstractmethod
-    def get_areas_info(self) -> dict:
+    def get_areas_info(self) -> dict | list[dict]:
+        """
+        Возвращает коллекцию, содержащую информацию о городах и регионах,
+        которые можно указывать для поиска
+        """
         pass
 
     @abstractmethod
-    def get_areas_names(self):
+    def get_areas_names(self) -> list:
+        """
+        Возвращает список, содержащий города и регионы,
+        которые можно указывать для поиска
+        """
         pass
 
     @abstractmethod
-    def get_area_id(self, name):
+    def get_area_id(self, name: str) -> str | int:
+        """
+        Возвращает id, который кодирует переданный
+        функции город или регион
+        """
         pass
 
     @abstractmethod
-    def set_obligatory_parameters(self):
+    def set_obligatory_parameters(self) -> None:
+        """Устанавливает все обязательные значения фильтра"""
         pass
 
     @abstractmethod
-    def set_extra_parameters(self):
+    def set_extra_parameters(self) -> None:
+        """Устанавливает дополнительные значения фильтра"""
         pass
 
     @abstractmethod
-    def get_all_parameters(self):
+    def get_all_parameters(self) -> dict:
+        """Возвращает все параметры фильтра в формате словаря"""
         pass
 
 
 class FilterHH(Filter):
+    """Класс для настройки фильтра запроса на сайт HeadHunter"""
+
+    # ссылка на ресурс, возвращающий весь перечень регионов/городов
     _AREA_CODES = urls_hh.AREA_CODES
+    # ссылка на ресурс, возвращающий словари со значениями для фильтра
     _FILTER_DICTIONARY = urls_hh.FILTER_DICTIONARY
 
+    # словарь с возможными доменами для поиска
     _HOSTS = {"0": "hh.ru",
               "1": "rabota.by",
               "2": "hh1.az",
@@ -76,13 +116,17 @@ class FilterHH(Filter):
               "6": "headhunter.kg"
               }
 
-    def __init__(self):
+    def __init__(self) -> None:
+        """
+        Инициализатор фильтра. Устанавливает все обязательные
+        и дополнительные параметры фильтра
+        """
 
         self._filter_dictionary = self.get_filter_dictionary()
         self._areas_info = self.get_areas_info()
         self._areas_names = self.get_areas_names()
 
-        self.text: str = self.ask_text()  # переданное значение ищется в полях вакансии, указанных в параметре search_field
+        self.text: str = self.ask_text()  # ключевое слово, ищет по всей вакансии
 
         # обязательные параметры
         self.page: int = 0  # номер страницы
@@ -105,14 +149,33 @@ class FilterHH(Filter):
 
         super().__init__()
 
+    def __str__(self):
+        parameters = "\n".join([f"{key}: {value}" for key, value in self.get_parameters().items()])
+        return f"Фильтр для поиска на HeadHunter. Значения:\n" \
+               f"{parameters}"
+
+    def __repr__(self):
+        parameters = ", ".join([f"'{key}'={repr(value)}" for key, value in self.get_all_parameters().items()])
+        return f"{self.__class__.__name__}({parameters})"
+
     def get_filter_dictionary(self) -> dict:
+        """
+        Возвращает словарь, содержащий надлежащие значения
+        для некоторых параметров фильтра
+        """
+
         url = self._FILTER_DICTIONARY
         response = requests.get(url)
         if response.status_code == 200:
             return response.json()
         raise requests.RequestException("Ошибка при получении словаря дополнительных значений")
 
-    def get_areas_info(self) -> dict:
+    def get_areas_info(self) -> list[dict]:
+        """
+        Возвращает список словарей, содержащих информацию о городах,
+        доступных для поиска вакансий на сайте
+        """
+
         url = self._AREA_CODES
         response = requests.get(url)
         if response.status_code == 200:
@@ -120,6 +183,11 @@ class FilterHH(Filter):
         raise requests.RequestException("Ошибка при получении списка кодов")
 
     def get_areas_names(self) -> list[str]:
+        """
+        Возвращает список городов и других субъектов,
+        доступных для поиска вакансий на сайте
+        """
+
         areas = self._areas_info
 
         json_exp = jp.parse('$..name')
@@ -129,6 +197,11 @@ class FilterHH(Filter):
         return names
 
     def get_area_id(self, name: str) -> str:
+        """
+        Возвращает id переданного функции субъекта,
+        если он есть в списке доступных
+        """
+
         regions = self._areas_info
 
         json_exp = jp.parse("$..areas[*]")
@@ -137,13 +210,15 @@ class FilterHH(Filter):
         if matches:
             return matches[0].get("id")
 
-    def set_obligatory_parameters(self):
+    def set_obligatory_parameters(self) -> None:
+        """Устанавливает обязательные параметры функции"""
 
         self.host = self.ask_host()
         self.only_with_salary = self.ask_only_with_salary()
         self.locale = self.ask_locale()
 
-    def set_extra_parameters(self):
+    def set_extra_parameters(self) -> None:
+        """Устанавливает дополнительные параметры функции"""
 
         self.area = self.ask_area()
 
@@ -158,10 +233,17 @@ class FilterHH(Filter):
         self.order_by = self.ask_order_by()
 
     @staticmethod
-    def ask_text():
+    def ask_text() -> str:
+        """Запрашивает у пользователя ключевые слова для поиска и возвращает их"""
+
         return input("\nВведите слово или фразу для ключевого запроса:\n")
 
-    def ask_host(self):
+    def ask_host(self) -> str:
+        """
+        Запрашивает у пользователя и возвращает выбранное
+        доменное имя сайта для запроса
+        """
+
         hosts = "\n".join([f"{num} - {host}" for num, host in self._HOSTS.items()])
         choice = input(f"\nКакое доменное имя сайта использовать для запроса? "
                        f"По умолчанию используется 'hh.ru'.\n"
@@ -171,7 +253,12 @@ class FilterHH(Filter):
             choice = input("Неверный номер. Пожалуйста, повторите попытку:\n")
         return self._HOSTS[choice]
 
-    def ask_only_with_salary(self):
+    def ask_only_with_salary(self) -> bool:
+        """
+        Запрашивает у пользователя возвращает значение, в зависимости от которого
+        запрос будет включать или игнорировать вакансии без указания заработной платы
+        """
+
         text = "Выводить только вакансии с указанием заработной платы? " \
                "Пожалуйста, введите ответ в формате числа.\n" \
                "0 - нет\n" \
@@ -181,7 +268,12 @@ class FilterHH(Filter):
 
         return True if answer == "1" else False
 
-    def ask_locale(self):
+    def ask_locale(self) -> str:
+        """
+        Запрашивает у пользователя возвращает значение локализации
+        в зависимости от выбора пользователя
+        """
+
         text = "Требуется ли изменить язык локализации на английский?\n" \
                "По умолчанию стоит русская локализация. " \
                "Пожалуйста, введите ответ в формате числа.\n" \
@@ -193,7 +285,11 @@ class FilterHH(Filter):
         return "EN" if answer == "1" else "RU"
 
     @staticmethod
-    def _check_right_answer(parameter: list, text: str):
+    def _check_right_answer(parameter: list, text: str) -> str:
+        """
+        Вспомогательная функция для валидации ответа пользователя,
+        если значения параметра фильтра ограничены и указаны в словаре сайта
+        """
 
         variations = "\n".join([f"{i} - {field['name']}" for i, field in enumerate(parameter)])
         choice = input(f"\n{text}\n{variations}\n"
@@ -208,42 +304,73 @@ class FilterHH(Filter):
 
         return choice
 
-    def ask_experience(self):
+    def ask_experience(self) -> str | None:
+        """
+        Запрашивает у пользователя и возвращает значение
+        параметра 'требуемый опыт работы'
+        """
+
         experience = self._filter_dictionary["experience"]
         text = "Выберите требуемый опыт работы:"
         answer = self._check_right_answer(experience, text)
 
         return experience[int(answer)]["id"] if answer.isdigit() else None
 
-    def ask_employment(self):
+    def ask_employment(self) -> str | None:
+        """
+        Запрашивает у пользователя и возвращает значение
+        параметра 'вид занятости'
+        """
+
         employment = self._filter_dictionary["employment"]
-        text = "Выберите требуемую занятость:"
+        text = "Выберите требуемый вид занятости:"
         answer = self._check_right_answer(employment, text)
 
         return employment[int(answer)]["id"] if answer.isdigit() else None
 
-    def ask_schedule(self):
+    def ask_schedule(self) -> str | None:
+        """
+        Запрашивает у пользователя и возвращает значение
+        параметра 'график работы'
+        """
+
         schedule = self._filter_dictionary["schedule"]
         text = "Выберите требуемый график:"
         answer = self._check_right_answer(schedule, text)
 
         return schedule[int(answer)]["id"] if answer.isdigit() else None
 
-    def ask_currency(self):
+    def ask_currency(self) -> str | None:
+        """
+        Запрашивает у пользователя и возвращает значение
+        параметра 'валюта зарплаты'
+        """
+
         currency = [field for field in self._filter_dictionary["currency"] if field["in_use"]]
         text = "Выберите валюту зарплаты:"
         answer = self._check_right_answer(currency, text)
 
         return currency[int(answer)]["code"] if answer.isdigit() else None
 
-    def ask_order_by(self):
+    def ask_order_by(self) -> str | None:
+        """
+        Запрашивает у пользователя и возвращает значение
+        параметра 'способ сортировки'
+        """
+
         order_by = [field for field in self._filter_dictionary["vacancy_search_order"] if field["id"] != "distance"]
         text = "Выберите способ сортировки:"
         answer = self._check_right_answer(order_by, text)
 
         return order_by[int(answer)]["id"] if answer.isdigit() else None
 
-    def ask_area(self):
+    def ask_area(self) -> str | None:
+        """
+        Запрашивает у пользователя, ищет и возвращает id
+        по указанному названию города или другого субъекта,
+        если таковой есть в перечне доступных для поиска
+        """
+
         all_areas = sorted(self._areas_names)
         name = input("\nВведите город или населенный пункт, либо нажмите Enter для пропуска:\n")
 
@@ -267,7 +394,12 @@ class FilterHH(Filter):
         return self.get_area_id(name)
 
     @staticmethod
-    def _check_right_number(text):
+    def _check_right_number(text: str) -> int | str:
+        """
+        Запрашивает и проверяет ответ пользователя,
+        который должен быть либо целым положительным числом,
+        либо пустой строкой
+        """
 
         answer = input(f"\nВведите {text} (целое положительное число),\n"
                        f"либо нажмите Enter для пропуска:\n")
@@ -281,19 +413,31 @@ class FilterHH(Filter):
 
         return answer
 
-    def ask_salary(self):
+    def ask_salary(self) -> int | None:
+        """
+        Запрашивает и возвращает значение суммы зарплаты для поиска,
+        если оно представлено целым положительным числом
+        """
+
         text = "сумму зарплаты для поиска"
         salary = self._check_right_number(text)
 
         return salary if salary else None
 
-    def ask_period(self):
+    def ask_period(self) -> int | None:
+        """
+        Запрашивает и возвращает количество дней, в пределах которых
+        производится поиск, если оно представлено целым положительным числом
+        """
+
         text = "количество дней, в пределах которых производится поиск по вакансиям"
         period = self._check_right_number(text)
 
         return period if period else None
 
     def get_all_parameters(self) -> dict:
+        """Возвращает все параметры фильтра"""
+
         parameters = {
             "page": self.page,
             "per_page": self.per_page,
@@ -315,10 +459,18 @@ class FilterHH(Filter):
 
 
 class FilterSJ(Filter):
+    """Класс для настройки фильтра запроса на сайт SuperJob"""
+
+    # ссылка на ресурс, возвращающий весь перечень регионов/городов
     _AREA_CODES = urls_sj.AREA_CODES
+    # ссылка на ресурс, возвращающий словари со значениями для фильтра
     _FILTER_DICTIONARY = urls_sj.FILTER_DICTIONARY
 
-    def __init__(self):
+    def __init__(self) -> None:
+        """
+        Инициализатор фильтра. Устанавливает все обязательные
+        и дополнительные параметры фильтра
+        """
 
         self._filter_dictionary = self.get_filter_dictionary()
         self._areas_info = self.get_areas_info()
@@ -346,14 +498,33 @@ class FilterSJ(Filter):
 
         super().__init__()
 
+    def __str__(self):
+        parameters = "\n".join([f"{key}: {value}" for key, value in self.get_parameters().items()])
+        return f"Фильтр для поиска на SuperJob. Значения:\n" \
+               f"{parameters}"
+
+    def __repr__(self):
+        parameters = ", ".join([f"'{key}'={repr(value)}" for key, value in self.get_all_parameters().items()])
+        return f"{self.__class__.__name__}({parameters})"
+
     def get_filter_dictionary(self) -> dict:
+        """
+        Возвращает словарь, содержащий надлежащие значения
+        для некоторых параметров фильтра
+        """
+
         url = self._FILTER_DICTIONARY
         response = requests.get(url)
         if response.status_code == 200:
             return response.json()
         raise requests.RequestException("Ошибка при получении словаря дополнительных значений")
 
-    def get_areas_info(self) -> dict:
+    def get_areas_info(self) -> list[dict]:
+        """
+        Возвращает список словарей, содержащих информацию о городах,
+        доступных для поиска вакансий на сайте
+        """
+
         url = self._AREA_CODES
         response = requests.get(url)
         if response.status_code == 200:
@@ -361,6 +532,11 @@ class FilterSJ(Filter):
         raise requests.RequestException("Ошибка при получении списка кодов")
 
     def get_areas_names(self) -> list[str]:
+        """
+        Возвращает список городов и других субъектов,
+        доступных для поиска вакансий на сайте
+        """
+
         areas = self._areas_info
 
         json_exp = jp.parse('$..title')
@@ -370,6 +546,11 @@ class FilterSJ(Filter):
         return codes
 
     def get_area_id(self, name: str) -> int:
+        """
+        Возвращает id переданного функции субъекта,
+        если он есть в списке доступных
+        """
+
         regions = self._areas_info
 
         json_exp = jp.parse("$..towns[*]")
@@ -378,13 +559,15 @@ class FilterSJ(Filter):
         if matches:
             return matches[0].get("id")
 
-    def set_obligatory_parameters(self):
+    def set_obligatory_parameters(self) -> None:
+        """Устанавливает обязательные параметры функции"""
 
         self.no_agreement = self.ask_no_agreement()
         self.order_field = self.ask_order_field()
         self.order_direction = self.ask_order_direction()
 
-    def set_extra_parameters(self):
+    def set_extra_parameters(self) -> None:
+        """Устанавливает дополнительные параметры функции"""
 
         self.town = self.ask_town()
         self.experience = self.ask_experience()
@@ -393,11 +576,18 @@ class FilterSJ(Filter):
         self.period = self.ask_period()
 
     @staticmethod
-    def ask_keyword():
+    def ask_keyword() -> str:
+        """Запрашивает у пользователя ключевые слова для поиска и возвращает их"""
+
         return input("\nВведите слово или фразу для ключевого запроса:\n")
 
-    def ask_no_agreement(self):
-        text = "Требуется ли исключить вакансии с окладом «по договоренности»?\n" \
+    def ask_no_agreement(self) -> int:
+        """
+        Запрашивает у пользователя и возвращает значение 0 или 1 для включения
+        или игнорирования вакансий с окладом 'по договоренности'
+        """
+
+        text = "Требуется ли исключить вакансии с окладом 'по договоренности'?\n" \
                "Пожалуйста, введите соответствующее числовое значение.\n" \
                "0 - нет\n" \
                "1 - да"
@@ -406,7 +596,12 @@ class FilterSJ(Filter):
 
         return 1 if answer == "да" else 0
 
-    def ask_order_field(self):
+    def ask_order_field(self) -> str:
+        """
+        Запрашивает у пользователя и возвращает значение сортировки
+        вакансий: по дате или сумме оклада
+        """
+
         text = "Сортировать вакансии по параметру:\n" \
                "Пожалуйста, введите соответствующее числовое значение.\n" \
                "0 - дата\n" \
@@ -416,7 +611,12 @@ class FilterSJ(Filter):
 
         return "date" if answer == "0" else "payment"
 
-    def ask_order_direction(self):
+    def ask_order_direction(self) -> str:
+        """
+        Запрашивает у пользователя и возвращает значение направление
+        сортировки вакансий: в прямом или обратном порядке
+        """
+
         text = "В каком направлении следует сортировать вакансии?\n" \
                "Пожалуйста, введите соответствующее числовое значение:\n" \
                "0 - в прямом\n" \
@@ -427,7 +627,12 @@ class FilterSJ(Filter):
         return "asc" if answer == "0" else "desc"
 
     @staticmethod
-    def _check_right_answer(parameter, text):
+    def _check_right_answer(parameter: dict, text: str) -> str:
+        """
+        Вспомогательная функция для валидации ответа пользователя,
+        если значения параметра фильтра ограничены и указаны в словаре сайта
+        """
+
         variations = "\n".join([f"{key} - {value}" for key, value in parameter.items()])
 
         choice = input(f"\nВведите подходящее числовое значение для выбора {text}, "
@@ -441,7 +646,12 @@ class FilterSJ(Filter):
 
         return choice
 
-    def ask_experience(self):
+    def ask_experience(self) -> str | None:
+        """
+        Запрашивает у пользователя и возвращает значение
+        параметра 'требуемый опыт работы'
+        """
+
         experience = self._filter_dictionary["experience"]
         text = "опыта работы"
 
@@ -449,7 +659,12 @@ class FilterSJ(Filter):
 
         return answer if answer else None
 
-    def ask_type_of_work(self):
+    def ask_type_of_work(self) -> str | None:
+        """
+        Запрашивает у пользователя и возвращает значение
+        параметра 'тип занятости'
+        """
+
         type_of_work = self._filter_dictionary["type_of_work"]
         text = "типа занятости"
 
@@ -457,7 +672,12 @@ class FilterSJ(Filter):
 
         return answer if answer else None
 
-    def ask_period(self):
+    def ask_period(self) -> str | None:
+        """
+        Запрашивает у пользователя и возвращает значение
+        параметра 'период публикации' вакансии
+        """
+
         period = self._filter_dictionary["period"]
         text = "периода публикации"
 
@@ -465,7 +685,13 @@ class FilterSJ(Filter):
 
         return answer if answer else None
 
-    def ask_town(self):
+    def ask_town(self) -> int | None:
+        """
+        Запрашивает у пользователя, ищет и возвращает id
+        по указанному названию города или другого субъекта,
+        если таковой есть в перечне доступных для поиска
+        """
+
         all_towns = sorted(self._areas_names)
         name = input("\nВведите город или населенный пункт, либо нажмите Enter для пропуска:\n")
 
@@ -489,7 +715,12 @@ class FilterSJ(Filter):
         return self.get_area_id(name)
 
     @staticmethod
-    def _get_number(text):
+    def _get_number(text: str) -> int | None:
+        """
+        Запрашивает у пользователя и валидирует значение суммы
+        на соответствие условиям: сумма должна быть целым положительным числом,
+        либо этот параметр будет пропущен (если выражен пустой строкой)
+        """
 
         payment = input(f"\nВведите {text} суммы зарплаты для поиска (целое положительное число),\n"
                         f"либо нажмите Enter для пропуска:\n")
@@ -503,7 +734,12 @@ class FilterSJ(Filter):
 
         return payment if payment else None
 
-    def ask_payment_from_to(self):
+    def ask_payment_from_to(self) -> tuple | list:
+        """
+        Запрашивает у пользователя и возвращает нижнюю
+        и вернюю границы зарплаты для поиска
+        """
+
         text = "нижнюю границу"
         payment_from = self._get_number(text)
 
@@ -516,6 +752,8 @@ class FilterSJ(Filter):
             return payment_from, payment_to
 
     def get_all_parameters(self) -> dict:
+        """Возвращает все параметры фильтра"""
+
         parameters = {
             "page": self.page,
             "count": self.count,

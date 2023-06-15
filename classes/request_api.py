@@ -1,7 +1,6 @@
 import requests
 import json
 
-from pprint import pprint
 from abc import ABC, abstractmethod
 from types import NoneType
 
@@ -13,9 +12,21 @@ from classes.filter import FilterHH, FilterSJ
 
 
 class API(ABC):
-    _URL = None
+    """
+    Абстрактный класс для отправки запросов на сайт с вакансиями
+    и получения списка вакансий в соответствии с заданными параметрами
+    """
 
-    def __init__(self, filters, max_quantity):
+    _URL = None  # ссылка на сайт для запроса вакансий
+
+    def __init__(self, filters, max_quantity: int) -> None:
+        """
+        Инициализатор для объектов класса
+
+        :param filters: объект какого-то из класса фильтров
+        :param max_quantity: желаемое количество вакансий
+        """
+
         self.filters = filters
         self._max_quantity = 10
         self.max_quantity = max_quantity
@@ -33,41 +44,58 @@ class API(ABC):
         return self._max_quantity
 
     @max_quantity.setter
-    def max_quantity(self, value: int):
+    def max_quantity(self, value: int) -> None:
         if type(value) is int and value >= 0:
             self._max_quantity = value
 
     def get_parameters(self) -> dict:
+        """Возвращает установленные параметры фильтра"""
+
         return self.filters.get_parameters()
 
-    def set_parameters(self, filters):
+    def set_parameters(self, filters) -> None:
+        """Установить фильтр"""
+
         self.filters = filters
 
-    def reset_parameters(self):
+    def reset_parameters(self) -> None:
+        """Сбросить фильтр"""
+
         self.filters = None
 
     @abstractmethod
-    def get_info(self):
+    def get_info(self) -> list[dict]:
+        """Возвращает ответ на запрос, отправленный на сайт с вакансиями"""
         pass
 
     @abstractmethod
-    def get_vacancies(self):
+    def get_vacancies(self) -> list[dict]:
+        """Возвращает список вакансий"""
         pass
 
 
 class HeadHunterAPI(API):
-    _URL = urls_hh.VACANCIES
+    """
+    Класс для отправки запросов на сайт с вакансиями HeadHunter
+    и получения списка вакансий в соответствии с заданными параметрами
+    """
+
+    _URL = urls_hh.VACANCIES  # ссылка на сайт для запроса вакансий
 
     @property
-    def filters(self):
+    def filters(self) -> FilterHH | None:
         return self._filters
 
     @filters.setter
-    def filters(self, value):
+    def filters(self, value: FilterHH | None) -> None:
+        """Установка фильтра, после проверки на принадлежность к подходящему классу"""
+
         if isinstance(value, (FilterHH, NoneType)):
             self._filters = value
 
     def get_info(self) -> dict:
+        """Возвращает ответ на запрос, отправленный на сайт с вакансиями"""
+
         parameters = self.filters.get_parameters()
         with requests.get(self._URL, parameters) as request:
             response = request.content.decode("utf-8")
@@ -75,6 +103,8 @@ class HeadHunterAPI(API):
         return response
 
     def get_vacancies(self) -> list:
+        """Возвращает список вакансий"""
+
         vacancies = []
 
         vacancies.extend(self.get_info()['items'])
@@ -89,15 +119,22 @@ class HeadHunterAPI(API):
 
 
 class SuperJobAPI(API):
-    _URL = urls_sj.VACANCIES
-    __MAX_QUANTITY = 500
+    """
+    Класс для отправки запросов на сайт с вакансиями SuperJob
+    и получения списка вакансий в соответствии с заданными параметрами
+    """
+
+    _URL = urls_sj.VACANCIES  # ссылка на сайт для запроса вакансий
+    __MAX_QUANTITY = 500  # максимальное допустимое запрашиваемое количество вакансий
 
     @property
-    def filters(self):
+    def filters(self) -> FilterSJ | None:
         return self._filters
 
     @filters.setter
-    def filters(self, value):
+    def filters(self, value: FilterSJ | None) -> None:
+        """Установка фильтра, после проверки на принадлежность к подходящему классу"""
+
         if isinstance(value, (FilterSJ, NoneType)):
             self._filters = value
 
@@ -106,7 +143,10 @@ class SuperJobAPI(API):
         return self._max_quantity
 
     @max_quantity.setter
-    def max_quantity(self, value: int):
+    def max_quantity(self, value: int) -> None:
+        """Устанавливает запрашиваемое количество вакансий,
+        если оно больше нуля и меньше максимального допустимого значения"""
+
         if type(value) is int and 0 <= value <= self.__MAX_QUANTITY:
             self._max_quantity = value
         elif value > self.__MAX_QUANTITY:
@@ -116,7 +156,9 @@ class SuperJobAPI(API):
             print("Отрицательное число использовать нельзя.\n"
                   "Установлен параметр по умолчанию = 10")
 
-    def get_info(self):
+    def get_info(self) -> dict:
+        """Возвращает ответ на запрос, отправленный на сайт с вакансиями"""
+
         parameters = self.filters.get_parameters()
         headers = {"User-Agent": personal_data.USER_AGENT,
                    "X-Api-App-Id": personal_data.CLIENT_SECRET}
@@ -127,7 +169,9 @@ class SuperJobAPI(API):
 
         return response
 
-    def get_vacancies(self):
+    def get_vacancies(self) -> list:
+        """Возвращает список вакансий"""
+
         vacancies = []
 
         total_vacancies = self.get_info()['total']
@@ -147,12 +191,3 @@ class SuperJobAPI(API):
             vacancies.extend(self.get_info()['objects'])
 
         return vacancies[:self.max_quantity]
-
-
-if __name__ == '__main__':
-
-    vac_sj = SuperJobAPI(FilterSJ(), 100)
-    vac_sj_1 = vac_sj.get_vacancies()
-
-    pprint(vac_sj_1)
-    print(len(vac_sj_1))
