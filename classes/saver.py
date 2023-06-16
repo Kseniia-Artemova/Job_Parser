@@ -50,7 +50,7 @@ class JSONSaver(Saver):
     _PATH_FILE = "vacancies", "vacancies.json"
 
     def add_vacancies(self, dict_vacancies):
-        with open(self.path_file, "aw", encoding="utf-8") as json_file:
+        with open(self.path_file, "a", encoding="utf-8") as json_file:
             json.dump(dict_vacancies, json_file, ensure_ascii=False, indent=4, separators=(',', ': '))
 
         print(f"Вакансии добавлены в файл {self.path_file}")
@@ -70,6 +70,7 @@ class JSONSaver(Saver):
     def load_all_vacancies(self):
         with open(self.path_file, "r", encoding="utf-8") as json_file:
             vacancies = json.load(json_file)
+        return vacancies
 
     def load_definite_vacancies(self, dict_filters):
         pass

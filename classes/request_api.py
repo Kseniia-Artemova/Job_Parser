@@ -106,15 +106,17 @@ class HeadHunterAPI(API):
 
         vacancies = []
 
+        print("\nПодождите, ищу запрошенные вакансии...")
+
         info = self.get_info()
 
-        vacancies.extend(self.get_info()['items'])
+        vacancies.extend(self.get_info().get('items'))
         while len(vacancies) < quantity:
             if self.filters.page == info.get('pages', 0):
                 break
 
             self.filters.page += 1
-            vacancies.extend(self.get_info()['items'])
+            vacancies.extend(self.get_info().get('items'))
 
         print(f"\nНайдено {len(vacancies[:quantity])} вакансий.\n"
               f"Всего на сайте по заданным параметрам есть {info.get('found', 0)} вакансий.")
@@ -170,21 +172,23 @@ class SuperJobAPI(API):
 
         vacancies = []
 
-        total_vacancies = self.get_info()['total']
+        print("\nПодождите, ищу запрошенные вакансии...")
+
+        total_vacancies = self.get_info().get('total')
         if total_vacancies == 0:
             return vacancies
 
         is_divided_entirely = total_vacancies % self.filters.count == 0
         last_page = total_vacancies // self.filters.count - is_divided_entirely
 
-        vacancies.extend(self.get_info()['objects'])
+        vacancies.extend(self.get_info().get('objects'))
 
         while len(vacancies) < quantity:
             if self.filters.page == last_page:
                 break
 
             self.filters.page += 1
-            vacancies.extend(self.get_info()['objects'])
+            vacancies.extend(self.get_info().get('objects'))
 
         print(f"\nНайдено {len(vacancies[:quantity])} вакансий.\n"
               f"Всего на сайте по заданным параметрам есть {total_vacancies} вакансий.")

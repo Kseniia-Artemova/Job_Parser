@@ -15,6 +15,8 @@ def user_interaction():
     json_saver = JSONSaver()
     json_saver.add_vacancies(vacancies)
 
+    pprint(json_saver.load_all_vacancies())
+
 
 def check_int(number):
 
@@ -70,6 +72,9 @@ def choice_website():
                      f"Пожалуйста, введите номер, соответствующий ресурсу.\n"
                      f"{websites_print}\n")
 
+    while check_int(answer) not in range(len(websites)):
+        answer = i_input("\nПожалуйста, введите номер, соответствующий ресурсу.\n")
+
     return answer
 
 
@@ -101,5 +106,10 @@ def choice_operation():
         operation = check_int(operation)
 
     return operation
+
+
+def show_vacancies():
+
+    pass
 
 

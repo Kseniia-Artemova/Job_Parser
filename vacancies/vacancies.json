@@ -1,0 +1,2953 @@
+[
+    {
+        "id": "81979442",
+        "premium": false,
+        "name": "Frontend developer",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1002",
+            "name": "Минск",
+            "url": "https://api.hh.ru/areas/1002?locale=RU&host=hh.ru"
+        },
+        "salary": null,
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-15T19:33:19+0300",
+        "created_at": "2023-06-15T19:33:19+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81979442",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81979442?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81979442",
+        "relations": [],
+        "employer": {
+            "id": "5674346",
+            "name": "УайтСнейк",
+            "url": "https://api.hh.ru/employers/5674346?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/5674346",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/923495.png",
+                "240": "https://hhcdn.ru/employer-logo/4134541.png",
+                "90": "https://hhcdn.ru/employer-logo/4134540.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=5674346&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Experience in working with RESTful services. - Experience in <highlighttext>SEO</highlighttext> and site optimization. - English B1 and higher. Nice-to-have...",
+            "responsibility": "Understanding of containerisation, using Docker and Docker-compose."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "96",
+                "name": "Программист, разработчик"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "78860039",
+        "premium": false,
+        "name": "Менеджер по продажам B2B",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1",
+            "name": "Москва",
+            "url": "https://api.hh.ru/areas/1?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 100000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": {
+            "city": "Москва",
+            "street": "Волгоградский проспект",
+            "building": "28А",
+            "lat": 55.725706,
+            "lng": 37.681299,
+            "description": null,
+            "raw": "Москва, Волгоградский проспект, 28А",
+            "metro": {
+                "station_name": "Волгоградский проспект",
+                "line_name": "Таганско-Краснопресненская",
+                "station_id": "7.31",
+                "line_id": "7",
+                "lat": 55.725546,
+                "lng": 37.685197
+            },
+            "metro_stations": [
+                {
+                    "station_name": "Волгоградский проспект",
+                    "line_name": "Таганско-Краснопресненская",
+                    "station_id": "7.31",
+                    "line_id": "7",
+                    "lat": 55.725546,
+                    "lng": 37.685197
+                }
+            ],
+            "id": "1351565"
+        },
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-09T12:05:21+0300",
+        "created_at": "2023-06-09T12:05:21+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=78860039",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/78860039?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/78860039",
+        "relations": [],
+        "employer": {
+            "id": "3395514",
+            "name": "Качество Исполнения",
+            "url": "https://api.hh.ru/employers/3395514?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/3395514",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/525089.png",
+                "240": "https://hhcdn.ru/employer-logo/2541834.png",
+                "90": "https://hhcdn.ru/employer-logo/2541833.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=3395514&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Опыт продаж услуг в области интернет-маркетинга, в частности <highlighttext>SEO</highlighttext> продвижения и умение использовать свои навыки является плюсом. ",
+            "responsibility": "Продавать услуги компании: Продвижение сайтов, <highlighttext>поисковая</highlighttext> <highlighttext>оптимизация</highlighttext> (<highlighttext>SEO</highlighttext>);Контекстная и Таргетированная реклама;Ведение и продвижение соц. сетей (SMM);Разработка сайтов..."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "70",
+                "name": "Менеджер по продажам, менеджер по работе с клиентами"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81868414",
+        "premium": false,
+        "name": "Директор по маркетингу и PR",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1",
+            "name": "Москва",
+            "url": "https://api.hh.ru/areas/1?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 500000,
+            "to": null,
+            "currency": "RUR",
+            "gross": true
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": {
+            "city": "Москва",
+            "street": "улица Ленинская Слобода",
+            "building": "26",
+            "lat": 55.7110580810468,
+            "lng": 37.65276350527913,
+            "description": null,
+            "raw": "Москва, улица Ленинская Слобода, 26",
+            "metro": {
+                "station_name": "Автозаводская",
+                "line_name": "Замоскворецкая",
+                "station_id": "2.2",
+                "line_id": "2",
+                "lat": 55.706634,
+                "lng": 37.657008
+            },
+            "metro_stations": [
+                {
+                    "station_name": "Автозаводская",
+                    "line_name": "Замоскворецкая",
+                    "station_id": "2.2",
+                    "line_id": "2",
+                    "lat": 55.706634,
+                    "lng": 37.657008
+                }
+            ],
+            "id": "547367"
+        },
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-13T19:30:12+0300",
+        "created_at": "2023-06-13T19:30:12+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81868414",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81868414?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81868414",
+        "relations": [],
+        "employer": {
+            "id": "1959252",
+            "name": "СберЗдоровье",
+            "url": "https://api.hh.ru/employers/1959252?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/1959252",
+            "logo_urls": {
+                "240": "https://hhcdn.ru/employer-logo/3427702.png",
+                "90": "https://hhcdn.ru/employer-logo/3427701.png",
+                "original": "https://hhcdn.ru/employer-logo-original/746685.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=1959252&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "опыт управления бюджетами от 100 млн. ⁃ глубокое понимание performance-инструментов (контекст, <highlighttext>seo</highlighttext>, партнерский маркетинг). ⁃ опыт запуска медийных и омниканальных кампаний. - ",
+            "responsibility": "Формирование и внедрение маркетинговой стратегии и обеспечение полного маркетингового цикла поддержки развития бизнеса, включая стратегическое развитие бренда, планирование и проведение..."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "37",
+                "name": "Директор по маркетингу и PR (CMO)"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "moreThan6",
+            "name": "Более 6 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81978273",
+        "premium": false,
+        "name": "Контент-менеджер",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1002",
+            "name": "Минск",
+            "url": "https://api.hh.ru/areas/1002?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 1100,
+            "to": 1600,
+            "currency": "BYR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": {
+            "city": "Минск",
+            "street": "улица Лейтенанта Кижеватова",
+            "building": "1Б",
+            "lat": 53.866964,
+            "lng": 27.528926,
+            "description": null,
+            "raw": "Минск, улица Лейтенанта Кижеватова, 1Б",
+            "metro": null,
+            "metro_stations": [],
+            "id": "13120904"
+        },
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-15T18:33:26+0300",
+        "created_at": "2023-06-15T18:33:26+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81978273",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81978273?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81978273",
+        "relations": [],
+        "employer": {
+            "id": "9764942",
+            "name": "Литл Паус",
+            "url": "https://api.hh.ru/employers/9764942?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/9764942",
+            "logo_urls": {
+                "90": "https://hhcdn.ru/employer-logo/5964537.png",
+                "240": "https://hhcdn.ru/employer-logo/5964538.png",
+                "original": "https://hhcdn.ru/employer-logo-original/1085977.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=9764942&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Опыт работы с сайтами, CMS. Владение пакетами MS Office. Владение графическими редакторами (Adobe Photoshop, Illustrator и т.п).",
+            "responsibility": "Заполнение и редактирование карточек товаров на сайтах (поиск и внесение информации об устройствах в базу данных). Работа с поставщиками, прайсами. "
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "3",
+                "name": "SMM-менеджер, контент-менеджер"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81787153",
+        "premium": false,
+        "name": "Младший веб-программист",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "76",
+            "name": "Ростов-на-Дону",
+            "url": "https://api.hh.ru/areas/76?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": null,
+            "to": 50000,
+            "currency": "RUR",
+            "gross": true
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-15T14:34:03+0300",
+        "created_at": "2023-06-15T14:34:03+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81787153",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81787153?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81787153",
+        "relations": [],
+        "employer": {
+            "id": "1020673",
+            "name": "DELTA",
+            "url": "https://api.hh.ru/employers/1020673?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/1020673",
+            "logo_urls": {
+                "240": "https://hhcdn.ru/employer-logo/2902553.png",
+                "90": "https://hhcdn.ru/employer-logo/2902552.png",
+                "original": "https://hhcdn.ru/employer-logo-original/615350.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=1020673&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Уверенные знания HTML, CSS. Знания принципов адаптивной верстки. Умение верстать по дизайн-макету. Умение устанавливать расширения и компоненты пользовательского интерфейса. ",
+            "responsibility": "Верстка шаблонов сайтов под CMS. Наполнение базовым контентом. Разработка интерактивных веб-страниц. Поддержка существующих проектов."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "96",
+                "name": "Программист, разработчик"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81712700",
+        "premium": false,
+        "name": "Junior тестировщик (ручное тестирование)",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1",
+            "name": "Москва",
+            "url": "https://api.hh.ru/areas/1?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 15000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-08T14:34:47+0300",
+        "created_at": "2023-06-08T14:34:47+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81712700",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81712700?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81712700",
+        "relations": [],
+        "employer": {
+            "id": "8962222",
+            "name": "Адванс-Медиа",
+            "url": "https://api.hh.ru/employers/8962222?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/8962222",
+            "logo_urls": null,
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=8962222&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "базовое UX-тестирование (если что-то очевидно неудобно или не работает, как ожидается, и т.п.). - понимание в тестировании сайтов...",
+            "responsibility": "тестирование UI на соответствие дизайну. - тестирование сайтов на соответствие <highlighttext>SEO</highlighttext> требованиям и требованиям быстродействия. - искать ошибки на сайтах и подробно..."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [
+            {
+                "id": "from_four_to_six_hours_in_a_day",
+                "name": "Можно работать сменами по 4–6 часов в день"
+            }
+        ],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "124",
+                "name": "Тестировщик"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "part",
+            "name": "Частичная занятость"
+        }
+    },
+    {
+        "id": "81604464",
+        "premium": false,
+        "name": "Копирайтер",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "2",
+            "name": "Санкт-Петербург",
+            "url": "https://api.hh.ru/areas/2?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 70000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-06T14:11:04+0300",
+        "created_at": "2023-06-06T14:11:04+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81604464",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81604464?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81604464",
+        "relations": [],
+        "employer": {
+            "id": "1070855",
+            "name": "МАК БРАЗЕРС",
+            "url": "https://api.hh.ru/employers/1070855?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/1070855",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/676021.png",
+                "240": "https://hhcdn.ru/employer-logo/3145217.png",
+                "90": "https://hhcdn.ru/employer-logo/3145216.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=1070855&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Вы должны уметь: Знание английского языка является преимуществом. -Разбираться в <highlighttext>SEO</highlighttext>. -Анализировать результат.",
+            "responsibility": "Искать исполнителей. Ставить задачи и дедлайны для копирайтеров, дизайнеров и тех, кто публикует материалы. Следить за соблюдением сроков. "
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "3",
+                "name": "SMM-менеджер, контент-менеджер"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81867211",
+        "premium": false,
+        "name": "Офис-менеджер",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "56",
+            "name": "Курск",
+            "url": "https://api.hh.ru/areas/56?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 35000,
+            "to": null,
+            "currency": "RUR",
+            "gross": true
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": {
+            "city": "Курск",
+            "street": "улица Добролюбова",
+            "building": "22А",
+            "lat": 51.72336,
+            "lng": 36.188236,
+            "description": null,
+            "raw": "Курск, улица Добролюбова, 22А",
+            "metro": null,
+            "metro_stations": [],
+            "id": "13537491"
+        },
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-13T18:31:44+0300",
+        "created_at": "2023-06-13T18:31:44+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81867211",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81867211?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81867211",
+        "relations": [],
+        "employer": {
+            "id": "4915738",
+            "name": "АНО Региональный Центр Компетенций в Сфере Производительности Труда Курской Области",
+            "url": "https://api.hh.ru/employers/4915738?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/4915738",
+            "logo_urls": null,
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=4915738&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Владение правилами документооборота. Уверенный пользователь MS-офис. Навыки <highlighttext>SEO</highlighttext> специалиста.",
+            "responsibility": "Ведение документооборота. Работа с базами данных о предприятиях, вовлечение предприятий в национальный проект. Подготовка и сопровождение процесса обучения на Фабрике..."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": true,
+        "professional_roles": [
+            {
+                "id": "88",
+                "name": "Офис-менеджер"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "80892637",
+        "premium": false,
+        "name": "Frontend Developer (Frontend разработчик)",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1002",
+            "name": "Минск",
+            "url": "https://api.hh.ru/areas/1002?locale=RU&host=hh.ru"
+        },
+        "salary": null,
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-05-23T14:05:53+0300",
+        "created_at": "2023-05-23T14:05:53+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=80892637",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/80892637?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/80892637",
+        "relations": [],
+        "employer": {
+            "id": "758177",
+            "name": "Белтелематика, ЧТУП",
+            "url": "https://api.hh.ru/employers/758177?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/758177",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/141671.jpg",
+                "90": "https://hhcdn.ru/employer-logo/734066.jpeg",
+                "240": "https://hhcdn.ru/employer-logo/734067.jpeg"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=758177&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Базовые знания react, html и css. Базовые знания <highlighttext>seo</highlighttext>, git. Понимание SPA, PWA, promises, ES6, websocket. Навыки по созданию...",
+            "responsibility": "Работа над продуктами компании."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "96",
+                "name": "Программист, разработчик"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81848090",
+        "premium": false,
+        "name": "QA engineer (Junior+/Middle-/Middle)",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1",
+            "name": "Москва",
+            "url": "https://api.hh.ru/areas/1?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 65000,
+            "to": 80000,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-13T13:55:35+0300",
+        "created_at": "2023-06-13T13:55:35+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81848090",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81848090?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81848090",
+        "relations": [],
+        "employer": {
+            "id": "1807299",
+            "name": "NOVATEST",
+            "url": "https://api.hh.ru/employers/1807299?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/1807299",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/381778.png",
+                "90": "https://hhcdn.ru/employer-logo/1969370.png",
+                "240": "https://hhcdn.ru/employer-logo/1969371.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=1807299&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "...с REST и/или SOAP. Навыки работы со снифферами трафика. Навыки работы с логами. Навыки работы с jmeter / <highlighttext>SEO</highlighttext> Spider.",
+            "responsibility": "Понимание разницы между тестированием и обеспечением качества разрабатываемого проекта."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": true,
+        "professional_roles": [
+            {
+                "id": "124",
+                "name": "Тестировщик"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81042407",
+        "premium": false,
+        "name": "Копирайтер (по описанию растений для интернет-магазина)",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1",
+            "name": "Москва",
+            "url": "https://api.hh.ru/areas/1?locale=RU&host=hh.ru"
+        },
+        "salary": null,
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-05-25T15:25:31+0300",
+        "created_at": "2023-05-25T15:25:31+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81042407",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81042407?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81042407",
+        "relations": [],
+        "employer": {
+            "id": "2137203",
+            "name": "Elki-Eli.com",
+            "url": "https://api.hh.ru/employers/2137203?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/2137203",
+            "logo_urls": null,
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=2137203&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Копирайтер с опытом работы в ChatGpt. Умение работать с нейросетями (ChatGpt и др.), но необходима проверка информации в достоверных источниках. ",
+            "responsibility": "Объем статьи 8 000-20 000 знаков без пробелов. Статьи должны быть уникальными, <highlighttext>seo</highlighttext>-оптимизированными. 3. Описания услуг. "
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": true,
+        "professional_roles": [
+            {
+                "id": "55",
+                "name": "Копирайтер, редактор, корректор"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81310492",
+        "premium": false,
+        "name": "Менеджер Wildberries",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1",
+            "name": "Москва",
+            "url": "https://api.hh.ru/areas/1?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 20000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-05-30T14:41:51+0300",
+        "created_at": "2023-05-30T14:41:51+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81310492",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81310492?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81310492",
+        "relations": [],
+        "employer": {
+            "id": "9543796",
+            "name": "Кочак Синем",
+            "url": "https://api.hh.ru/employers/9543796?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/9543796",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/1053672.jpg",
+                "90": "https://hhcdn.ru/employer-logo/5835333.jpeg",
+                "240": "https://hhcdn.ru/employer-logo/5835334.jpeg"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=9543796&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": false
+        },
+        "snippet": {
+            "requirement": "Опыт: наличие практических навыков (ВНЕ РАМОК ОБУЧЕНИЯ!) по работе с кабинетами на WB от 4-6-ти месяцев. ",
+            "responsibility": "Заниматься продвижением с помощью внутренней и внешней рекламы. - Заниматься оцифровкой данных. - <highlighttext>SEO</highlighttext>-оптимизация и сбор ключей. - Взаимодействовать с фулфилментом, курьерами. - "
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "40",
+                "name": "Другое"
+            }
+        ],
+        "accept_incomplete_resumes": true,
+        "experience": {
+            "id": "noExperience",
+            "name": "Нет опыта"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81896228",
+        "premium": false,
+        "name": "СММ: Специалист по ведению социальных сетей НББ",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1002",
+            "name": "Минск",
+            "url": "https://api.hh.ru/areas/1002?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 900,
+            "to": 1500,
+            "currency": "BYR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": {
+            "city": "Минск",
+            "street": "проспект Независимости",
+            "building": "116",
+            "lat": 53.931244,
+            "lng": 27.646084,
+            "description": null,
+            "raw": "Минск, проспект Независимости, 116",
+            "metro": {
+                "station_name": "Восток",
+                "line_name": "Московская",
+                "station_id": "62.404",
+                "line_id": "62",
+                "lat": 53.934509,
+                "lng": 27.651483
+            },
+            "metro_stations": [
+                {
+                    "station_name": "Восток",
+                    "line_name": "Московская",
+                    "station_id": "62.404",
+                    "line_id": "62",
+                    "lat": 53.934509,
+                    "lng": 27.651483
+                }
+            ],
+            "id": "173571"
+        },
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-14T12:01:14+0300",
+        "created_at": "2023-06-14T12:01:14+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81896228",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81896228?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81896228",
+        "relations": [],
+        "employer": {
+            "id": "828794",
+            "name": "Национальная библиотека Беларуси",
+            "url": "https://api.hh.ru/employers/828794?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/828794",
+            "logo_urls": null,
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=828794&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Опыт работы в SMM. Опыт работы от 1 года. Знание английского языка приветствуется. Навыки <highlighttext>SEO</highlighttext>-продвижения сайта приветствуются.",
+            "responsibility": "Создание текстов, иллюстрационного материала. Подготовка и размещение информационных материалов, ведение аккаунтов библиотеки в социальных сетях (Facebook, ВКонтакте, Instagram) и мессенджерах..."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "3",
+                "name": "SMM-менеджер, контент-менеджер"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81923742",
+        "premium": false,
+        "name": "Менеджер по работе с маркетплейсами / Менеджер по SEO - оптимизации",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "46",
+            "name": "Черкесск",
+            "url": "https://api.hh.ru/areas/46?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 80000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": {
+            "city": "Черкесск",
+            "street": "Магазинная улица",
+            "building": "36А",
+            "lat": 44.23628,
+            "lng": 42.054396,
+            "description": null,
+            "raw": "Черкесск, Магазинная улица, 36А",
+            "metro": null,
+            "metro_stations": [],
+            "id": "6792886"
+        },
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-14T18:48:42+0300",
+        "created_at": "2023-06-14T18:48:42+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81923742",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81923742?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81923742",
+        "relations": [],
+        "employer": {
+            "id": "5586112",
+            "name": "Тор-Фарм",
+            "url": "https://api.hh.ru/employers/5586112?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/5586112",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/1082011.png",
+                "240": "https://hhcdn.ru/employer-logo/5948674.png",
+                "90": "https://hhcdn.ru/employer-logo/5948673.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=5586112&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Инициативный, ответственный, умеет принимать решения и нести за них ответственность. Свою точку зрения подпитывает фактами, отчетами, собранной информацией. ",
+            "responsibility": "Работа с вопросами и отзывами. Контроль наличия товара и наполнения складов. Создание <highlighttext>SEO</highlighttext> - описаний и заголовков. Работа с продвижением карточек. "
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "40",
+                "name": "Другое"
+            }
+        ],
+        "accept_incomplete_resumes": true,
+        "experience": {
+            "id": "noExperience",
+            "name": "Нет опыта"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81897933",
+        "premium": false,
+        "name": "Контент менеджер",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "160",
+            "name": "Алматы",
+            "url": "https://api.hh.ru/areas/160?locale=RU&host=hh.ru"
+        },
+        "salary": null,
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-14T12:20:23+0300",
+        "created_at": "2023-06-14T12:20:23+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81897933",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81897933?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81897933",
+        "relations": [],
+        "employer": {
+            "id": "2943789",
+            "name": "Леруа Мерлен Казахстан",
+            "url": "https://api.hh.ru/employers/2943789?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/2943789",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/449835.png",
+                "240": "https://hhcdn.ru/employer-logo/2241308.png",
+                "90": "https://hhcdn.ru/employer-logo/2241307.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=2943789&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "У тебя есть базовые навыки работы с MS Excel. Ты умеешь искать информацию в интернете. Ты усидчив и быстро работаешь. ",
+            "responsibility": "Заполнение карточек товаров в соответствии с требованиями отдела продаж и <highlighttext>SEO</highlighttext> (описания, технические данные, изображения, распределение товаров по разделам каталога). "
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "103",
+                "name": "Режиссер, сценарист"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "noExperience",
+            "name": "Нет опыта"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81316501",
+        "premium": false,
+        "name": "Копирайтер",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1",
+            "name": "Москва",
+            "url": "https://api.hh.ru/areas/1?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 35000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-05-30T15:49:58+0300",
+        "created_at": "2023-05-30T15:49:58+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81316501",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81316501?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81316501",
+        "relations": [],
+        "employer": {
+            "id": "3609070",
+            "name": "Agrachoff Group",
+            "url": "https://api.hh.ru/employers/3609070?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/3609070",
+            "logo_urls": {
+                "240": "https://hhcdn.ru/employer-logo/5496869.png",
+                "90": "https://hhcdn.ru/employer-logo/5496868.png",
+                "original": "https://hhcdn.ru/employer-logo-original/969213.png"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=3609070&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Опыт работы Копирайтером будет преимуществом. Ответственность.",
+            "responsibility": "Написание <highlighttext>SEO</highlighttext> текстов по разным направлениям. Взаимодействие с командой: руководителем, аккаунт-менеджером, <highlighttext>seo</highlighttext>-специалистом, дизайнером."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": true,
+        "professional_roles": [
+            {
+                "id": "55",
+                "name": "Копирайтер, редактор, корректор"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "noExperience",
+            "name": "Нет опыта"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81911288",
+        "premium": false,
+        "name": "Менеджер Wildberries",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "29",
+            "name": "Махачкала",
+            "url": "https://api.hh.ru/areas/29?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 50000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": {
+            "city": "Махачкала",
+            "street": "улица Азизова",
+            "building": null,
+            "lat": 42.960961,
+            "lng": 47.530338,
+            "description": null,
+            "raw": "Махачкала, улица Азизова",
+            "metro": null,
+            "metro_stations": [],
+            "id": "13573357"
+        },
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-14T15:05:43+0300",
+        "created_at": "2023-06-14T15:05:43+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81911288",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81911288?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81911288",
+        "relations": [],
+        "employer": {
+            "id": "5156710",
+            "name": "РД консалт",
+            "url": "https://api.hh.ru/employers/5156710?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/5156710",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/821175.jpeg",
+                "240": "https://hhcdn.ru/employer-logo/3725588.jpeg",
+                "90": "https://hhcdn.ru/employer-logo/3725587.jpeg"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=5156710&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Аналогичный опыт продаж на Wildberries (приветствуется). Коммуникабельность, активность, внимательность. Системность, нацеленность на результат, логическое мышление. Желание обучаться и расти.",
+            "responsibility": "Выведение карточек в топ: использование внутренних инструментов продвижения на маркетплейсах. Навыки оптимизации карточек товара с учетом <highlighttext>SEO</highlighttext>. Опытный пользователь Excel/. "
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "70",
+                "name": "Менеджер по продажам, менеджер по работе с клиентами"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "noExperience",
+            "name": "Нет опыта"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81782233",
+        "premium": false,
+        "name": "GPT-райтер (копирайтер)",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "88",
+            "name": "Казань",
+            "url": "https://api.hh.ru/areas/88?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 40000,
+            "to": 80000,
+            "currency": "RUR",
+            "gross": true
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-10T21:48:09+0300",
+        "created_at": "2023-06-10T21:48:09+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81782233",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81782233?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81782233",
+        "relations": [],
+        "employer": {
+            "id": "9029603",
+            "name": "AstraMedia",
+            "url": "https://api.hh.ru/employers/9029603?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/9029603",
+            "logo_urls": {
+                "90": "https://hhcdn.ru/employer-logo/5977477.jpeg",
+                "240": "https://hhcdn.ru/employer-logo/5977478.jpeg",
+                "original": "https://hhcdn.ru/employer-logo-original/1089213.jpeg"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=9029603&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Грамотная письменная речь - словно у Пушкина! - Вежливость, тактичность, терпение, внимательность, пунктуальность и обучаемость - это твои вторые имена. - Планирование и тайм...",
+            "responsibility": "Ты будешь отвечать за создание сео-текстов для сайтов и социальных сетей на различные тематики, написание постов/статей, составление текстовых..."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": true,
+        "professional_roles": [
+            {
+                "id": "55",
+                "name": "Копирайтер, редактор, корректор"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81887150",
+        "premium": false,
+        "name": "Руководитель отдела маркетинга",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "1",
+            "name": "Москва",
+            "url": "https://api.hh.ru/areas/1?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 300000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": null,
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-14T10:31:41+0300",
+        "created_at": "2023-06-14T10:31:41+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81887150",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81887150?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81887150",
+        "relations": [],
+        "employer": {
+            "id": "3823582",
+            "name": "Smirnov Group",
+            "url": "https://api.hh.ru/employers/3823582?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/3823582",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/988121.jpg",
+                "90": "https://hhcdn.ru/employer-logo/5573296.jpeg",
+                "240": "https://hhcdn.ru/employer-logo/5573297.jpeg"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=3823582&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Свободно владеете G.Analytics, понимание K50/RoiStat. Желательно понимание актуальных принципов работы с <highlighttext>SEO</highlighttext> (для контроля подрядчиков). Подтвержденный кейсами опыт...",
+            "responsibility": "Изучение и анализ рынка (спрос, конкуренты, общая конъюнктура интернет-рынка в данной нише). Создание, запуск и оптимизация рекламных кампаний в..."
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "37",
+                "name": "Директор по маркетингу и PR (CMO)"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "moreThan6",
+            "name": "Более 6 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "id": "81048069",
+        "premium": false,
+        "name": "Маркетолог",
+        "department": null,
+        "has_test": false,
+        "response_letter_required": false,
+        "area": {
+            "id": "2",
+            "name": "Санкт-Петербург",
+            "url": "https://api.hh.ru/areas/2?locale=RU&host=hh.ru"
+        },
+        "salary": {
+            "from": 60000,
+            "to": 90000,
+            "currency": "RUR",
+            "gross": false
+        },
+        "type": {
+            "id": "open",
+            "name": "Открытая"
+        },
+        "address": {
+            "city": "Санкт-Петербург",
+            "street": "Московский проспект",
+            "building": "212",
+            "lat": 59.852118,
+            "lng": 30.32725,
+            "description": null,
+            "raw": "Санкт-Петербург, Московский проспект, 212",
+            "metro": {
+                "station_name": "Московская",
+                "line_name": "Московско-Петроградская",
+                "station_id": "15.224",
+                "line_id": "15",
+                "lat": 59.848873,
+                "lng": 30.321483
+            },
+            "metro_stations": [
+                {
+                    "station_name": "Московская",
+                    "line_name": "Московско-Петроградская",
+                    "station_id": "15.224",
+                    "line_id": "15",
+                    "lat": 59.848873,
+                    "lng": 30.321483
+                }
+            ],
+            "id": "5495953"
+        },
+        "response_url": null,
+        "sort_point_distance": null,
+        "published_at": "2023-06-01T17:40:53+0300",
+        "created_at": "2023-06-01T17:40:53+0300",
+        "archived": false,
+        "apply_alternate_url": "https://hh.ru/applicant/vacancy_response?vacancyId=81048069",
+        "insider_interview": null,
+        "url": "https://api.hh.ru/vacancies/81048069?locale=RU&host=hh.ru",
+        "adv_response_url": null,
+        "alternate_url": "https://hh.ru/vacancy/81048069",
+        "relations": [],
+        "employer": {
+            "id": "1650086",
+            "name": "1001 Шина",
+            "url": "https://api.hh.ru/employers/1650086?locale=RU&host=hh.ru",
+            "alternate_url": "https://hh.ru/employer/1650086",
+            "logo_urls": {
+                "original": "https://hhcdn.ru/employer-logo-original/693828.jpg",
+                "90": "https://hhcdn.ru/employer-logo/3216428.jpeg",
+                "240": "https://hhcdn.ru/employer-logo/3216429.jpeg"
+            },
+            "vacancies_url": "https://api.hh.ru/vacancies?employer_id=1650086&locale=RU&host=hh.ru",
+            "accredited_it_employer": false,
+            "trusted": true
+        },
+        "snippet": {
+            "requirement": "Образование высшее по специальности маркетинг/реклама. Опыт работы маркетологом от 3 лет. Честность и порядочность. Трудолюбие, усердие и дисциплина. ",
+            "responsibility": "Директ, - Google Ads и в социальных сетях. Планирование бюджета. Создание контента. Эффективное планирование своего рабочего времени. ROMI. CPL. <highlighttext>SEO</highlighttext>/ Авито. "
+        },
+        "contacts": null,
+        "schedule": null,
+        "working_days": [],
+        "working_time_intervals": [],
+        "working_time_modes": [],
+        "accept_temporary": false,
+        "professional_roles": [
+            {
+                "id": "68",
+                "name": "Менеджер по маркетингу, интернет-маркетолог"
+            }
+        ],
+        "accept_incomplete_resumes": false,
+        "experience": {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        "employment": {
+            "id": "full",
+            "name": "Полная занятость"
+        }
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 46355123,
+        "id_client": 4212279,
+        "payment_from": 80000,
+        "payment_to": 0,
+        "date_pub_to": 1688992860,
+        "date_archived": 0,
+        "date_published": 1686832797,
+        "address": "Краснодар, улица Орджоникидзе, 41",
+        "profession": "Маркетолог",
+        "work": null,
+        "compensation": null,
+        "candidat": "Добрый день!\nВ команду \"Консалтинг онлайн\" ищем продуктивных, опытных интернет-маркетологов, готовых выводить компанию на новый уровень.\nАО «Консалтинг онлайн» - это инновационная консалтинговая компания, которая предоставляет бизнесу умные решения для контроля и соблюдения всех его обязанностей.\n\nВ 2023 году АО \"Консалтинг онлайн\" получило 1 место в номинации \"Лучшее предприятие в сфере консалтинговых услуг\" в национальной премии \"Золотой Меркурий\" от Торгово-промышленной палаты.\n\nНемного о нас в цифрах:\n• От 2 000 000 до 150 000 000 рублей выручки за 5 лет.\n• Более 40 000 юридических лиц, которым мы помогли выполнить их обязанности\n• 5 из 5 в Яндексе - наш рейтинг в сети Яндекс на основе достоверных, проверенных системой отзывов.\n\nПочему открыта вакансия?\nПоказатели нашей компании ежегодно доказывают, что в первую очередь мы- надёжный работодатель и партнёр, который даже в кризисные для страны времена бьет рекорды по продажам! Ещё в 2022 году у нас на обслуживании находилось 20 000 юр.лиц, а сейчас мы выросли кратно в х2 раза!\nВ связи с этим мы активно принимаем в команду интернет-маркетологов, готовых пополнять наши ряды и становиться частью нашей системы.\nМы предлагаем:\n• Среднемесячный доход 80.000 руб. (оклад+ kpi);\n• \nРаботу в стабильной компании с услугой, которая действительно важна для благополучия бизнеса клиента;\n• \nВыплаты зарплаты 2 раза в месяц без задержек;\n• \nТрудоустройство по ТК РФ, белую заработную плату;\n• \nАвтоматизированная адаптация в CRM системе;\n• \nКомпенсация обучения в профессиональной области от лучших спикеров;\n• \nБесплатная корпоративная библиотека лучших книг по прокачке навыков и интеллекта;\n• \nВозможность быстрого карьерного роста в течение года;\n• \nКомфортный офис бизнес-класса в центре города Краснодара с возможностью перехода на удалённый формат работы 5/2 с пн.-пт. с 8.00-17.00 либо с 9.30-18.30(всю технику предоставляем);\n• \nКомандные вылазки по городу и за его пределами- Мы хорошо работаем и хорошо отдыхаем. Так что Богические поездки на природу, море, горы и просто в приятные заведения, тебе обеспечены;\n• \nМолодой заряженный коллектив, средний возраст 28 лет;\n• \nНаставничество и поддержка от руководства.\nЧем нужно будет заниматься:\n• Опыт работы с контекстной рекламой в Яндекс, веб аналитикой, seo, опыт запуска новых рекламных кампаний, их оптимизация.\n• Инициативный подход к исполнению задач, самостоятельность в принятии решений.\n• Добросовестность, умение брать ответственность за результат.\n• \nАналитические способности.\n• \nБыстрая ориентация в условиях постоянных изменений.\nКого мы ищем:\nМы хотим видеть в команде крутого интернет-маркетолога с бомбическими кейсами, и со схожим опытом в сфере услуг.\nЕсли вы дочитали до конца, вероятно, мы тебя зацепили)\nОставляй отклик, звони, пиши, отправляй голубей- как тебе удобно\n\nУспехов и до встречи на собеседовании!",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<p>Добрый день!</p><p>В команду \"Консалтинг онлайн\" ищем продуктивных, опытных интернет-маркетологов, готовых выводить компанию на новый уровень.</p><p>АО «Консалтинг онлайн» - это инновационная консалтинговая компания, которая предоставляет бизнесу умные решения для контроля и соблюдения всех его обязанностей.<br /><br />В 2023 году АО \"Консалтинг онлайн\" получило 1 место в номинации \"Лучшее предприятие в сфере консалтинговых услуг\" в национальной премии \"Золотой Меркурий\" от Торгово-промышленной палаты.<br /><br />Немного о нас в цифрах:</p><ul><li>От 2 000 000 до 150 000 000 рублей выручки за 5 лет.</li><li>Более 40 000 юридических лиц, которым мы помогли выполнить их обязанности</li><li>5 из 5 в Яндексе - наш рейтинг в сети Яндекс на основе достоверных, проверенных системой отзывов.</li></ul><p><br />Почему открыта вакансия?</p><p>Показатели нашей компании ежегодно доказывают, что в первую очередь мы- надёжный работодатель и партнёр, который даже в кризисные для страны времена бьет рекорды по продажам! Ещё в 2022 году у нас на обслуживании находилось 20 000 юр.лиц, а сейчас мы выросли кратно в х2 раза!<br />В связи с этим мы активно принимаем в команду интернет-маркетологов, готовых пополнять наши ряды и становиться частью нашей системы.</p><p>Мы предлагаем:</p><ul><li>Среднемесячный доход 80.000 руб. (оклад+ kpi);</li><li><p>Работу в стабильной компании с услугой, которая действительно важна для благополучия бизнеса клиента;</p></li><li><p>Выплаты зарплаты 2 раза в месяц без задержек;</p></li><li><p>Трудоустройство по ТК РФ, белую заработную плату;</p></li><li><p>Автоматизированная адаптация в CRM системе;</p></li><li><p>Компенсация обучения в профессиональной области от лучших спикеров;</p></li><li><p>Бесплатная корпоративная библиотека лучших книг по прокачке навыков и интеллекта;</p></li><li><p>Возможность быстрого карьерного роста в течение года;</p></li><li><p>Комфортный офис бизнес-класса в центре города Краснодара с возможностью перехода на удалённый формат работы 5/2 с пн.-пт. с 8.00-17.00 либо с 9.30-18.30(всю технику предоставляем);</p></li><li><p>Командные вылазки по городу и за его пределами- Мы хорошо работаем и хорошо отдыхаем. Так что Богические поездки на природу, море, горы и просто в приятные заведения, тебе обеспечены;</p></li><li><p>Молодой заряженный коллектив, средний возраст 28 лет;</p></li><li><p>Наставничество и поддержка от руководства.</p></li></ul><p>Чем нужно будет заниматься:</p><ul><li>Опыт работы с контекстной рекламой в Яндекс, веб аналитикой, seo, опыт запуска новых рекламных кампаний, их оптимизация.</li><li>Инициативный подход к исполнению задач, самостоятельность в принятии решений.</li><li>Добросовестность, умение брать ответственность за результат.</li><li><p>Аналитические способности.</p></li><li><p>Быстрая ориентация в условиях постоянных изменений.</p></li></ul><p>Кого мы ищем:</p><p>Мы хотим видеть в команде крутого интернет-маркетолога с бомбическими кейсами, и со схожим опытом в сфере услуг.</p><p>Если вы дочитали до конца, вероятно, мы тебя зацепили)</p><p>Оставляй отклик, звони, пиши, отправляй голубей- как тебе удобно</p><p><br />Успехов и до встречи на собеседовании!</p>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": true,
+        "agreement": false,
+        "anonymous": false,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "experience": {
+            "id": 3,
+            "title": "От 3 лет"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "id": 4212279,
+            "title": "КОНСАЛТИНГ ОНЛАЙН",
+            "link": "https://www.superjob.ru/clients/konsalting-onlajn-4212279/vacancies.html",
+            "industry": [],
+            "description": "АО «Консалтинг онлайн» - это инновационная консалтинговая компания, которая предоставляет бизнесу эффективные решения для контроля и соблюдения всех его обязанностей.\n\nОсновные услуги компании связаны с обязанностями B2B сектора (юридических лиц, ИП, в ряде случаев - физ. лиц) по раскрытию информации в государственных и федеральных реестрах, таких как:\n\n- раскрытие информации в ЕФРСФДЮЛ (Единый федеральный реестр юридически важный сведений о фактах деятельности юридических лиц, индивидуальных предпринимателей и иных субъектов экономической деятельности);\n\n- уведомление кредиторов через \"Вестник государственной регистрации\" (реестр событий ФНС России)\n\nКроме того, компания занимается и иными консалтинговыми услугами, среди которых:\n\n- реорганизация и ликвидация юридических лиц\n\n- банкротство и досудебное урегулирование споров (медиация) и тд.\n\nИз-за ежегодного кратного роста мы постоянно ищем в команду энергичных и незаурядных людей: менеджеров по продажам, клиентских менеджеров, интернет-маркетологов, IT-генией, разработчиков, архитекторов бизнес-процессов, аналитиков и тд.\n\nАО «Консалтинг онлайн» - это гарантия действительно важных для работника вопросов, из-за которых Вы сами захотите работать в нашей команде, а именно:\n\n1. Устойчивость. Будем честны, национальная экономика всегда была далека от стабильности, а сейчас и вовсе парит в неизвестности. Тем временем наша деятельность связана исключительно с российским законодательством в сфере корпоративного права, обязанностями юридических лиц и внешние потрясения как правило никак не отражаются на нашей деятельности. За период ковидных ограничений, спецоперации и прочих потрясений в мире и в стране, наши финансовые результаты только растут (и растут сотнях, а не в десятках процентов).\n\n2. Престиж и репутация. В 2023 году АО \"Консалтинг онлайн\" получило 1 место в номинации \"Лучшее предприятие в сфере консалтинговых услуг\" в национальной премии \"Золотой Меркурий\" от Торгово-промышленной палаты.\n\nАО \"Консалтинг онлайн также:\n\n- проводит всероссийские конференции и форумы для бизнеса в СКОЛКОВО;\n\n- принимает студентов для прохождения практики из нескольких ВУЗов;\n\n- сотрудничает с крупнейшим в стране благотворительным фондом \"Подари жизнь\".\n\n- входит в холдинг ГК \"ГИК\" - один из крупнейших консалтинговых холдингов в России.\n\n3. Финансовая стабильность и высокий уровень заработка. Престиж имени и высокая репутация АО \"Консалтинг онлайн\" диктуют достойный уровень заработной платы, который устанавливается для ее сотрудников, а устойчивость компании гарантирует стабильность оплаты труда.\n\n4. Карьерный и финансовый рост. Как и в любой быстро развивающейся компании, необходимость в создании новых проектов, отделов, структур, вакансий создают возможности не только для интенсивного вертикального, но и горизонтального карьерного роста. Даже если Вы не прирожденный лидер, а талантливый, эффективный одиночка, который показывает высокие личные результаты - для Вас откроется столько же точек роста, сколько и для способного управленца.\n\n5. Личностный рост и профессиональное развитие. Мы одна из немногих компаний, которая действительно заботится о развитии своих сотрудников. Каждое структурное подразделение проходит регулярное и дорогое обучение по своим компетенциям от известных школ для бизнеса и коучей. АО \"Консалтинг онлайн\" ежегодно зашивает в свои затраты бюджет на обучение сотрудников, приобретение бизнес литературы, тренингов, проведение командообразующих и развивающих тимбилдингов и тд.\n\nНемного о нас в цифрах:\nОт 2 000 000 до 150 000 000 рублей выручки за 5 лет.\nБолее 40 000 юридических лиц, которым мы помогли выполнить их обязанности\n5 из 5 в Яндексе - наш рейтинг в сети Яндекс на основе достоверных, проверенных системой отзывов.\n\nМы верим, что каждый новый член команды - это шанс. Шанс компании на новый успех, новое будущее, которого не было прежде, на новые идеи, невозможные результаты, инновации и фантастические прорывы. Для нас каждый сотрудник - это действительно ценный ресурс, которому дается уникальная возможность реализовать свой потенциал вместе с нами, на пределе возможного. Присоединяйся к нам - к команде твоего будущего!",
+            "vacancy_count": 1,
+            "staff_count": "менее 50",
+            "client_logo": "https://public.superjob.ru/images/clients_logos.ru/4212279_9bff341cfb8aefe0285fa5190aa6f500.jpg",
+            "address": null,
+            "addresses": [],
+            "url": "https://fedresurs.online/?roistat=google16_g_124118092304_496252688566_%D1%84%D0%B5%D0%B4%D1%80%D0%B",
+            "short_reg": false,
+            "is_blocked": false,
+            "registered_date": 1632842577,
+            "town": {
+                "id": 4,
+                "title": "Москва",
+                "declension": "в Москве",
+                "hasMetro": true,
+                "genitive": "Москвы"
+            }
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 234,
+                "title": "Маркетинг, реклама, PR",
+                "key": 234,
+                "positions": [
+                    {
+                        "id": 243,
+                        "title": "Маркетинг",
+                        "key": 243
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 1,
+            "title": "прямой работодатель"
+        },
+        "town": {
+            "id": 25,
+            "title": "Краснодар",
+            "declension": "в Краснодаре",
+            "hasMetro": false,
+            "genitive": "Краснодара"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": null,
+        "phones": null,
+        "fax": null,
+        "faxes": null,
+        "client_logo": "https://public.superjob.ru/images/clients_logos.ru/4212279_9bff341cfb8aefe0285fa5190aa6f500.jpg",
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "КОНСАЛТИНГ ОНЛАЙН",
+        "firm_activity": "АО «Консалтинг онлайн» - это инновационная консалтинговая компания, которая предоставляет бизнесу эффективные решения для контроля и соблюдения всех его обязанностей. \n\nОсновные услуги компании связаны с обязанностями B2B сектора (юридических лиц, ИП, в ряде случаев - физ. лиц) по раскрытию информации в государственных и федеральных реестрах, таких как:\n\n- раскрытие информации в ЕФРСФДЮЛ (Единый федеральный реестр юридически важный сведений о фактах деятельности юридических лиц, индивидуальных предпринимателей и иных субъектов экономической деятельности);\n\n- уведомление кредиторов через \"Вестник государственной регистрации\" (реестр событий ФНС России)\n\nКроме того, компания занимается и иными консалтинговыми услугами, среди которых:\n\n- реорганизация и ликвидация юридических лиц\n\n- банкротство и досудебное урегулирование споров (медиация) и тд. \n\nИз-за ежегодного кратного роста мы постоянно ищем в команду энергичных и незаурядных людей: менеджеров по продажам, клиентских менеджеров, интернет-маркетологов, IT-генией, разработчиков, архитекторов бизнес-процессов, аналитиков и тд. \n\nАО «Консалтинг онлайн» - это гарантия действительно важных для работника вопросов, из-за которых Вы сами захотите работать в нашей команде, а именно:\n\n1. Устойчивость. Будем честны, национальная экономика всегда была далека от стабильности, а сейчас и вовсе парит в неизвестности. Тем временем наша деятельность связана исключительно с российским законодательством в сфере корпоративного права, обязанностями юридических лиц и внешние потрясения как правило никак не отражаются на нашей деятельности. За период ковидных ограничений, спецоперации и прочих потрясений в мире и в стране, наши финансовые результаты только растут (и растут сотнях, а не в десятках процентов). \n\n2. Престиж и репутация. В 2023 году АО \"Консалтинг онлайн\" получило 1 место в номинации \"Лучшее предприятие в сфере консалтинговых услуг\" в национальной премии \"Золотой Меркурий\" от Торгово-промышленной палаты. \n\nАО \"Консалтинг онлайн также:\n\n- проводит всероссийские конференции и форумы для бизнеса в СКОЛКОВО;\n\n- принимает студентов для прохождения практики из нескольких ВУЗов;\n\n- сотрудничает с крупнейшим в стране благотворительным фондом \"Подари жизнь\". \n\n- входит в холдинг ГК \"ГИК\" - один из крупнейших консалтинговых холдингов в России. \n\n3. Финансовая стабильность и высокий уровень заработка. Престиж имени и высокая репутация АО \"Консалтинг онлайн\" диктуют достойный уровень заработной платы, который устанавливается для ее сотрудников, а устойчивость компании гарантирует стабильность оплаты труда. \n\n4. Карьерный и финансовый рост. Как и в любой быстро развивающейся компании, необходимость в создании новых проектов, отделов, структур, вакансий создают возможности не только для интенсивного вертикального, но и горизонтального карьерного роста. Даже если Вы не прирожденный лидер, а талантливый, эффективный одиночка, который показывает высокие личные результаты - для Вас откроется столько же точек роста, сколько и для способного управленца. \n\n5. Личностный рост и профессиональное развитие. Мы одна из немногих компаний, которая действительно заботится о развитии своих сотрудников. Каждое структурное подразделение проходит регулярное и дорогое обучение по своим компетенциям от известных школ для бизнеса и коучей. АО \"Консалтинг онлайн\" ежегодно зашивает в свои затраты бюджет на обучение сотрудников, приобретение бизнес литературы, тренингов, проведение командообразующих и развивающих тимбилдингов и тд. \n\nНемного о нас в цифрах:\nОт 2 000 000 до 150 000 000 рублей выручки за 5 лет. \nБолее 40 000 юридических лиц, которым мы помогли выполнить их обязанности\n5 из 5 в Яндексе - наш рейтинг в сети Яндекс на основе достоверных, проверенных системой отзывов. \n\nМы верим, что каждый новый член команды - это шанс. Шанс компании на новый успех, новое будущее, которого не было прежде, на новые идеи, невозможные результаты, инновации и фантастические прорывы. Для нас каждый сотрудник - это действительно ценный ресурс, которому дается уникальная возможность реализовать свой потенциал вместе с нами, на пределе возможного. Присоединяйся к нам - к команде твоего будущего!",
+        "link": "https://krasnodar.superjob.ru/vakansii/marketolog-46355123.html",
+        "latitude": 45.022305,
+        "longitude": 38.971306
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 46421069,
+        "id_client": 0,
+        "payment_from": 80000,
+        "payment_to": 0,
+        "date_pub_to": 1687352074,
+        "date_archived": 0,
+        "date_published": 1686571534,
+        "address": "Московская область, Пушкино, Московский проспект, 54",
+        "profession": "Менеджер по продажам",
+        "work": null,
+        "compensation": null,
+        "candidat": "Условия\n\n• Работа в стабильной компании;\n• Твердый конкурентный продукт. Востребованный продукт;\n• Испытательный срок 1 месяц;\n• Оформление по ТК РФ;\n• Потолка по заработной планете нет! \n\n• График работы 5/2 с 10 до 18;\n• Место работы М. О., г. Пушкино, Московский проспект 54.\nТребования\n\n• Желателен опыт в прямых продажах, но если его нет, то обязательно желание развиваться в данной сфере;\n• обязательное знание основ SEO-продвижения сайтов.\n• Умение грамотно писать и говорить;\n• Умение вести переговоры и закрывать сделки;\n• Высокий уровень ответственности и самостоятельности.\nОбязанности\n\n• Продажа услуг компании по предоставляемым базам клиентов, холодные звонки и тёплые заявки.\n• Отправка коммерческих предложений;\n• Отработка возражений, контроль оплаты, закрытие сделки;\n• Выполнение установленных KPI закрытым сделкам.\n\n\nДополнительные преимущества:\n\n• Обучение, тренинги",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<br /><br /><b>Условия</b><br /><ul><li><b>Работа в стабильной компании;</b></li><li>Твердый конкурентный продукт. Востребованный продукт;</li><li>Испытательный срок 1 месяц;</li><li>Оформление по ТК РФ;</li><li><b>Потолка по заработной планете нет! <br /></b></li><li>График работы 5/2 с 10 до 18;</li><li>Место работы М. О., г. Пушкино, Московский проспект 54.</li></ul><b>Требования</b><br /><ul><li>Желателен опыт в прямых продажах, но если его нет, то обязательно желание развиваться в данной сфере;</li><li>обязательное знание основ SEO-продвижения сайтов.</li><li>Умение грамотно писать и говорить;</li><li>Умение вести переговоры и закрывать сделки;</li><li>Высокий уровень ответственности и самостоятельности.</li></ul><b>Обязанности</b><br /><ul><li>Продажа услуг компании по предоставляемым базам клиентов, холодные звонки и тёплые заявки.</li><li>Отправка коммерческих предложений;</li><li>Отработка возражений, контроль оплаты, закрытие сделки;</li><li>Выполнение установленных KPI закрытым сделкам.</li></ul><br /><br /><b>Дополнительные преимущества:</b><br /><ul><li>Обучение, тренинги</li></ul>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": false,
+        "agreement": false,
+        "anonymous": true,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "experience": {
+            "id": 2,
+            "title": "От 1 года"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "industry": []
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 33,
+                "title": "IT, Интернет, связь, телеком",
+                "key": 33,
+                "positions": [
+                    {
+                        "id": 45,
+                        "title": "Оптимизация, SEO",
+                        "key": 45
+                    },
+                    {
+                        "id": 60,
+                        "title": "Другое",
+                        "key": 60
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 2,
+            "title": "кадровое агентство"
+        },
+        "town": {
+            "id": 881,
+            "title": "Пушкино",
+            "declension": "в Пушкине",
+            "hasMetro": false,
+            "genitive": "Пушкино"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": "+7 (926) 88683XX, +7 (495) 26663XX",
+        "phones": [
+            {
+                "number": "792688683XX",
+                "additionalNumber": null
+            },
+            {
+                "number": "749526663XX",
+                "additionalNumber": null
+            }
+        ],
+        "fax": null,
+        "faxes": null,
+        "client_logo": null,
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "Плутос",
+        "firm_activity": "Компания ПЛУТОС- это команда профессионалов, которые ценят хорошие отношения внутри коллектива и помогают друг другу; работают, как отлаженный механизм, приходят на помощь своим коллегам и задают тон правильной работе команды.",
+        "link": "https://pushkino.superjob.ru/vakansii/menedzher-po-prodazham-46421069.html",
+        "latitude": 56.001331,
+        "longitude": 37.859509
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 32767402,
+        "id_client": 820694,
+        "payment_from": 50000,
+        "payment_to": 0,
+        "date_pub_to": 1689085205,
+        "date_archived": 1678361102,
+        "date_published": 1686822364,
+        "address": "Республика Коми, Сыктывкар, Первомайская улица, 9",
+        "profession": "Руководитель розничного отдела (магазина)",
+        "work": null,
+        "compensation": null,
+        "candidat": "Требования:\n1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.\n2. Присутствие во всех основных соц.сетях, понимание принципов их работы.\n3. Желательно знание принципов SEO продвижения. \n4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.\n5. Опыт совершения покупок в крупных интернет-магазинах.\n6. Желателен опыт работы в руководящей должности.\nОбязанности:\n1. Управление продажами существующего розничного магазина.\n\n2. Развитие и формирование нового Интернет-магазина.\n3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.\n4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.\nУсловия:\n1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;\n2. При исполнение служебных обязанностей возможны командировки по РК и РФ.\n3. Испытательный срок 3 месяца.\n4. Работа в г.Сыктывкаре",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<p><b>Требования:</b></p><p>1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.</p><p>2. Присутствие во всех основных соц.сетях, понимание принципов их работы.</p><p>3. Желательно знание принципов SEO продвижения. </p><p>4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.</p><p>5. Опыт совершения покупок в крупных интернет-магазинах.</p><p>6. Желателен опыт работы в руководящей должности.</p><b>Обязанности:</b><p>1. Управление продажами существующего розничного магазина.<br /></p><p>2. Развитие и формирование нового Интернет-магазина.</p><p>3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.</p><p>4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.</p><p><b>Условия:</b></p><p>1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;</p><p>2. При исполнение служебных обязанностей возможны командировки по РК и РФ.</p><p>3. Испытательный срок 3 месяца.</p><p>4. Работа в г.Сыктывкаре</p>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": true,
+        "agreement": false,
+        "anonymous": false,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 3,
+            "title": "Неполное высшее"
+        },
+        "experience": {
+            "id": 2,
+            "title": "От 1 года"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "id": 820694,
+            "title": "Нордкомп",
+            "link": "https://www.superjob.ru/clients/nordkomp-820694/vacancies.html",
+            "industry": [],
+            "description": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+            "vacancy_count": 147,
+            "staff_count": "50 — 100",
+            "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+            "address": null,
+            "addresses": [],
+            "url": "http://www.nordcomp.ru",
+            "short_reg": false,
+            "is_blocked": false,
+            "registered_date": 1322468818,
+            "town": {
+                "id": 251,
+                "title": "Сыктывкар",
+                "declension": "в Сыктывкаре",
+                "hasMetro": false,
+                "genitive": "Сыктывкара"
+            }
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 438,
+                "title": "Продажи",
+                "key": 438,
+                "positions": [
+                    {
+                        "id": 461,
+                        "title": "Телекоммуникации, сетевые решения, средства связи",
+                        "key": 461
+                    }
+                ]
+            },
+            {
+                "id": 478,
+                "title": "Топ-персонал",
+                "key": 478,
+                "positions": [
+                    {
+                        "id": 502,
+                        "title": "Продажи",
+                        "key": 502
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 1,
+            "title": "прямой работодатель"
+        },
+        "town": {
+            "id": 628,
+            "title": "Воркута",
+            "declension": "в Воркуте",
+            "hasMetro": false,
+            "genitive": "Воркуты"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": "+7 (8212) 5121XX",
+        "phones": [
+            {
+                "number": "782125121XX",
+                "additionalNumber": null
+            }
+        ],
+        "fax": null,
+        "faxes": null,
+        "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "Нордкомп",
+        "firm_activity": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+        "link": "https://vorkuta.superjob.ru/vakansii/rukovoditel-roznichnogo-otdela-32767402.html",
+        "latitude": 61.677788,
+        "longitude": 50.824226
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 32767557,
+        "id_client": 820694,
+        "payment_from": 50000,
+        "payment_to": 0,
+        "date_pub_to": 1689085205,
+        "date_archived": 1678361102,
+        "date_published": 1686822364,
+        "address": "Республика Коми, Сыктывкар, Первомайская улица, 9",
+        "profession": "Руководитель розничного отдела (магазина)",
+        "work": null,
+        "compensation": null,
+        "candidat": "Требования:\n1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.\n2. Присутствие во всех основных соц.сетях, понимание принципов их работы.\n3. Желательно знание принципов SEO продвижения. \n4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.\n5. Опыт совершения покупок в крупных интернет-магазинах.\n6. Желателен опыт работы в руководящей должности.\nОбязанности:\n1. Управление продажами существующего розничного магазина.\n\n2. Развитие и формирование нового Интернет-магазина.\n3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.\n4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.\nУсловия:\n1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;\n2. При исполнение служебных обязанностей возможны командировки по РК и РФ.\n3. Испытательный срок 3 месяца.\n4. Работа в г.Сыктывкаре",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<p><b>Требования:</b></p><p>1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.</p><p>2. Присутствие во всех основных соц.сетях, понимание принципов их работы.</p><p>3. Желательно знание принципов SEO продвижения. </p><p>4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.</p><p>5. Опыт совершения покупок в крупных интернет-магазинах.</p><p>6. Желателен опыт работы в руководящей должности.</p><b>Обязанности:</b><p>1. Управление продажами существующего розничного магазина.<br /></p><p>2. Развитие и формирование нового Интернет-магазина.</p><p>3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.</p><p>4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.</p><p><b>Условия:</b></p><p>1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;</p><p>2. При исполнение служебных обязанностей возможны командировки по РК и РФ.</p><p>3. Испытательный срок 3 месяца.</p><p>4. Работа в г.Сыктывкаре</p>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": true,
+        "agreement": false,
+        "anonymous": false,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 3,
+            "title": "Неполное высшее"
+        },
+        "experience": {
+            "id": 2,
+            "title": "От 1 года"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "id": 820694,
+            "title": "Нордкомп",
+            "link": "https://www.superjob.ru/clients/nordkomp-820694/vacancies.html",
+            "industry": [],
+            "description": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+            "vacancy_count": 147,
+            "staff_count": "50 — 100",
+            "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+            "address": null,
+            "addresses": [],
+            "url": "http://www.nordcomp.ru",
+            "short_reg": false,
+            "is_blocked": false,
+            "registered_date": 1322468818,
+            "town": {
+                "id": 251,
+                "title": "Сыктывкар",
+                "declension": "в Сыктывкаре",
+                "hasMetro": false,
+                "genitive": "Сыктывкара"
+            }
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 438,
+                "title": "Продажи",
+                "key": 438,
+                "positions": [
+                    {
+                        "id": 461,
+                        "title": "Телекоммуникации, сетевые решения, средства связи",
+                        "key": 461
+                    }
+                ]
+            },
+            {
+                "id": 478,
+                "title": "Топ-персонал",
+                "key": 478,
+                "positions": [
+                    {
+                        "id": 502,
+                        "title": "Продажи",
+                        "key": 502
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 1,
+            "title": "прямой работодатель"
+        },
+        "town": {
+            "id": 1772,
+            "title": "Вуктыл",
+            "declension": "в Вуктыле",
+            "hasMetro": false,
+            "genitive": "Вуктыла"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": "+7 (8212) 5121XX",
+        "phones": [
+            {
+                "number": "782125121XX",
+                "additionalNumber": null
+            }
+        ],
+        "fax": null,
+        "faxes": null,
+        "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "Нордкомп",
+        "firm_activity": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+        "link": "https://vuktyl.superjob.ru/vakansii/rukovoditel-roznichnogo-otdela-32767557.html",
+        "latitude": 61.677788,
+        "longitude": 50.824226
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 32767572,
+        "id_client": 820694,
+        "payment_from": 50000,
+        "payment_to": 0,
+        "date_pub_to": 1689085205,
+        "date_archived": 1678361102,
+        "date_published": 1686822364,
+        "address": "Республика Коми, Сыктывкар, Первомайская улица, 9",
+        "profession": "Руководитель розничного отдела (магазина)",
+        "work": null,
+        "compensation": null,
+        "candidat": "Требования:\n1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.\n2. Присутствие во всех основных соц.сетях, понимание принципов их работы.\n3. Желательно знание принципов SEO продвижения. \n4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.\n5. Опыт совершения покупок в крупных интернет-магазинах.\n6. Желателен опыт работы в руководящей должности.\nОбязанности:\n1. Управление продажами существующего розничного магазина.\n\n2. Развитие и формирование нового Интернет-магазина.\n3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.\n4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.\nУсловия:\n1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;\n2. При исполнение служебных обязанностей возможны командировки по РК и РФ.\n3. Испытательный срок 3 месяца.\n4. Работа в г.Сыктывкаре",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<p><b>Требования:</b></p><p>1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.</p><p>2. Присутствие во всех основных соц.сетях, понимание принципов их работы.</p><p>3. Желательно знание принципов SEO продвижения. </p><p>4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.</p><p>5. Опыт совершения покупок в крупных интернет-магазинах.</p><p>6. Желателен опыт работы в руководящей должности.</p><p><b>Обязанности:</b></p><p>1. Управление продажами существующего розничного магазина.<br /></p><p>2. Развитие и формирование нового Интернет-магазина.</p><p>3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.</p><p>4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.</p><p><b>Условия:</b></p><p>1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;</p><p>2. При исполнение служебных обязанностей возможны командировки по РК и РФ.</p><p>3. Испытательный срок 3 месяца.</p><p>4. Работа в г.Сыктывкаре</p>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": true,
+        "agreement": false,
+        "anonymous": false,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 3,
+            "title": "Неполное высшее"
+        },
+        "experience": {
+            "id": 2,
+            "title": "От 1 года"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "id": 820694,
+            "title": "Нордкомп",
+            "link": "https://www.superjob.ru/clients/nordkomp-820694/vacancies.html",
+            "industry": [],
+            "description": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+            "vacancy_count": 147,
+            "staff_count": "50 — 100",
+            "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+            "address": null,
+            "addresses": [],
+            "url": "http://www.nordcomp.ru",
+            "short_reg": false,
+            "is_blocked": false,
+            "registered_date": 1322468818,
+            "town": {
+                "id": 251,
+                "title": "Сыктывкар",
+                "declension": "в Сыктывкаре",
+                "hasMetro": false,
+                "genitive": "Сыктывкара"
+            }
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 438,
+                "title": "Продажи",
+                "key": 438,
+                "positions": [
+                    {
+                        "id": 461,
+                        "title": "Телекоммуникации, сетевые решения, средства связи",
+                        "key": 461
+                    }
+                ]
+            },
+            {
+                "id": 478,
+                "title": "Топ-персонал",
+                "key": 478,
+                "positions": [
+                    {
+                        "id": 502,
+                        "title": "Продажи",
+                        "key": 502
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 1,
+            "title": "прямой работодатель"
+        },
+        "town": {
+            "id": 1521,
+            "title": "Емва",
+            "declension": "в Емве",
+            "hasMetro": false,
+            "genitive": "Емвы"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": "+7 (8212) 5121XX",
+        "phones": [
+            {
+                "number": "782125121XX",
+                "additionalNumber": null
+            }
+        ],
+        "fax": null,
+        "faxes": null,
+        "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "Нордкомп",
+        "firm_activity": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+        "link": "https://emva.superjob.ru/vakansii/rukovoditel-roznichnogo-otdela-32767572.html",
+        "latitude": 61.677788,
+        "longitude": 50.824226
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 32767431,
+        "id_client": 820694,
+        "payment_from": 50000,
+        "payment_to": 0,
+        "date_pub_to": 1689085205,
+        "date_archived": 1678361102,
+        "date_published": 1686822364,
+        "address": "Республика Коми, Сыктывкар, Первомайская улица, 9",
+        "profession": "Руководитель розничного отдела (магазина)",
+        "work": null,
+        "compensation": null,
+        "candidat": "Требования:\n1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.\n2. Присутствие во всех основных соц.сетях, понимание принципов их работы.\n3. Желательно знание принципов SEO продвижения. \n4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.\n5. Опыт совершения покупок в крупных интернет-магазинах.\n6. Желателен опыт работы в руководящей должности.\nОбязанности:\n1. Управление продажами существующего розничного магазина.\n\n2. Развитие и формирование нового Интернет-магазина.\n3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.\n4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.\nУсловия:\n1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;\n2. При исполнение служебных обязанностей возможны командировки по РК и РФ.\n3. Испытательный срок 3 месяца.\n4. Работа в г.Сыктывкаре",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<p><b>Требования:</b></p><p>1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.</p><p>2. Присутствие во всех основных соц.сетях, понимание принципов их работы.</p><p>3. Желательно знание принципов SEO продвижения. </p><p>4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.</p><p>5. Опыт совершения покупок в крупных интернет-магазинах.</p><p>6. Желателен опыт работы в руководящей должности.</p><b>Обязанности:</b><p>1. Управление продажами существующего розничного магазина.<br /></p><p>2. Развитие и формирование нового Интернет-магазина.</p><p>3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.</p><p>4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.</p><p><b>Условия:</b></p><p>1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;</p><p>2. При исполнение служебных обязанностей возможны командировки по РК и РФ.</p><p>3. Испытательный срок 3 месяца.</p><p>4. Работа в г.Сыктывкаре</p>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": true,
+        "agreement": false,
+        "anonymous": false,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 3,
+            "title": "Неполное высшее"
+        },
+        "experience": {
+            "id": 2,
+            "title": "От 1 года"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "id": 820694,
+            "title": "Нордкомп",
+            "link": "https://www.superjob.ru/clients/nordkomp-820694/vacancies.html",
+            "industry": [],
+            "description": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+            "vacancy_count": 147,
+            "staff_count": "50 — 100",
+            "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+            "address": null,
+            "addresses": [],
+            "url": "http://www.nordcomp.ru",
+            "short_reg": false,
+            "is_blocked": false,
+            "registered_date": 1322468818,
+            "town": {
+                "id": 251,
+                "title": "Сыктывкар",
+                "declension": "в Сыктывкаре",
+                "hasMetro": false,
+                "genitive": "Сыктывкара"
+            }
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 438,
+                "title": "Продажи",
+                "key": 438,
+                "positions": [
+                    {
+                        "id": 461,
+                        "title": "Телекоммуникации, сетевые решения, средства связи",
+                        "key": 461
+                    }
+                ]
+            },
+            {
+                "id": 478,
+                "title": "Топ-персонал",
+                "key": 478,
+                "positions": [
+                    {
+                        "id": 502,
+                        "title": "Продажи",
+                        "key": 502
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 1,
+            "title": "прямой работодатель"
+        },
+        "town": {
+            "id": 933,
+            "title": "Инта",
+            "declension": "в Инте",
+            "hasMetro": false,
+            "genitive": "Инты"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": "+7 (8212) 5121XX",
+        "phones": [
+            {
+                "number": "782125121XX",
+                "additionalNumber": null
+            }
+        ],
+        "fax": null,
+        "faxes": null,
+        "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "Нордкомп",
+        "firm_activity": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+        "link": "https://inta.superjob.ru/vakansii/rukovoditel-roznichnogo-otdela-32767431.html",
+        "latitude": 61.677788,
+        "longitude": 50.824226
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 32767568,
+        "id_client": 820694,
+        "payment_from": 50000,
+        "payment_to": 0,
+        "date_pub_to": 1689085205,
+        "date_archived": 1678361102,
+        "date_published": 1686822364,
+        "address": "Республика Коми, Сыктывкар, Первомайская улица, 9",
+        "profession": "Руководитель розничного отдела (магазина)",
+        "work": null,
+        "compensation": null,
+        "candidat": "Требования:\n1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.\n2. Присутствие во всех основных соц.сетях, понимание принципов их работы.\n3. Желательно знание принципов SEO продвижения. \n4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.\n5. Опыт совершения покупок в крупных интернет-магазинах.\n6. Желателен опыт работы в руководящей должности.\nОбязанности:\n1. Управление продажами существующего розничного магазина.\n\n2. Развитие и формирование нового Интернет-магазина.\n3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.\n4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.\nУсловия:\n1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;\n2. При исполнение служебных обязанностей возможны командировки по РК и РФ.\n3. Испытательный срок 3 месяца.\n4. Работа в г.Сыктывкаре",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<p><b>Требования:</b></p><p>1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.</p><p>2. Присутствие во всех основных соц.сетях, понимание принципов их работы.</p><p>3. Желательно знание принципов SEO продвижения. </p><p>4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.</p><p>5. Опыт совершения покупок в крупных интернет-магазинах.</p><p>6. Желателен опыт работы в руководящей должности.</p><p><b>Обязанности:</b></p><p>1. Управление продажами существующего розничного магазина.<br /></p><p>2. Развитие и формирование нового Интернет-магазина.</p><p>3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.</p><p>4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.</p><p><b>Условия:</b></p><p>1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;</p><p>2. При исполнение служебных обязанностей возможны командировки по РК и РФ.</p><p>3. Испытательный срок 3 месяца.</p><p>4. Работа в г.Сыктывкаре</p>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": true,
+        "agreement": false,
+        "anonymous": false,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 3,
+            "title": "Неполное высшее"
+        },
+        "experience": {
+            "id": 2,
+            "title": "От 1 года"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "id": 820694,
+            "title": "Нордкомп",
+            "link": "https://www.superjob.ru/clients/nordkomp-820694/vacancies.html",
+            "industry": [],
+            "description": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+            "vacancy_count": 147,
+            "staff_count": "50 — 100",
+            "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+            "address": null,
+            "addresses": [],
+            "url": "http://www.nordcomp.ru",
+            "short_reg": false,
+            "is_blocked": false,
+            "registered_date": 1322468818,
+            "town": {
+                "id": 251,
+                "title": "Сыктывкар",
+                "declension": "в Сыктывкаре",
+                "hasMetro": false,
+                "genitive": "Сыктывкара"
+            }
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 438,
+                "title": "Продажи",
+                "key": 438,
+                "positions": [
+                    {
+                        "id": 461,
+                        "title": "Телекоммуникации, сетевые решения, средства связи",
+                        "key": 461
+                    }
+                ]
+            },
+            {
+                "id": 478,
+                "title": "Топ-персонал",
+                "key": 478,
+                "positions": [
+                    {
+                        "id": 502,
+                        "title": "Продажи",
+                        "key": 502
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 1,
+            "title": "прямой работодатель"
+        },
+        "town": {
+            "id": 2100,
+            "title": "Микунь",
+            "declension": "в Микуни",
+            "hasMetro": false,
+            "genitive": "Микуни"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": "+7 (8212) 5121XX",
+        "phones": [
+            {
+                "number": "782125121XX",
+                "additionalNumber": null
+            }
+        ],
+        "fax": null,
+        "faxes": null,
+        "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "Нордкомп",
+        "firm_activity": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+        "link": "https://mikun.superjob.ru/vakansii/rukovoditel-roznichnogo-otdela-32767568.html",
+        "latitude": 61.677788,
+        "longitude": 50.824226
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 32767561,
+        "id_client": 820694,
+        "payment_from": 50000,
+        "payment_to": 0,
+        "date_pub_to": 1689085205,
+        "date_archived": 1678361102,
+        "date_published": 1686822364,
+        "address": "Республика Коми, Сыктывкар, Первомайская улица, 9",
+        "profession": "Руководитель розничного отдела (магазина)",
+        "work": null,
+        "compensation": null,
+        "candidat": "Требования:\n1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.\n2. Присутствие во всех основных соц.сетях, понимание принципов их работы.\n3. Желательно знание принципов SEO продвижения. \n4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.\n5. Опыт совершения покупок в крупных интернет-магазинах.\n6. Желателен опыт работы в руководящей должности.\nОбязанности:\n1. Управление продажами существующего розничного магазина.\n\n2. Развитие и формирование нового Интернет-магазина.\n3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.\n4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.\nУсловия:\n1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;\n2. При исполнение служебных обязанностей возможны командировки по РК и РФ.\n3. Испытательный срок 3 месяца.\n4. Работа в г.Сыктывкаре",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<p><b>Требования:</b></p><p>1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.</p><p>2. Присутствие во всех основных соц.сетях, понимание принципов их работы.</p><p>3. Желательно знание принципов SEO продвижения. </p><p>4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.</p><p>5. Опыт совершения покупок в крупных интернет-магазинах.</p><p>6. Желателен опыт работы в руководящей должности.</p><b>Обязанности:</b><p>1. Управление продажами существующего розничного магазина.<br /></p><p>2. Развитие и формирование нового Интернет-магазина.</p><p>3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.</p><p>4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.</p><p><b>Условия:</b></p><p>1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;</p><p>2. При исполнение служебных обязанностей возможны командировки по РК и РФ.</p><p>3. Испытательный срок 3 месяца.</p><p>4. Работа в г.Сыктывкаре</p>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": true,
+        "agreement": false,
+        "anonymous": false,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 3,
+            "title": "Неполное высшее"
+        },
+        "experience": {
+            "id": 2,
+            "title": "От 1 года"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "id": 820694,
+            "title": "Нордкомп",
+            "link": "https://www.superjob.ru/clients/nordkomp-820694/vacancies.html",
+            "industry": [],
+            "description": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+            "vacancy_count": 147,
+            "staff_count": "50 — 100",
+            "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+            "address": null,
+            "addresses": [],
+            "url": "http://www.nordcomp.ru",
+            "short_reg": false,
+            "is_blocked": false,
+            "registered_date": 1322468818,
+            "town": {
+                "id": 251,
+                "title": "Сыктывкар",
+                "declension": "в Сыктывкаре",
+                "hasMetro": false,
+                "genitive": "Сыктывкара"
+            }
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 438,
+                "title": "Продажи",
+                "key": 438,
+                "positions": [
+                    {
+                        "id": 461,
+                        "title": "Телекоммуникации, сетевые решения, средства связи",
+                        "key": 461
+                    }
+                ]
+            },
+            {
+                "id": 478,
+                "title": "Топ-персонал",
+                "key": 478,
+                "positions": [
+                    {
+                        "id": 502,
+                        "title": "Продажи",
+                        "key": 502
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 1,
+            "title": "прямой работодатель"
+        },
+        "town": {
+            "id": 1160,
+            "title": "Сосногорск",
+            "declension": "в Сосногорске",
+            "hasMetro": false,
+            "genitive": "Сосногорска"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": "+7 (8212) 5121XX",
+        "phones": [
+            {
+                "number": "782125121XX",
+                "additionalNumber": null
+            }
+        ],
+        "fax": null,
+        "faxes": null,
+        "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "Нордкомп",
+        "firm_activity": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+        "link": "https://sosnogorsk.superjob.ru/vakansii/rukovoditel-roznichnogo-otdela-32767561.html",
+        "latitude": 61.677788,
+        "longitude": 50.824226
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 32767398,
+        "id_client": 820694,
+        "payment_from": 50000,
+        "payment_to": 0,
+        "date_pub_to": 1689085205,
+        "date_archived": 1678361102,
+        "date_published": 1686822365,
+        "address": "Республика Коми, Сыктывкар, Первомайская улица, 9",
+        "profession": "Руководитель розничного отдела (магазина)",
+        "work": null,
+        "compensation": null,
+        "candidat": "Требования:\n1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.\n2. Присутствие во всех основных соц.сетях, понимание принципов их работы.\n3. Желательно знание принципов SEO продвижения. \n4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.\n5. Опыт совершения покупок в крупных интернет-магазинах.\n6. Желателен опыт работы в руководящей должности.\nОбязанности:\n1. Управление продажами существующего розничного магазина.\n\n2. Развитие и формирование нового Интернет-магазина.\n3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.\n4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.\nУсловия:\n1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;\n2. При исполнение служебных обязанностей возможны командировки по РК и РФ.\n3. Испытательный срок 3 месяца.",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<p><b>Требования:</b></p><p>1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.</p><p>2. Присутствие во всех основных соц.сетях, понимание принципов их работы.</p><p>3. Желательно знание принципов SEO продвижения. </p><p>4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.</p><p>5. Опыт совершения покупок в крупных интернет-магазинах.</p><p>6. Желателен опыт работы в руководящей должности.</p><b>Обязанности:</b><p>1.  Управление продажами\nсуществующего розничного магазина.<br /></p><p>2.  Развитие и формирование\nнового Интернет-магазина.</p><p>3. Подбор,\nпоиск уникальных свойств при продаже\nоборудования, сравнение с конкурентами,\nвыстраивание системы лояльности\nпокупателей.</p><p>4.  Формирование\nакций и скидок по периодам Активности\nпокупателей, а также в связи с праздниками.</p><p><b>Условия:</b></p><p>1.  Заработная плата от 50.000 рублей;\nпроценты от доходов отдела компании;</p><p>2. При исполнение служебных\nобязанностей возможны командировки по РК и РФ.</p><p>3. Испытательный срок 3\nмесяца.</p>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": true,
+        "agreement": false,
+        "anonymous": false,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 3,
+            "title": "Неполное высшее"
+        },
+        "experience": {
+            "id": 2,
+            "title": "От 1 года"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "id": 820694,
+            "title": "Нордкомп",
+            "link": "https://www.superjob.ru/clients/nordkomp-820694/vacancies.html",
+            "industry": [],
+            "description": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+            "vacancy_count": 147,
+            "staff_count": "50 — 100",
+            "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+            "address": null,
+            "addresses": [],
+            "url": "http://www.nordcomp.ru",
+            "short_reg": false,
+            "is_blocked": false,
+            "registered_date": 1322468818,
+            "town": {
+                "id": 251,
+                "title": "Сыктывкар",
+                "declension": "в Сыктывкаре",
+                "hasMetro": false,
+                "genitive": "Сыктывкара"
+            }
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 438,
+                "title": "Продажи",
+                "key": 438,
+                "positions": [
+                    {
+                        "id": 461,
+                        "title": "Телекоммуникации, сетевые решения, средства связи",
+                        "key": 461
+                    }
+                ]
+            },
+            {
+                "id": 478,
+                "title": "Топ-персонал",
+                "key": 478,
+                "positions": [
+                    {
+                        "id": 502,
+                        "title": "Продажи",
+                        "key": 502
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 1,
+            "title": "прямой работодатель"
+        },
+        "town": {
+            "id": 251,
+            "title": "Сыктывкар",
+            "declension": "в Сыктывкаре",
+            "hasMetro": false,
+            "genitive": "Сыктывкара"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": "+7 (8212) 5121XX",
+        "phones": [
+            {
+                "number": "782125121XX",
+                "additionalNumber": null
+            }
+        ],
+        "fax": null,
+        "faxes": null,
+        "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "Нордкомп",
+        "firm_activity": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+        "link": "https://syktyvkar.superjob.ru/vakansii/rukovoditel-roznichnogo-otdela-32767398.html",
+        "latitude": 61.677788,
+        "longitude": 50.824226
+    },
+    {
+        "canEdit": false,
+        "is_closed": false,
+        "id": 32767467,
+        "id_client": 820694,
+        "payment_from": 50000,
+        "payment_to": 0,
+        "date_pub_to": 1689085205,
+        "date_archived": 1678361102,
+        "date_published": 1686822365,
+        "address": "Республика Коми, Сыктывкар, Первомайская улица, 9",
+        "profession": "Руководитель розничного отдела (магазина)",
+        "work": null,
+        "compensation": null,
+        "candidat": "Требования:\n1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.\n2. Присутствие во всех основных соц.сетях, понимание принципов их работы.\n3. Желательно знание принципов SEO продвижения. \n4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.\n5. Опыт совершения покупок в крупных интернет-магазинах.\n6. Желателен опыт работы в руководящей должности.\nОбязанности:\n1. Управление продажами существующего розничного магазина.\n\n2. Развитие и формирование нового Интернет-магазина.\n3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.\n4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.\nУсловия:\n1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;\n2. При исполнение служебных обязанностей возможны командировки по РК и РФ.\n3. Испытательный срок 3 месяца.\n4. Работа в г.Сыктывкаре",
+        "metro": [],
+        "currency": "rub",
+        "vacancyRichText": "<p><b>Требования:</b></p><p>1. Обязательно наличие хобби: рыбалка, охота. Опыт применения: эхолоты, радиостанции, спутниковые телефоны, туристические GPS-навигаторы и другие гаджеты.</p><p>2. Присутствие во всех основных соц.сетях, понимание принципов их работы.</p><p>3. Желательно знание принципов SEO продвижения. </p><p>4. Личные качества: успешный опыт продаж, честность в отношениях с сотрудниками и с клиентами компании; лидерские качества; построение системы мотивации, нацеленной на командную работу.</p><p>5. Опыт совершения покупок в крупных интернет-магазинах.</p><p>6. Желателен опыт работы в руководящей должности.</p><b>Обязанности:</b><p>1. Управление продажами существующего розничного магазина.<br /></p><p>2. Развитие и формирование нового Интернет-магазина.</p><p>3. Подбор, поиск уникальных свойств при продаже оборудования, сравнение с конкурентами, выстраивание системы лояльности покупателей.</p><p>4. Формирование акций и скидок по периодам Активности покупателей, а также в связи с праздниками.</p><p><b>Условия:</b></p><p>1. Заработная плата от 50.000 рублей; проценты от доходов отдела компании;</p><p>2. При исполнение служебных обязанностей возможны командировки по РК и РФ.</p><p>3. Испытательный срок 3 месяца.</p><p>4. Работа в г.Сыктывкаре</p>",
+        "covid_vaccination_requirement": {
+            "id": 1,
+            "title": "Не важно"
+        },
+        "moveable": true,
+        "agreement": false,
+        "anonymous": false,
+        "is_archive": false,
+        "is_storage": false,
+        "type_of_work": {
+            "id": 6,
+            "title": "Полный рабочий день"
+        },
+        "place_of_work": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "education": {
+            "id": 3,
+            "title": "Неполное высшее"
+        },
+        "experience": {
+            "id": 2,
+            "title": "От 1 года"
+        },
+        "maritalstatus": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "children": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "client": {
+            "id": 820694,
+            "title": "Нордкомп",
+            "link": "https://www.superjob.ru/clients/nordkomp-820694/vacancies.html",
+            "industry": [],
+            "description": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+            "vacancy_count": 147,
+            "staff_count": "50 — 100",
+            "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+            "address": null,
+            "addresses": [],
+            "url": "http://www.nordcomp.ru",
+            "short_reg": false,
+            "is_blocked": false,
+            "registered_date": 1322468818,
+            "town": {
+                "id": 251,
+                "title": "Сыктывкар",
+                "declension": "в Сыктывкаре",
+                "hasMetro": false,
+                "genitive": "Сыктывкара"
+            }
+        },
+        "languages": [],
+        "driving_licence": [],
+        "catalogues": [
+            {
+                "id": 438,
+                "title": "Продажи",
+                "key": 438,
+                "positions": [
+                    {
+                        "id": 461,
+                        "title": "Телекоммуникации, сетевые решения, средства связи",
+                        "key": 461
+                    }
+                ]
+            },
+            {
+                "id": 478,
+                "title": "Топ-персонал",
+                "key": 478,
+                "positions": [
+                    {
+                        "id": 502,
+                        "title": "Продажи",
+                        "key": 502
+                    }
+                ]
+            }
+        ],
+        "agency": {
+            "id": 1,
+            "title": "прямой работодатель"
+        },
+        "town": {
+            "id": 2104,
+            "title": "Троицко-Печорск",
+            "declension": "в Троицко-Печорске",
+            "hasMetro": false,
+            "genitive": "Троицко-Печорска"
+        },
+        "already_sent_on_vacancy": false,
+        "rejected": false,
+        "response_info": [],
+        "phone": "+7 (8212) 5121XX",
+        "phones": [
+            {
+                "number": "782125121XX",
+                "additionalNumber": null
+            }
+        ],
+        "fax": null,
+        "faxes": null,
+        "client_logo": "https://public.superjob.ru/images/clients_logos.ru/820694_c5616d646906a4e65e04d20d82eda219.jpg",
+        "highlight": false,
+        "age_from": 0,
+        "age_to": 0,
+        "gender": {
+            "id": 0,
+            "title": "Не имеет значения"
+        },
+        "firm_name": "Нордкомп",
+        "firm_activity": "Компания \"Нордкомп\" работает в области пожарной безопасности, охраны труда, системной интеграции и информационных технологий на крупных производственных объектах. \"Нордкомп\" был основан в 1996 году. Более, чем за 25 лет работы \"Нордкомп\" сформировался в серьёзную структуру со штатом высококвалифицированных инженеров и техников, с мощной материально-технической базой. Благодаря этому, наша компания успешно воплощает крупные и сложные проекты по всей территории Республики Коми и соседних регионов.",
+        "link": "https://troitsko-pechorsk.superjob.ru/vakansii/rukovoditel-roznichnogo-otdela-32767467.html",
+        "latitude": 61.677788,
+        "longitude": 50.824226
+    }
+]
