@@ -69,6 +69,7 @@ class HeadHunterAPI(API):
     """
 
     _URL = urls_hh.VACANCIES  # ссылка на сайт для запроса вакансий
+    __MAX_QUANTITY = 500  # максимальное допустимое запрашиваемое количество вакансий
 
     @property
     def filters(self) -> FilterHH | None:
@@ -95,19 +96,28 @@ class HeadHunterAPI(API):
 
         if type(quantity) is not int or quantity < 0:
             quantity = 10
-            print("Не соблюдены условия указания количества вакансий:"
-                  "Количество должно быть выражено целым неотрицательным числом."
+            print("\nНе соблюдены условия указания количества вакансий:\n"
+                  "Количество должно быть выражено целым неотрицательным числом.\n"
+                  "Установлен параметр по умолчанию = 10")
+        elif quantity > self.__MAX_QUANTITY:
+            quantity = 10
+            print("\nЗапрошенное количество вакансий превышает максимально возможное (500).\n"
                   "Установлен параметр по умолчанию = 10")
 
         vacancies = []
 
+        info = self.get_info()
+
         vacancies.extend(self.get_info()['items'])
         while len(vacancies) < quantity:
-            if self.filters.page == self.get_info()['pages']:
+            if self.filters.page == info.get('pages', 0):
                 break
 
             self.filters.page += 1
             vacancies.extend(self.get_info()['items'])
+
+        print(f"\nНайдено {len(vacancies[:quantity])} вакансий.\n"
+              f"Всего на сайте по заданным параметрам есть {info.get('found', 0)} вакансий.")
 
         return vacancies[:quantity]
 
@@ -150,12 +160,12 @@ class SuperJobAPI(API):
 
         if type(quantity) is not int or quantity < 0:
             quantity = 10
-            print("Не соблюдены условия указания количества вакансий:"
-                  "Количество должно быть выражено целым неотрицательным числом."
+            print("\nНе соблюдены условия указания количества вакансий:\n"
+                  "Количество должно быть выражено целым неотрицательным числом.\n"
                   "Установлен параметр по умолчанию = 10")
         elif quantity > self.__MAX_QUANTITY:
             quantity = 10
-            print("Запрошенное количество вакансий превышает максимально возможное (500).\n"
+            print("\nЗапрошенное количество вакансий превышает максимально возможное (500).\n"
                   "Установлен параметр по умолчанию = 10")
 
         vacancies = []
@@ -175,5 +185,8 @@ class SuperJobAPI(API):
 
             self.filters.page += 1
             vacancies.extend(self.get_info()['objects'])
+
+        print(f"\nНайдено {len(vacancies[:quantity])} вакансий.\n"
+              f"Всего на сайте по заданным параметрам есть {total_vacancies} вакансий.")
 
         return vacancies[:quantity]
