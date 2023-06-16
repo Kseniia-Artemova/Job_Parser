@@ -5,18 +5,24 @@ from abc import ABC, abstractmethod
 
 class Saver(ABC):
 
-    def __init__(self, path):
-        self.path = path
+    _PATH_FILE = None
+
+    def __init__(self):
+
+        root_dir = os.path.dirname(os.path.dirname(__file__))
+        path_file = os.path.join(root_dir, *self._PATH_FILE)
+
+        self.path_file = path_file
 
     @property
-    def path(self):
-        return self._path
+    def path_file(self):
+        return self._path_file
 
-    @path.setter
-    def path(self, path):
-        if not os.path.exists(path):
+    @path_file.setter
+    def path_file(self, path_file):
+        if not os.path.exists(path_file):
             raise FileNotFoundError("Файл по указанному пути не существует")
-        self._path = path
+        self._path_file = path_file
 
     @abstractmethod
     def add_vacancies(self, dict_vacancies):
@@ -41,27 +47,32 @@ class Saver(ABC):
 
 class JSONSaver(Saver):
 
+    _PATH_FILE = "vacancies", "vacancies.json"
+
     def add_vacancies(self, dict_vacancies):
-        with open(self.path, "aw", encoding="utf-8") as json_file:
+        with open(self.path_file, "aw", encoding="utf-8") as json_file:
             json.dump(dict_vacancies, json_file, ensure_ascii=False, indent=4, separators=(',', ': '))
 
-        print(f"Вакансии добавлены в файл {self.path}")
+        print(f"Вакансии добавлены в файл {self.path_file}")
 
     def rewrite_vacancies(self, dict_vacancies):
-        with open(self.path, "w", encoding="utf-8") as json_file:
+        with open(self.path_file, "w", encoding="utf-8") as json_file:
             json.dump(dict_vacancies, json_file, ensure_ascii=False, indent=4, separators=(',', ': '))
 
-        print(f"Вакансии записаны в файл {self.path}")
+        print(f"Вакансии записаны в файл {self.path_file}")
 
     def clean_file(self, dict_vacancies):
-        with open(self.path, "w", encoding="utf-8") as json_file:
+        with open(self.path_file, "w", encoding="utf-8") as json_file:
             pass
 
-        print(f"Информация была стёрта из файла {self.path} ")
+        print(f"Информация была стёрта из файла {self.path_file} ")
 
     def load_all_vacancies(self):
-        with open(self.path, "r", encoding="utf-8") as json_file:
+        with open(self.path_file, "r", encoding="utf-8") as json_file:
             vacancies = json.load(json_file)
+
+    def load_definite_vacancies(self, dict_filters):
+        pass
 
     # Аргумент object_hook используется для преобразования JSON объектов в пользовательский тип данных. Он вызывается для каждого словаря в JSON данных.
     #
