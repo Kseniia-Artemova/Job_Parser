@@ -75,7 +75,7 @@ class VacancyHeadHunter(Vacancy):
         salary_max = self.__dict__.get("salary").get("to")
         if any((salary_min, salary_max)):
             salary = [salary for salary in (salary_min, salary_max) if type(salary) is int]
-            return min(salary)
+            return min(salary) or 0
 
     def get_currency(self):
         return self.__dict__.get("salary").get("currency")
@@ -88,7 +88,7 @@ class VacancySuperJob(Vacancy):
         salary_max = self.__dict__.get("payment_to")
         if any((salary_min, salary_max)):
             salary = [salary for salary in (salary_min, salary_max) if type(salary) is int]
-            return min(salary)
+            return min(salary) or 0
 
     def get_currency(self):
         return self.__dict__.get("currency")
