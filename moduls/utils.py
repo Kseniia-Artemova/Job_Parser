@@ -24,3 +24,17 @@ def find_value(collection, aim: str) -> str | None:
                         return result
         except TypeError:
             return None
+
+
+def i_input(*args, **kwargs) -> str:
+    """
+    Функция для замещения стандартного input,
+    позволяет прервать программу на любом этапе ввода,
+    если введенное пользователем слово это 'stop'
+    """
+
+    result = input(*args, **kwargs)
+    if result == "stop":
+        print("\nСпасибо и всего доброго!")
+        quit()
+    return result

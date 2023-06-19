@@ -1,5 +1,6 @@
-from classes.request_api import VacancyHH, VacancySJ
+from moduls.scripts import user_interaction
 
 
 if __name__ == '__main__':
-    pass
+
+    user_interaction()
