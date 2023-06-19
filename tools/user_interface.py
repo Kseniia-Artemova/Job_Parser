@@ -1,10 +1,11 @@
 import os
 from pprint import pprint
 
-from classes.filter import FilterHH, FilterSJ
-from classes.request_api import HeadHunterAPI, SuperJobAPI
-from classes.saver import JSONSaver
-from moduls.utils import i_input
+from filter.filter_hh import FilterHH
+from filter.filter_sj import FilterSJ
+from request_api.request_api import HeadHunterAPI, SuperJobAPI
+from saver.saver import JSONSaver
+from tools.utils import i_input, get_binary_answer
 
 
 def user_interaction():
@@ -13,19 +14,11 @@ def user_interaction():
     vacancies = find_vacancies()
 
     json_saver = JSONSaver()
-    json_saver.add_vacancies(vacancies)
+    json_saver.write_vacancies(vacancies)
 
-    pprint(json_saver.load_all_vacancies())
+    vacancy_objects = json_saver.load_all_vacancies()
 
-
-def check_int(number):
-
-    while True:
-        try:
-            return int(number)
-        except ValueError:
-            number = i_input("\nОтвет должен быть выражен целым числом.\n")
-            continue
+    show_vacancies(vacancy_objects)
 
 
 def find_vacancies():
@@ -34,14 +27,24 @@ def find_vacancies():
 
     while True:
 
+        request_filter = None
+        request_api = None
+
         website = choice_website()
-        number = get_number()
 
         if website == "0":
-            vacancies = HeadHunterAPI(FilterHH()).get_vacancies(number)
+            request_filter = FilterHH()
+            request_filter.parameters["text"] = request_filter.ask_text()
+            request_api = HeadHunterAPI
 
         elif website == "1":
-            vacancies = SuperJobAPI(FilterSJ()).get_vacancies(number)
+            request_filter = FilterSJ()
+            request_filter.parameters["keyword"] = request_filter.ask_keyword()
+            request_api = SuperJobAPI
+
+        request = request_api(*set_filter(request_filter))
+
+        vacancies = request.get_vacancies()
 
         for vacancy in vacancies:
             if vacancy not in results:
@@ -78,6 +81,32 @@ def choice_website():
     return answer
 
 
+def check_int(number):
+
+    while True:
+        try:
+            return int(number)
+        except ValueError:
+            number = i_input("\nОтвет должен быть выражен целым числом.\n")
+            continue
+
+
+def set_filter(request_filter):
+
+    text = "Настроить фильтр или использовать параметры по умолчанию?\n" \
+           "0 - использовать параметры по умолчанию\n" \
+           "1 - настроить фильтр самостоятельно"
+
+    answer = get_binary_answer(text)
+
+    if answer == "1":
+        request_filter.set_request_parameters()
+
+    number = get_number()
+
+    return request_filter, number
+
+
 def get_number():
 
     answer = i_input("\nПожалуйста, введите желаемое количество вакансий. "
@@ -108,8 +137,8 @@ def choice_operation():
     return operation
 
 
-def show_vacancies():
+def show_vacancies(list_objects):
 
-    pass
-
-
+    for object in list_objects:
+        print()
+        print(object.get_short_info())

@@ -1,6 +1,7 @@
 import json
 import os
 from abc import ABC, abstractmethod
+from vacancy.vacancy import VacancyHeadHunter, VacancySuperJob
 
 
 class Saver(ABC):
@@ -29,7 +30,7 @@ class Saver(ABC):
         pass
 
     @abstractmethod
-    def rewrite_vacancies(self, dict_vacancies):
+    def write_vacancies(self, dict_vacancies):
         pass
 
     @abstractmethod
@@ -52,10 +53,11 @@ class JSONSaver(Saver):
     def add_vacancies(self, dict_vacancies):
         with open(self.path_file, "a", encoding="utf-8") as json_file:
             json.dump(dict_vacancies, json_file, ensure_ascii=False, indent=4, separators=(',', ': '))
+            json_file.write("\n")
 
         print(f"Вакансии добавлены в файл {self.path_file}")
 
-    def rewrite_vacancies(self, dict_vacancies):
+    def write_vacancies(self, dict_vacancies):
         with open(self.path_file, "w", encoding="utf-8") as json_file:
             json.dump(dict_vacancies, json_file, ensure_ascii=False, indent=4, separators=(',', ': '))
 
@@ -70,7 +72,19 @@ class JSONSaver(Saver):
     def load_all_vacancies(self):
         with open(self.path_file, "r", encoding="utf-8") as json_file:
             vacancies = json.load(json_file)
-        return vacancies
+
+        list_vacancies = []
+
+        for vacancy in vacancies:
+            if "hh.ru" in vacancy.get("url", ""):
+                vacancy = VacancyHeadHunter(vacancy)
+            elif "superjob.ru" in vacancy.get("link", ""):
+                vacancy = VacancySuperJob(vacancy)
+            else:
+                continue
+            list_vacancies.append(vacancy)
+
+        return list_vacancies
 
     def load_definite_vacancies(self, dict_filters):
         pass

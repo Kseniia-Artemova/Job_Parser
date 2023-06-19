@@ -8,7 +8,8 @@ from sources.superjob import personal_data
 from sources.superjob import urls_sj
 from sources.headhunter import urls_hh
 
-from classes.filter import FilterHH, FilterSJ
+from filter.filter_hh import FilterHH
+from filter.filter_sj import FilterSJ
 
 
 class API(ABC):
@@ -18,38 +19,47 @@ class API(ABC):
     """
 
     _URL = None  # ссылка на сайт для запроса вакансий
+    _MAX_QUANTITY = 500  # максимальное допустимое запрашиваемое количество вакансий
 
-    def __init__(self, filters) -> None:
+    def __init__(self, request_filter, quantity=10) -> None:
         """
         Инициализатор для объектов класса
 
-        :param filters: объект какого-то из класса фильтров
+        :param request_filter: объект какого-то из класса фильтров
+        :param quantity: желаемое количество вакансий
         """
 
-        self.filters = filters
+        self.request_filter = request_filter
+        self.quantity = quantity
 
     @property
-    def filters(self):
-        return self._filters
+    def request_filter(self):
+        return self._request_filter
 
-    @filters.setter
-    def filters(self, value):
-        self._filters = value
+    @request_filter.setter
+    def request_filter(self, value):
+        self._request_filter = value
+
+    @property
+    def quantity(self):
+        return self._quantity
+
+    @quantity.setter
+    def quantity(self, value):
+
+        if type(value) is int and 0 <= value < 500:
+            self._quantity = value
+        else:
+            self._quantity = 10
+            print("\nНе соблюдены условия указания количества вакансий:\n"
+                  "Количество должно быть выражено целым неотрицательным числом\n"
+                  "и не превышать максимальное возможное значение = 500\n"
+                  "Установлен параметр по умолчанию = 10")
 
     def get_parameters(self) -> dict:
         """Возвращает установленные параметры фильтра"""
 
-        return self.filters.get_parameters()
-
-    def set_parameters(self, filters) -> None:
-        """Установить фильтр"""
-
-        self.filters = filters
-
-    def reset_parameters(self) -> None:
-        """Сбросить фильтр"""
-
-        self.filters = None
+        return self.request_filter.get_request_parameters()
 
     @abstractmethod
     def get_info(self) -> list[dict]:
@@ -57,7 +67,7 @@ class API(ABC):
         pass
 
     @abstractmethod
-    def get_vacancies(self, quantity=10) -> list[dict]:
+    def get_vacancies(self) -> list[dict]:
         """Возвращает список вакансий в заданном количестве, если это возможно"""
         pass
 
@@ -69,40 +79,31 @@ class HeadHunterAPI(API):
     """
 
     _URL = urls_hh.VACANCIES  # ссылка на сайт для запроса вакансий
-    __MAX_QUANTITY = 500  # максимальное допустимое запрашиваемое количество вакансий
 
     @property
-    def filters(self) -> FilterHH | None:
-        return self._filters
+    def request_filter(self) -> FilterHH | None:
+        return self._request_filter
 
-    @filters.setter
-    def filters(self, value: FilterHH | None) -> None:
+    @request_filter.setter
+    def request_filter(self, value: FilterHH | None) -> None:
         """Установка фильтра, после проверки на принадлежность к подходящему классу"""
 
         if isinstance(value, (FilterHH, NoneType)):
-            self._filters = value
+            self._request_filter = value
 
     def get_info(self) -> dict:
         """Возвращает ответ на запрос, отправленный на сайт с вакансиями"""
 
-        parameters = self.filters.get_parameters()
+        parameters = self.request_filter.get_request_parameters()
+
         with requests.get(self._URL, parameters) as request:
             response = request.content.decode("utf-8")
             response = json.loads(response)
+
         return response
 
-    def get_vacancies(self, quantity: int = 10) -> list:
+    def get_vacancies(self) -> list:
         """Возвращает список вакансий в заданном количестве, если это возможно"""
-
-        if type(quantity) is not int or quantity < 0:
-            quantity = 10
-            print("\nНе соблюдены условия указания количества вакансий:\n"
-                  "Количество должно быть выражено целым неотрицательным числом.\n"
-                  "Установлен параметр по умолчанию = 10")
-        elif quantity > self.__MAX_QUANTITY:
-            quantity = 10
-            print("\nЗапрошенное количество вакансий превышает максимально возможное (500).\n"
-                  "Установлен параметр по умолчанию = 10")
 
         vacancies = []
 
@@ -111,17 +112,17 @@ class HeadHunterAPI(API):
         info = self.get_info()
 
         vacancies.extend(self.get_info().get('items'))
-        while len(vacancies) < quantity:
-            if self.filters.page == info.get('pages', 0):
+        while len(vacancies) < self.quantity:
+            if self.request_filter.parameters["page"] == info.get('pages', 0):
                 break
 
-            self.filters.page += 1
+            self.request_filter.parameters["page"] += 1
             vacancies.extend(self.get_info().get('items'))
 
-        print(f"\nНайдено {len(vacancies[:quantity])} вакансий.\n"
+        print(f"\nНайдено {len(vacancies[:self.quantity])} вакансий.\n"
               f"Всего на сайте по заданным параметрам есть {info.get('found', 0)} вакансий.")
 
-        return vacancies[:quantity]
+        return vacancies[:self.quantity]
 
 
 class SuperJobAPI(API):
@@ -131,23 +132,22 @@ class SuperJobAPI(API):
     """
 
     _URL = urls_sj.VACANCIES  # ссылка на сайт для запроса вакансий
-    __MAX_QUANTITY = 500  # максимальное допустимое запрашиваемое количество вакансий
 
     @property
-    def filters(self) -> FilterSJ | None:
-        return self._filters
+    def request_filter(self) -> FilterSJ | None:
+        return self._request_filter
 
-    @filters.setter
-    def filters(self, value: FilterSJ | None) -> None:
+    @request_filter.setter
+    def request_filter(self, value: FilterSJ | None) -> None:
         """Установка фильтра, после проверки на принадлежность к подходящему классу"""
 
         if isinstance(value, (FilterSJ, NoneType)):
-            self._filters = value
+            self._request_filter = value
 
     def get_info(self) -> dict:
         """Возвращает ответ на запрос, отправленный на сайт с вакансиями"""
 
-        parameters = self.filters.get_parameters()
+        parameters = self.request_filter.get_request_parameters()
         headers = {"User-Agent": personal_data.USER_AGENT,
                    "X-Api-App-Id": personal_data.CLIENT_SECRET}
 
@@ -157,18 +157,8 @@ class SuperJobAPI(API):
 
         return response
 
-    def get_vacancies(self, quantity: int = 10) -> list:
+    def get_vacancies(self) -> list:
         """Возвращает список вакансий в заданном количестве, если это возможно"""
-
-        if type(quantity) is not int or quantity < 0:
-            quantity = 10
-            print("\nНе соблюдены условия указания количества вакансий:\n"
-                  "Количество должно быть выражено целым неотрицательным числом.\n"
-                  "Установлен параметр по умолчанию = 10")
-        elif quantity > self.__MAX_QUANTITY:
-            quantity = 10
-            print("\nЗапрошенное количество вакансий превышает максимально возможное (500).\n"
-                  "Установлен параметр по умолчанию = 10")
 
         vacancies = []
 
@@ -178,19 +168,19 @@ class SuperJobAPI(API):
         if total_vacancies == 0:
             return vacancies
 
-        is_divided_entirely = total_vacancies % self.filters.count == 0
-        last_page = total_vacancies // self.filters.count - is_divided_entirely
+        is_divided_entirely = total_vacancies % self.request_filter.parameters["count"] == 0
+        last_page = total_vacancies // self.request_filter.parameters["count"] - is_divided_entirely
 
         vacancies.extend(self.get_info().get('objects'))
 
-        while len(vacancies) < quantity:
-            if self.filters.page == last_page:
+        while len(vacancies) < self.quantity:
+            if self.request_filter.parameters["page"] == last_page:
                 break
 
-            self.filters.page += 1
+            self.request_filter.parameters["page"] += 1
             vacancies.extend(self.get_info().get('objects'))
 
-        print(f"\nНайдено {len(vacancies[:quantity])} вакансий.\n"
+        print(f"\nНайдено {len(vacancies[:self.quantity])} вакансий.\n"
               f"Всего на сайте по заданным параметрам есть {total_vacancies} вакансий.")
 
-        return vacancies[:quantity]
+        return vacancies[:self.quantity]

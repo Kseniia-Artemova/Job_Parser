@@ -5,7 +5,7 @@ import jsonpath_ng as jp
 from sources.superjob import urls_sj
 from sources.headhunter import urls_hh
 
-from moduls.utils import i_input
+from tools.utils import i_input
 
 
 class Filter(ABC):
@@ -302,7 +302,7 @@ class FilterHH(Filter):
                 return choice
 
             choice = i_input(f"Введите существующий номер, либо нажмите Enter для пропуска.\n"
-                           f"{variations}\n")
+                             f"{variations}\n")
 
         return choice
 
