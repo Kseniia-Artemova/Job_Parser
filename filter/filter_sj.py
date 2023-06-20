@@ -80,6 +80,24 @@ class FilterSJ(Filter):
         self.parameters["type_of_work"] = self.ask_type_of_work()
         self.parameters["payment_from"], self.parameters["payment_to"] = self.ask_payment_from_to()
 
+    def compare_parameters(self, vacancy_dict: dict) -> bool:
+
+        vacancy_parameters = {
+            "town": vacancy_dict.get("town").get("id") if vacancy_dict.get("town") else None,
+            "experience": vacancy_dict.get("experience").get("id") if vacancy_dict.get("experience") else None,
+            "type_of_work": vacancy_dict.get("type_of_work").get("id") if vacancy_dict.get("type_of_work") else None,
+            "payment_from": vacancy_dict.get("payment_from"),
+            "payment_to": vacancy_dict.get("payment_to")
+        }
+
+        for key, value in self.get_filtering_parameters().items():
+            if key == "salary" and vacancy_parameters[key] < value:
+                return False
+            elif vacancy_parameters[key] != value:
+                return False
+
+        return True
+
     # блок методов для установки необходимых словарей сайта
     # с предусмотренными значениями фильтра
 

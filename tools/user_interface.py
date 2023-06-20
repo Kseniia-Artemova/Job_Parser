@@ -1,9 +1,9 @@
 import os
-from pprint import pprint
 
 from filter.filter_hh import FilterHH
 from filter.filter_sj import FilterSJ
-from request_api.request_api import HeadHunterAPI, SuperJobAPI
+from request_api.request_api_hh import HeadHunterAPI
+from request_api.request_api_sj import SuperJobAPI
 from saver.saver import JSONSaver
 from tools.utils import i_input, get_binary_answer
 
@@ -16,9 +16,9 @@ def user_interaction():
     json_saver = JSONSaver()
     json_saver.write_vacancies(vacancies)
 
-    vacancy_objects = json_saver.load_all_vacancies()
+    list_vacancies = create_list_vacancies(json_saver)
 
-    show_vacancies(vacancy_objects)
+    show_vacancies(list_vacancies)
 
 
 def find_vacancies():
@@ -50,7 +50,13 @@ def find_vacancies():
             if vacancy not in results:
                 results.append(vacancy)
 
-        operation = choice_operation()
+        operations = {
+            0: "Добавить больше вакансий в список",
+            1: "Очистить список и найти новые вакансии",
+            2: "Показать результаты поиска"
+        }
+
+        operation = choice_operation(operations)
 
         if operation == 0:
             continue
@@ -65,10 +71,7 @@ def find_vacancies():
 
 def choice_website():
 
-    root_dir = os.path.dirname(os.path.dirname(__file__))
-    path_websites = os.path.join(root_dir, "sources", "urls.txt")
-    with open(path_websites, "r", encoding="utf-8") as file:
-        websites = file.read().split("\n")
+    websites = get_websites()
 
     websites_print = "\n".join([f"{i}: {site}" for i, site in enumerate(websites)])
     answer = i_input(f"\nНа каком сайте искать вакансии? "
@@ -79,6 +82,16 @@ def choice_website():
         answer = i_input("\nПожалуйста, введите номер, соответствующий ресурсу.\n")
 
     return answer
+
+
+def get_websites():
+
+    root_dir = os.path.dirname(os.path.dirname(__file__))
+    path_websites = os.path.join(root_dir, "sources", "urls.txt")
+    with open(path_websites, "r", encoding="utf-8") as file:
+        websites = file.read().split("\n")
+
+    return websites
 
 
 def check_int(number):
@@ -116,28 +129,84 @@ def get_number():
     return check_int(answer)
 
 
-def choice_operation():
-    operations = {
-        0: "Добавить больше вакансий в список",
-        1: "Очистить список и найти новые вакансии",
-        2: "Показать результаты поиска"
-    }
+def choice_operation(operations):
 
     operations_print = "\n".join([f"{key}: {value}" for key, value in operations.items()])
 
     operation = None
 
     while operation not in operations:
-
         operation = i_input(f"\nПожалуйста, выберите номер следующей операции.\n"
                             f"{operations_print}\n")
-
         operation = check_int(operation)
 
     return operation
 
 
+def create_list_vacancies(saver):
+
+    text = "В каком виде вывести информацию?\n" \
+           "0 - Вывести все вакансии\n" \
+           "1 - Настроить фильтр для вывода вакансий"
+
+    answer = get_binary_answer(text)
+
+    if answer == "0":
+        return saver.load_all_vacancies()
+
+    elif answer == "1":
+
+        websites = get_websites()
+
+        operations = {
+            0: f"Настроить фильтр и вывести вакансии с сайта {websites[0]}",
+            1: f"Настроить фильтр и вывести вакансии с сайта {websites[1]}",
+            2: "Настроить оба фильтра и вывести вакансии с обоих сайтов"
+        }
+
+        operation = choice_operation(operations)
+
+        if operation == 0:
+            filter_obj = FilterHH()
+            return saver.load_definite_vacancies(filter_obj_hh=filter_obj)
+        elif operation == 1:
+            filter_obj = FilterSJ()
+            return saver.load_definite_vacancies(filter_obj_sj=filter_obj)
+        elif operation == 2:
+            filter_obj_hh, filter_obj_sj = (FilterHH(), FilterSJ())
+            return saver.load_definite_vacancies(filter_obj_hh=filter_obj_hh, filter_obj_sj=filter_obj_sj)
+
+
 def show_vacancies(list_objects):
+
+    max_quantity = len(list_objects)
+
+    text = "Отсортировать вакансии по зарплате?\n" \
+           "0 - Нет\n" \
+           "1 - Да"
+
+    sorting = int(get_binary_answer(text))
+
+    text = "В каком порядке выполнить сортировку?\n" \
+           "0 - В порядке возрастания\n" \
+           "1 - В порядке убывания"
+
+    reverse = True if int(get_binary_answer(text)) else False
+
+    if sorting:
+        list_objects = sorted(list_objects, reverse=reverse)
+
+    quantity = i_input(f"\nСколько вакансий вывести? "
+                       f"Возможный максимум - {max_quantity}\n"
+                       f"Чтобы вывести все, нажмите Enter\n")
+
+    while quantity != "":
+        if quantity.isdigit() and int(quantity) < max_quantity:
+            break
+        quantity = i_input("Значение должно быть целым положительным числом меньше максимума.")
+
+    if quantity:
+        list_objects = list_objects[:int(quantity)]
 
     for object in list_objects:
         print()

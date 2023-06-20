@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 
-from tools.utils import get_binary_answer
-
 
 class Filter(ABC):
     """Абстрактный класс для описания фильтра запроса"""

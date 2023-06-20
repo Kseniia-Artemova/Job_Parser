@@ -1,14 +1,17 @@
 import json
 import os
 from abc import ABC, abstractmethod
-from vacancy.vacancy import VacancyHeadHunter, VacancySuperJob
+from vacancy.vacancy_hh import VacancyHeadHunter
+from vacancy.vacancy_sj import VacancySuperJob
+from filter.filter_hh import FilterHH
+from filter.filter_sj import FilterSJ
 
 
 class Saver(ABC):
 
     _PATH_FILE = None
 
-    def __init__(self):
+    def __init__(self) -> None:
 
         root_dir = os.path.dirname(os.path.dirname(__file__))
         path_file = os.path.join(root_dir, *self._PATH_FILE)
@@ -16,25 +19,25 @@ class Saver(ABC):
         self.path_file = path_file
 
     @property
-    def path_file(self):
+    def path_file(self) -> str:
         return self._path_file
 
     @path_file.setter
-    def path_file(self, path_file):
+    def path_file(self, path_file) -> None:
         if not os.path.exists(path_file):
             raise FileNotFoundError("Файл по указанному пути не существует")
         self._path_file = path_file
 
     @abstractmethod
-    def add_vacancies(self, dict_vacancies):
+    def add_vacancies(self, dict_vacancies: list):
         pass
 
     @abstractmethod
-    def write_vacancies(self, dict_vacancies):
+    def write_vacancies(self, dict_vacancies: list):
         pass
 
     @abstractmethod
-    def clean_file(self, dict_vacancies):
+    def clean_file(self):
         pass
 
     @abstractmethod
@@ -42,7 +45,7 @@ class Saver(ABC):
         pass
 
     @abstractmethod
-    def load_definite_vacancies(self, dict_filters):
+    def load_definite_vacancies(self, filter_obj_hh: FilterHH = None, filter_obj_sj: FilterSJ = None):
         pass
 
 
@@ -50,26 +53,26 @@ class JSONSaver(Saver):
 
     _PATH_FILE = "vacancies", "vacancies.json"
 
-    def add_vacancies(self, dict_vacancies):
+    def add_vacancies(self, dict_vacancies: list) -> None:
         with open(self.path_file, "a", encoding="utf-8") as json_file:
             json.dump(dict_vacancies, json_file, ensure_ascii=False, indent=4, separators=(',', ': '))
             json_file.write("\n")
 
-        print(f"Вакансии добавлены в файл {self.path_file}")
+        print(f"\nВакансии добавлены в файл {self.path_file}")
 
-    def write_vacancies(self, dict_vacancies):
+    def write_vacancies(self, dict_vacancies: list) -> None:
         with open(self.path_file, "w", encoding="utf-8") as json_file:
             json.dump(dict_vacancies, json_file, ensure_ascii=False, indent=4, separators=(',', ': '))
 
-        print(f"Вакансии записаны в файл {self.path_file}")
+        print(f"\nВакансии записаны в файл {self.path_file}")
 
-    def clean_file(self, dict_vacancies):
+    def clean_file(self) -> None:
         with open(self.path_file, "w", encoding="utf-8") as json_file:
             pass
 
-        print(f"Информация была стёрта из файла {self.path_file} ")
+        print(f"\nИнформация была стёрта из файла {self.path_file} ")
 
-    def load_all_vacancies(self):
+    def load_all_vacancies(self) -> list:
         with open(self.path_file, "r", encoding="utf-8") as json_file:
             vacancies = json.load(json_file)
 
@@ -86,30 +89,28 @@ class JSONSaver(Saver):
 
         return list_vacancies
 
-    def load_definite_vacancies(self, dict_filters):
-        pass
+    def load_definite_vacancies(self, filter_obj_hh: FilterHH = None, filter_obj_sj: FilterSJ = None) -> list:
 
-    # Аргумент object_hook используется для преобразования JSON объектов в пользовательский тип данных. Он вызывается для каждого словаря в JSON данных.
-    #
-    # Например, предположим, что вы хотите преобразовать JSON объекты в экземпляры пользовательского класса. Вот пример:
-    #
-    # python
-    # Copy code
-    # import json
-    #
-    # class Person:
-    #     def __init__(self, name, age):
-    #         self.name = name
-    #         self.age = age
-    #
-    #     def __repr__(self):
-    #         return f'Person(name={self.name}, age={self.age})'
-    #
-    # def dict_to_person(dict_obj):
-    #     return Person(dict_obj['name'], dict_obj['age'])
-    #
-    # json_data = '{"name": "John Doe", "age": 30}'
-    # data = json.loads(json_data, object_hook=dict_to_person)
-    #
-    # print(data)
-    # В этом примере, json.loads возвращает экземпляр класса Person, созданный из данных в JSON строке. Функция dict_to_person вызывается для каждого словаря в JSON данных, и она возвращает экземпляр класса Person, созданный из этого словаря.
+        if filter_obj_hh:
+            print("\nУстановка фильтра для HeadHunter")
+            filter_obj_hh.set_filtering_parameters()
+        if filter_obj_sj:
+            print("\nУстановка фильтра для SuperJob")
+            filter_obj_sj.set_filtering_parameters()
+
+        with open(self.path_file, "r", encoding="utf-8") as json_file:
+            vacancies = json.load(json_file)
+
+        list_vacancies = []
+
+        for vacancy in vacancies:
+            if "hh.ru" in vacancy.get("url", ""):
+                if filter_obj_hh and filter_obj_hh.compare_parameters(vacancy):
+                    vacancy = VacancyHeadHunter(vacancy)
+                    list_vacancies.append(vacancy)
+            elif "superjob.ru" in vacancy.get("link", ""):
+                if filter_obj_sj and filter_obj_sj.compare_parameters(vacancy):
+                    vacancy = VacancySuperJob(vacancy)
+                    list_vacancies.append(vacancy)
+
+        return list_vacancies

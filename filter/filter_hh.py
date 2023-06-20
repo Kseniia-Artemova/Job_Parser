@@ -48,7 +48,6 @@ class FilterHH(Filter):
 
             "experience": None,  # опыт работы
             "employment": None,  # тип занятости
-            "schedule": None,  # график работы
             "salary": None,  # размер заработной платы
             "currency": None,  # код валюты, имеет смысл указывать только вместе с salary
             "area": None  # регион, город
@@ -73,7 +72,6 @@ class FilterHH(Filter):
         self.parameters["area"] = self.ask_area()
         self.parameters["experience"] = self.ask_experience()
         self.parameters["employment"] = self.ask_employment()
-        self.parameters["schedule"] = self.ask_schedule()
 
         self.parameters["salary"] = self.ask_salary()
         if self.parameters.get("salary"):
@@ -85,7 +83,6 @@ class FilterHH(Filter):
     def get_filtering_parameters(self) -> dict:
         f_parameters = ("experience",
                         "employment",
-                        "schedule",
                         "salary",
                         "currency",
                         "area")
@@ -97,11 +94,37 @@ class FilterHH(Filter):
         self.parameters["area"] = self.ask_area()
         self.parameters["experience"] = self.ask_experience()
         self.parameters["employment"] = self.ask_employment()
-        self.parameters["schedule"] = self.ask_schedule()
 
         self.parameters["salary"] = self.ask_salary()
         if self.parameters.get("salary"):
             self.parameters["currency"] = self.ask_currency()
+
+    def compare_parameters(self, vacancy_dict: dict) -> bool:
+
+        salary = vacancy_dict.get("salary")
+        min_salary = 0
+
+        if salary:
+            salary_from, salary_to = salary.get("from", 0), salary.get("to", 0)
+
+            if any((salary_from, salary_to)):
+                min_salary = min([salary for salary in (salary_from, salary_to) if type(salary) is int])
+
+        vacancy_parameters = {
+            "area": vacancy_dict.get("area").get("id") if vacancy_dict.get("area") else None,
+            "experience": vacancy_dict.get("experience").get("id") if vacancy_dict.get("experience") else None,
+            "employment": vacancy_dict.get("employment").get("id") if vacancy_dict.get("employment") else None,
+            "salary": min_salary,
+            "currency": salary.get("currency") if salary else None
+        }
+
+        for key, value in self.get_filtering_parameters().items():
+            if key == "salary" and vacancy_parameters[key] < value:
+                return False
+            elif vacancy_parameters[key] != value:
+                return False
+
+        return True
 
     # блок методов для установки необходимых словарей сайта
     # с предусмотренными значениями фильтра
@@ -262,18 +285,6 @@ class FilterHH(Filter):
         answer = self._get_definite_answer(employment, text)
 
         return employment[int(answer)]["id"] if answer.isdigit() else None
-
-    def ask_schedule(self) -> str | None:
-        """
-        Запрашивает у пользователя и возвращает значение
-        параметра 'график работы'
-        """
-
-        schedule = self._filter_dictionary["schedule"]
-        text = "Выберите требуемый график:"
-        answer = self._get_definite_answer(schedule, text)
-
-        return schedule[int(answer)]["id"] if answer.isdigit() else None
 
     def ask_currency(self) -> str | None:
         """
