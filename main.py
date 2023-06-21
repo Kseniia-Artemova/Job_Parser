@@ -1,4 +1,4 @@
-from moduls.scripts import user_interaction
+from tools.user_interface import user_interaction
 
 
 if __name__ == '__main__':
