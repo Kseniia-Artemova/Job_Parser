@@ -50,6 +50,7 @@ class SuperJobAPI(API):
 
         total_vacancies = self.get_info().get('total')
         if total_vacancies == 0:
+            print("\nНе найдено вакансий с заданными параметрами.")
             return vacancies
 
         is_divided_entirely = total_vacancies % self.request_filter.parameters["count"] == 0
