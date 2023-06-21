@@ -6,21 +6,36 @@ from request_api.request_api_hh import HeadHunterAPI
 from request_api.request_api_sj import SuperJobAPI
 from saver.saver import JSONSaver
 from tools.utils import i_input, get_binary_answer
+from sources.constants import PATH_FILE_FULL_INFO_VACANCIES, PATH_FILE_SHORT_INFO_VACANCIES
 
 
 def user_interaction():
-    print("Добрый день! Я помогу вам найти вакансии.\n"
-          "В любой момент ввода текста с клавиатуры вы можете завершить программу.\n"
+    print("Добрый день! Я помогу вам найти вакансии.")
+    print()
+    print("В любой момент ввода текста с клавиатуры вы можете завершить программу.\n"
           "Для этого наберите слово 'stop' в точности как указано.")
 
     vacancies = find_vacancies()
 
-    json_saver = JSONSaver()
-    json_saver.write_vacancies(vacancies)
+    json_saver = JSONSaver(PATH_FILE_FULL_INFO_VACANCIES)
+    json_saver.add_vacancies(vacancies)
 
     list_vacancies = create_list_vacancies(json_saver)
 
-    show_vacancies(list_vacancies)
+    results = sort_vacancies(list_vacancies)
+
+    show_vacancies(results)
+
+    operations = {
+        0: "Записать краткую с отсортированную информацию в файл",
+        1: "Записать полную отсортированную информацию в файл"
+    }
+
+    operations = {
+        0: "Найти и добавить больше вакансий",
+        1: "Записать полную отсортированную информацию в файл",
+        2: "Завершить работу программы"
+    }
 
 
 def find_vacancies():
@@ -179,7 +194,7 @@ def create_list_vacancies(saver):
             return saver.load_definite_vacancies(filter_obj_hh=filter_obj_hh, filter_obj_sj=filter_obj_sj)
 
 
-def show_vacancies(list_objects):
+def sort_vacancies(list_objects):
 
     max_quantity = len(list_objects)
 
@@ -208,7 +223,12 @@ def show_vacancies(list_objects):
         quantity = i_input("Значение должно быть целым положительным числом меньше максимума.\n")
 
     if quantity:
-        list_objects = list_objects[:int(quantity)]
+        return list_objects[:int(quantity)]
+
+    return list_objects
+
+
+def show_vacancies(list_objects):
 
     for object in list_objects:
         print()
