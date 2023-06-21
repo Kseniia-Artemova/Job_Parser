@@ -34,19 +34,15 @@ class VacancySuperJob(Vacancy):
 
     def get_min_salary(self) -> int:
 
-        salary_from, salary_to = self.payment_from, self.payment_to
-
+        salary_range = (self.payment_from, self.payment_to)
         min_salary = 0
 
-        if all((salary_from, salary_to)):
-            min_salary = min([salary for salary in (salary_from, salary_to) if type(salary) is int])
-        elif any((salary_from, salary_to)):
-            min_salary = salary_from or salary_to
+        if all(salary_range):
+            min_salary = min([salary for salary in salary_range if type(salary) is int])
+        elif any(salary_range):
+            min_salary = salary_range[0] or salary_range[1]
 
         return min_salary
-
-    def get_currency(self) -> str:
-        return self.currency
 
     def get_short_info(self) -> str:
 

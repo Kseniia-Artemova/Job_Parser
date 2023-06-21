@@ -9,7 +9,9 @@ from tools.utils import i_input, get_binary_answer
 
 
 def user_interaction():
-    print("Добрый день! Я помогу вам найти вакансии.")
+    print("Добрый день! Я помогу вам найти вакансии.\n"
+          "В любой момент ввода текста с клавиатуры вы можете завершить программу.\n"
+          "Для этого наберите слово 'stop' в точности как указано.")
 
     vacancies = find_vacancies()
 
@@ -201,9 +203,9 @@ def show_vacancies(list_objects):
                        f"Чтобы вывести все, нажмите Enter\n")
 
     while quantity != "":
-        if quantity.isdigit() and int(quantity) < max_quantity:
+        if quantity.isdigit() and int(quantity) <= max_quantity:
             break
-        quantity = i_input("Значение должно быть целым положительным числом меньше максимума.")
+        quantity = i_input("Значение должно быть целым положительным числом меньше максимума.\n")
 
     if quantity:
         list_objects = list_objects[:int(quantity)]

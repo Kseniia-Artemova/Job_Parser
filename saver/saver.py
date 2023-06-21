@@ -63,6 +63,7 @@ class JSONSaver(Saver):
     def write_vacancies(self, dict_vacancies: list) -> None:
         with open(self.path_file, "w", encoding="utf-8") as json_file:
             json.dump(dict_vacancies, json_file, ensure_ascii=False, indent=4, separators=(',', ': '))
+            json_file.write("\n")
 
         print(f"\nВакансии записаны в файл {self.path_file}")
 

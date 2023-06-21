@@ -105,10 +105,10 @@ class FilterHH(Filter):
         min_salary = 0
 
         if salary:
-            salary_from, salary_to = salary.get("from", 0), salary.get("to", 0)
+            salary_range = salary.get("from", 0), salary.get("to", 0)
 
-            if any((salary_from, salary_to)):
-                min_salary = min([salary for salary in (salary_from, salary_to) if type(salary) is int])
+            if any(salary_range):
+                min_salary = min([salary for salary in salary_range if type(salary) is int])
 
         vacancy_parameters = {
             "area": vacancy_dict.get("area").get("id") if vacancy_dict.get("area") else None,
@@ -121,7 +121,7 @@ class FilterHH(Filter):
         for key, value in self.get_filtering_parameters().items():
             if key == "salary" and vacancy_parameters[key] < value:
                 return False
-            elif vacancy_parameters[key] != value:
+            elif key != "salary" and vacancy_parameters[key] != value:
                 return False
 
         return True
