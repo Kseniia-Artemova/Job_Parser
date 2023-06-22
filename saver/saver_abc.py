@@ -19,3 +19,7 @@ class Saver(ABC):
     @abstractmethod
     def clean_file(self):
         pass
+
+    @abstractmethod
+    def load_vacancies(self) -> list:
+        pass

@@ -2,7 +2,7 @@ import os
 
 from request_api.request_api_hh import HeadHunterAPI
 from request_api.request_api_sj import SuperJobAPI
-from saver.saver_abc import JSONSaver
+from saver.json_saver import JSONSaver
 from tools.utils import i_input, get_binary_answer
 from sources.constants import PATH_FILE_FULL_INFO_VACANCIES, PATH_FILE_SHORT_INFO_VACANCIES, PATH_DIR_JSON
 from sources.constants import MAX_LENGTH_NAME
