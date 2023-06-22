@@ -73,7 +73,7 @@ class VacancyHeadHunter(Vacancy):
 
         return min_salary
 
-    def get_short_info(self) -> str:
+    def get_short_info(self) -> dict:
 
         name = self.name
         area = self.area.get('name', "Не указано") if self.area else "Не указано"
@@ -98,15 +98,12 @@ class VacancyHeadHunter(Vacancy):
             professional_roles = [role.get("name", "Не указано") for role in self.professional_roles]
             str_professional_roles = ", ".join(professional_roles)
 
-        return f"Название: {name}\n" \
-               f"Город: {area}\n" \
-               f"Зарплата: {str_salary}\n" \
-               f"Ссылка: {alternate_url}\n" \
-               f"Требования: {requirement}\n" \
-               f"Обязанности: {responsibility}\n" \
-               f"Профессиональные роли: {str_professional_roles}\n" \
-               f"Опыт: {experience}\n" \
-               f"Занятость: {employment}"
-
-    def get_full_info(self) -> dict:
-        return self.full_info
+        return {"Название": name,
+                "Город": area,
+                "Зарплата": str_salary,
+                "Ссылка": alternate_url,
+                "Требования": requirement,
+                "Обязанности": responsibility,
+                "Профессиональные роли": str_professional_roles,
+                "Опыт": experience,
+                "Занятость": employment}

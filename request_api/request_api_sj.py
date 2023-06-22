@@ -50,6 +50,7 @@ class SuperJobAPI(API):
 
         total_vacancies = self.get_info().get('total')
         if total_vacancies == 0:
+            print("\nНе найдено вакансий с заданными параметрами.")
             return vacancies
 
         is_divided_entirely = total_vacancies % self.request_filter.parameters["count"] == 0
@@ -64,7 +65,10 @@ class SuperJobAPI(API):
             self.request_filter.parameters["page"] += 1
             vacancies.extend(self.get_info().get('objects'))
 
-        print(f"\nНайдено {len(vacancies[:self.quantity])} вакансий.\n"
+        found_vacancies = vacancies[:self.quantity]
+        total_vacancies = max((len(found_vacancies), total_vacancies))
+
+        print(f"\nНайдено {len(found_vacancies)} вакансий.\n"
               f"Всего на сайте по заданным параметрам есть {total_vacancies} вакансий.")
 
-        return vacancies[:self.quantity]
+        return found_vacancies

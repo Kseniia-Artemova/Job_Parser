@@ -46,6 +46,9 @@ class HeadHunterAPI(API):
         print("\nПодождите, ищу запрошенные вакансии...")
 
         info = self.get_info()
+        if info.get('found', 0) == 0:
+            print("\nНе найдено вакансий с заданными параметрами.")
+            return vacancies
 
         vacancies.extend(self.get_info().get('items'))
         while len(vacancies) < self.quantity:

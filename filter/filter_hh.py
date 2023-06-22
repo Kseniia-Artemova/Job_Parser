@@ -91,6 +91,8 @@ class FilterHH(Filter):
 
     def set_filtering_parameters(self) -> None:
 
+        print("\nУстановка фильтра для HeadHunter")
+
         self.parameters["area"] = self.ask_area()
         self.parameters["experience"] = self.ask_experience()
         self.parameters["employment"] = self.ask_employment()

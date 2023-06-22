@@ -29,7 +29,7 @@ class VacancySuperJob(Vacancy):
 
     def __setattr__(self, key, value):
         if key == "description":
-            value = value.replace("\n\n", "\n").replace("\n", "\n\t")
+            value = "\n\t" + value.replace("\n\n", "\n").replace("\n", "\n\t")
         super().__setattr__(key, value)
 
     def get_min_salary(self) -> int:
@@ -44,7 +44,7 @@ class VacancySuperJob(Vacancy):
 
         return min_salary
 
-    def get_short_info(self) -> str:
+    def get_short_info(self) -> dict:
 
         profession = self.profession
         town = self.town.get("title", "Не указано") if self.town else "Не указано"
@@ -63,13 +63,10 @@ class VacancySuperJob(Vacancy):
         elif any((payment_from, payment_to)):
             str_salary = f"{payment_from or payment_to} {currency}"
 
-        return f"Название: {profession}\n" \
-               f"Город: {town}\n" \
-               f"Зарплата: {str_salary}\n" \
-               f"Ссылка: {link}\n" \
-               f"Описание: \n\t{description}\n" \
-               f"Опыт: {experience}\n" \
-               f"Занятость: {type_of_work}"
-
-    def get_full_info(self) -> dict:
-        return self.full_info
+        return {"Название": profession,
+                "Город": town,
+                "Зарплата": str_salary,
+                "Ссылка": link,
+                "Описание": description,
+                "Опыт": experience,
+                "Занятость": type_of_work}
