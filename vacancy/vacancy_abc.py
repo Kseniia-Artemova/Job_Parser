@@ -43,12 +43,3 @@ class Vacancy(ABC):
     @abstractmethod
     def get_short_info(self) -> str:
         pass
-
-    @abstractmethod
-    def get_full_info(self) -> dict:
-        pass
-
-
-
-
-

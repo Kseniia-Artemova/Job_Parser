@@ -75,6 +75,9 @@ class FilterSJ(Filter):
         return {key: value for key, value in self.parameters.items() if key in f_parameters and value is not None}
 
     def set_filtering_parameters(self) -> None:
+
+        print("\nУстановка фильтра для SuperJob")
+
         self.parameters["town"] = self.ask_town()
         self.parameters["experience"] = self.ask_experience()
         self.parameters["type_of_work"] = self.ask_type_of_work()
