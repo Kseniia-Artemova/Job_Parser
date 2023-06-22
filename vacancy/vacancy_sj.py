@@ -2,8 +2,16 @@ from vacancy.vacancy_abc import Vacancy
 
 
 class VacancySuperJob(Vacancy):
+    """Класс для описания вакансии, полученной с сайта SuperJob"""
 
     def __init__(self, vacancy_dict: dict) -> None:
+        """
+        Инициализатор объектов класса, устанавливает некоторые
+        избранные значения из словаря вакансии
+        Отдельно сохраняет полную информацию о вакансии (весь словарь)
+
+        :param vacancy_dict: словарь с информацией о вакансии
+        """
 
         self.profession = vacancy_dict.get("profession")
         self.town = vacancy_dict.get("town")
@@ -18,21 +26,34 @@ class VacancySuperJob(Vacancy):
         self.full_info = vacancy_dict
 
     def __str__(self) -> str:
+        """Строковое представление вакансии"""
+
         return f"'profession': {self.profession}\n" \
                f"'url': {self.link}"
 
     def __repr__(self) -> str:
+        """Строковое представление вакансии для режима отладки"""
+
         full_info = "\n".join({f"{key}: {value}" for key, value in self.full_info.items()})
         return f"{self.__class__.__name__}(\n" \
                f"{full_info}\n" \
                f")"
 
-    def __setattr__(self, key, value):
+    def __setattr__(self, key, value) -> None:
+        """
+        При установке свойств объектов класса расставляет отступы
+        в значении поля description для более читаемого вывода
+        """
+
         if key == "description":
             value = "\n\t" + value.replace("\n\n", "\n").replace("\n", "\n\t")
         super().__setattr__(key, value)
 
     def get_min_salary(self) -> int:
+        """
+        Находит минимальное из присущих вакансии значений заработной платы,
+        при отсутствии и верхней, и нижней границ зарплаты, возвращает 0
+        """
 
         salary_range = (self.payment_from, self.payment_to)
         min_salary = 0
@@ -45,6 +66,7 @@ class VacancySuperJob(Vacancy):
         return min_salary
 
     def get_short_info(self) -> dict:
+        """Возвращает краткую информацию о вакансии"""
 
         profession = self.profession
         town = self.town.get("title", "Не указано") if self.town else "Не указано"

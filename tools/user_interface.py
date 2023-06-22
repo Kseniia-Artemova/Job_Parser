@@ -8,11 +8,14 @@ from sources.constants import PATH_FILE_FULL_INFO_VACANCIES, PATH_FILE_SHORT_INF
 from sources.constants import MAX_LENGTH_NAME
 from vacancy.vacancy_hh import VacancyHeadHunter
 from vacancy.vacancy_sj import VacancySuperJob
+from vacancy.vacancy_abc import Vacancy
 from filter.filter_hh import FilterHH
 from filter.filter_sj import FilterSJ
+from filter.filter_abc import Filter
 
 
-def user_interaction():
+def user_interaction() -> None:
+    """Основная, главная функция для взаимодействия с пользователем"""
 
     print("Добрый день! Я помогу вам найти вакансии.")
     print()
@@ -50,8 +53,16 @@ def user_interaction():
 
         is_exit = get_binary_answer(text)
 
+    print("\nСпасибо и всего доброго!")
 
-def find_vacancies():
+
+def find_vacancies() -> list[dict]:
+    """
+    Функция для поиска вакансий по запросу.
+    Пока пользователь не прервет работу функции,
+    будет запрашивать настройку фильтров
+    и собирать информацию о вакансиях с сайта, расширяя список
+    """
 
     results = []
 
@@ -99,7 +110,8 @@ def find_vacancies():
     return results
 
 
-def choice_website():
+def choice_website() -> str:
+    """Вспомогательная функция для выбора вебсайта из предложенного списка"""
 
     websites = get_websites()
 
@@ -114,7 +126,9 @@ def choice_website():
     return answer
 
 
-def get_websites():
+def get_websites() -> list[str]:
+    """Вспомогательная функция для возвращения списка доступных сайтов,
+    эту информацию получает из файла 'urls.txt' """
 
     root_dir = os.path.dirname(os.path.dirname(__file__))
     path_websites = os.path.join(root_dir, "sources", "urls.txt")
@@ -124,7 +138,12 @@ def get_websites():
     return websites
 
 
-def check_int(number):
+def check_int(number: str) -> int:
+    """
+    Вспомогательная функция.
+    Пока пользователь не введёт информацию в виде целого положительного числа,
+    будет запрашивать ввод
+    """
 
     while True:
         try:
@@ -134,7 +153,9 @@ def check_int(number):
             continue
 
 
-def set_request_filter(request_filter):
+def set_request_filter(request_filter: Filter) -> tuple:
+    """Уточняет у пользователя настройку фильтра запроса,
+    а также желаемое количество вакансий для поиска"""
 
     text = "Настроить фильтр или использовать параметры по умолчанию?\n" \
            "0 - использовать параметры по умолчанию\n" \
@@ -150,7 +171,8 @@ def set_request_filter(request_filter):
     return request_filter, number
 
 
-def get_number():
+def get_number() -> int:
+    """Получает от пользователя желаемое число вакансий в заданном диапазоне"""
 
     answer = i_input("\nПожалуйста, введите желаемое количество вакансий. "
                      "Число должно быть больше 0 и не больше 500.\n"
@@ -159,7 +181,8 @@ def get_number():
     return check_int(answer)
 
 
-def choice_operation(operations):
+def choice_operation(operations: dict) -> int:
+    """Запрашивает у пользователя выбор конкретной операции из словаря доступных операций"""
 
     operations_print = "\n".join([f"{key}: {value}" for key, value in operations.items()])
 
@@ -173,7 +196,8 @@ def choice_operation(operations):
     return operation
 
 
-def create_all_vacancies(vacancies):
+def create_all_vacancies(vacancies: list[dict]) -> list[Vacancy]:
+    """Создает и возвращает объекты вакансий, если не заданы значений фильтра"""
 
     list_vacancies = []
 
@@ -189,7 +213,12 @@ def create_all_vacancies(vacancies):
     return list_vacancies
 
 
-def create_definite_vacancies(vacancies):
+def create_definite_vacancies(vacancies: list[dict]) -> list[Vacancy]:
+    """
+    Устанавливает значения фильтра,
+    создаёт и возвращает список объектов вакансий,
+    в соответствии с заданными фильтрами
+    """
 
     list_vacancies = []
 
@@ -232,7 +261,11 @@ def create_definite_vacancies(vacancies):
     return list_vacancies
 
 
-def sort_vacancies(list_objects):
+def sort_vacancies(list_objects: list[Vacancy]) -> list[Vacancy]:
+    """
+    Сортирует список вакансий по заданному порядку
+    в указанном пользователем количестве
+    """
 
     max_quantity = len(list_objects)
 
@@ -267,7 +300,8 @@ def sort_vacancies(list_objects):
     return list_objects
 
 
-def show_vacancies(list_objects):
+def show_vacancies(list_objects: list[Vacancy]) -> None:
+    """Выводит вакансии на экран в читаемом виде"""
 
     short_info = [object.get_short_info() for object in list_objects]
 
@@ -276,7 +310,8 @@ def show_vacancies(list_objects):
         print("\n".join([f"{key}: {value}" for key, value in info.items()]))
 
 
-def select_recording_method(list_objects):
+def select_recording_method(list_objects: list[Vacancy]) -> None:
+    """Функция выбора действий для записи информации о найденных вакансий в файл"""
 
     operations = {
         0: "Добавить отсортированные вакансии в существующий файл 'vacancies'",
@@ -304,17 +339,28 @@ def select_recording_method(list_objects):
         print("\nИнформация не была записана в файл")
 
 
-def add_vacancies_to_file(list_objects):
+def add_vacancies_to_file(list_objects: list[Vacancy]) -> None:
+    """
+    Функция для добавления информации о найденных вакансиях
+    в непустой файл по умолчанию
+    """
+
     json_saver_full = JSONSaver(PATH_FILE_FULL_INFO_VACANCIES)
     json_saver_short = JSONSaver(PATH_FILE_SHORT_INFO_VACANCIES)
     full_info = [object.full_info for object in list_objects]
     short_info = [object.get_short_info() for object in list_objects]
+    print(type(short_info))
 
     json_saver_full.add_vacancies(full_info)
     json_saver_short.add_vacancies(short_info)
 
 
-def write_vacancies_to_file(list_objects):
+def write_vacancies_to_file(list_objects: list[Vacancy]) -> None:
+    """
+    Функция для записи информации о найденных вакансиях
+    в пустой файл по умолчанию
+    """
+
     json_saver_full = JSONSaver(PATH_FILE_FULL_INFO_VACANCIES)
     json_saver_short = JSONSaver(PATH_FILE_SHORT_INFO_VACANCIES)
     full_info = [object.full_info for object in list_objects]
@@ -324,7 +370,9 @@ def write_vacancies_to_file(list_objects):
     json_saver_short.write_vacancies(short_info)
 
 
-def clean_vacancies_file():
+def clean_vacancies_file() -> None:
+    """Удаляет всю информацию о вакансиях из файла по умолчанию"""
+
     json_saver_full = JSONSaver(PATH_FILE_FULL_INFO_VACANCIES)
     json_saver_short = JSONSaver(PATH_FILE_SHORT_INFO_VACANCIES)
 
@@ -332,7 +380,13 @@ def clean_vacancies_file():
     json_saver_short.clean_file()
 
 
-def create_new_vacancies_file(list_objects):
+def create_new_vacancies_file(list_objects: list[Vacancy]) -> None:
+    """
+    Создает новый файл, имя которому задаёт пользователь
+    и записывает в него информацию о вакансиях.
+    Добавление информации в этот файл программно не предусмотрено
+    """
+
     new_file = input("\nПожалуйста, введите название файла.\n"
                      "Допустимы только буквы, цифры и знак '_'\n"
                      f"Максимальная длина имени файла - {MAX_LENGTH_NAME}\n")
@@ -356,7 +410,14 @@ def create_new_vacancies_file(list_objects):
     json_saver_short.write_vacancies(short_info)
 
 
-def check_file_name(name):
+def check_file_name(name: str) -> bool:
+    """
+    Проверяет введенное пользователем имя для файла
+    на соответствие условиям:
+    имя может состоять только из букв, цифр, знака '_'
+    Максимальная длина имени файла не больше 20 символов
+    """
+
     if len(name) > MAX_LENGTH_NAME:
         return False
 
@@ -365,5 +426,3 @@ def check_file_name(name):
             return False
 
     return True
-
-

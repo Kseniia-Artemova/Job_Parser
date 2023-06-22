@@ -7,7 +7,10 @@ from filter.filter_abc import Filter
 
 
 class FilterSJ(Filter):
-    """Класс для настройки фильтра запроса на сайт SuperJob"""
+    """
+    Класс для настройки фильтра запроса на сайт SuperJob
+    и последующей фильтрации полученных вакансий
+    """
 
     # ссылка на ресурс, возвращающий весь перечень регионов/городов
     _AREA_CODES = urls_sj.AREA_CODES
@@ -17,7 +20,7 @@ class FilterSJ(Filter):
     def __init__(self) -> None:
         """
         Инициализатор фильтра. Устанавливает значения фильтра по умолчанию,
-        либо запрашивает более специализированную настройку у пользователя
+        получает и устанавливает некоторые словари с допустимыми значениями, получаемые с сайта
         """
 
         # в этих полях находятся словари сайта с перечнем допустимых значений фильтра
@@ -44,15 +47,20 @@ class FilterSJ(Filter):
         }
 
     def __str__(self) -> str:
+        """Строковое представление экземпляра фильтра"""
+
         parameters = "\n".join([f"{key}: {value}" for key, value in self.get_filtering_parameters().items()])
         return f"Фильтр для поиска вакансий. Значения:\n" \
                f"{parameters}"
 
     def __repr__(self) -> str:
+        """Строковое представление экземпляра фильтра в режиме отладки"""
+
         parameters = self.get_all_parameters()
         return f"{self.__class__.__name__}(self._parameters={repr(parameters)})"
 
     def set_request_parameters(self) -> None:
+        """Устанавливает параметры фильтра, использующиеся при отправке запроса на сайт"""
 
         self.parameters["no_agreement"] = self.ask_no_agreement()
 
@@ -66,6 +74,8 @@ class FilterSJ(Filter):
         self.parameters["order_direction"] = self.ask_order_direction()
 
     def get_filtering_parameters(self) -> dict:
+        """Возвращает параметры фильтра, использующиеся для фильтрации полученных вакансий"""
+
         f_parameters = ("experience",
                         "type_of_work",
                         "payment_from",
@@ -75,6 +85,7 @@ class FilterSJ(Filter):
         return {key: value for key, value in self.parameters.items() if key in f_parameters and value is not None}
 
     def set_filtering_parameters(self) -> None:
+        """Устанавливает параметры фильтра, использующиеся для фильтрации полученных вакансий"""
 
         print("\nУстановка фильтра для SuperJob")
 
@@ -84,6 +95,7 @@ class FilterSJ(Filter):
         self.parameters["payment_from"], self.parameters["payment_to"] = self.ask_payment_from_to()
 
     def compare_parameters(self, vacancy_dict: dict) -> bool:
+        """Проверяет вакансию на соответствие установленным значениям фильтра"""
 
         vacancy_parameters = {
             "town": vacancy_dict.get("town").get("id") if vacancy_dict.get("town") else None,

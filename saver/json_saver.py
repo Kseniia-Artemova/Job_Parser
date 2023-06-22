@@ -8,6 +8,11 @@ from vacancy.vacancy_sj import VacancySuperJob
 class JSONSaver(Saver):
 
     def add_vacancies(self, list_vacancies: list) -> None:
+        """
+        Добавляет больше вакансий в непустой файл
+
+        :param list_vacancies: список с информацией о найденных вакансиях
+        """
 
         with open(self.path_file, "r", encoding="utf-8") as json_file:
             try:
@@ -23,6 +28,11 @@ class JSONSaver(Saver):
         self.write_vacancies(vacancies)
 
     def write_vacancies(self, list_vacancies: list) -> None:
+        """
+        Перезаписывает (или создает) файл для записи информации о найденных вакансиях
+
+        :param list_vacancies: список с информацией о найденных вакансиях
+        """
 
         with open(self.path_file, "w", encoding="utf-8") as json_file:
             json.dump(list_vacancies, json_file, ensure_ascii=False, indent=4, separators=(',', ': '))
@@ -30,6 +40,7 @@ class JSONSaver(Saver):
         print(f"\nВакансии записаны в файл {self.path_file}")
 
     def clean_file(self) -> None:
+        """Полностью очистить файл с информацией о вакансиях"""
 
         with open(self.path_file, "w", encoding="utf-8") as json_file:
             pass
@@ -37,6 +48,11 @@ class JSONSaver(Saver):
         print(f"\nИнформация была стёрта из файла {self.path_file} ")
 
     def load_vacancies(self) -> list:
+        """
+        Загрузить информацию о вакансиях из файла
+        Сразу строит объекты соответствующих классов вакансий
+        """
+
         with open(self.path_file, "r", encoding="utf-8") as json_file:
             vacancies = json.load(json_file)
 

@@ -17,11 +17,11 @@ class HeadHunterAPI(API):
     _URL = urls_hh.VACANCIES  # ссылка на сайт для запроса вакансий
 
     @property
-    def request_filter(self) -> FilterHH | None:
+    def request_filter(self) -> FilterHH:
         return self._request_filter
 
     @request_filter.setter
-    def request_filter(self, value: FilterHH | None) -> None:
+    def request_filter(self, value: FilterHH) -> None:
         """Установка фильтра, после проверки на принадлежность к подходящему классу"""
 
         if isinstance(value, (FilterHH, NoneType)):

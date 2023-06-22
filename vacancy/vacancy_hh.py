@@ -5,8 +5,17 @@ from vacancy.vacancy_abc import Vacancy
 
 
 class VacancyHeadHunter(Vacancy):
+    """Класс для описания вакансии, полученной с сайта HeadHunter"""
 
     def __init__(self, vacancy_dict: dict) -> None:
+        """
+        Инициализатор объектов класса, устанавливает некоторые
+        избранные значения из словаря вакансии
+        Отдельно сохраняет полную информацию о вакансии (весь словарь)
+
+        :param vacancy_dict: словарь с информацией о вакансии
+        """
+
         self.name = vacancy_dict.get("name")
         self.area = vacancy_dict.get("area")
         self.alternate_url = vacancy_dict.get("alternate_url")
@@ -27,16 +36,26 @@ class VacancyHeadHunter(Vacancy):
         self.full_info = vacancy_dict
 
     def __str__(self) -> str:
+        """Строковое представление вакансии"""
+
         return f"'name': {self.name}\n" \
                f"'url': {self.alternate_url}"
 
     def __repr__(self) -> str:
+        """Строковое представление вакансии для режима отладки"""
+
         full_info = "\n".join({f"{key}: {value}" for key, value in self.full_info.items()})
         return f"{self.__class__.__name__}(\n" \
                f"{full_info}\n" \
                f")"
 
     def __setattr__(self, key, value) -> None:
+        """
+        При установке свойств объектов класса убирает текстовые артефакты
+        из полей требования и обязанности;
+        Устанавливает правила конвертации суммы зарплаты в рубли
+        """
+
         if key in ("requirement", "responsibility"):
             value = value.get(key) if value else None
             artefacts = ("<highlighttext>", "</highlighttext>")
@@ -51,6 +70,11 @@ class VacancyHeadHunter(Vacancy):
 
     @staticmethod
     def convert_currency(number: int | None, currency: str | None) -> int:
+        """
+        Конвертирует сумму в иностранной валюте в эквивалентную сумму в рублях,
+        основываясь на данных ЦБР, получаемых с сайта
+        """
+
         response = requests.get(CBR_RATE_URL)
         if response.status_code != 200:
             raise requests.RequestException("Ошибка при загрузке словаря с текущим курсом валют")
@@ -64,6 +88,10 @@ class VacancyHeadHunter(Vacancy):
         return number_rub
 
     def get_min_salary(self) -> int:
+        """
+        Находит минимальное из присущих вакансии значений заработной платы,
+        при отсутствии и верхней, и нижней границ зарплаты, возвращает 0
+        """
 
         salary_range = (self.salary_from_rub, self.salary_to_rub)
         min_salary = 0
@@ -74,6 +102,7 @@ class VacancyHeadHunter(Vacancy):
         return min_salary
 
     def get_short_info(self) -> dict:
+        """Возвращает краткую информацию о вакансии"""
 
         name = self.name
         area = self.area.get('name', "Не указано") if self.area else "Не указано"
