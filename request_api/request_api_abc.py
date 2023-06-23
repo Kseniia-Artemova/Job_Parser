@@ -35,6 +35,15 @@ class API(ABC):
 
     @quantity.setter
     def quantity(self, value):
+        """
+        Сеттер для указания количества запрошенных вакансий
+
+        Проверки:
+            представлено ли значение в формате int
+            попадает ли в диапазон [0, 500]
+
+        Если нет, устанавливает значение по умолчанию
+        """
 
         if type(value) is int and 0 <= value < 500:
             self._quantity = value

@@ -7,7 +7,10 @@ from filter.filter_abc import Filter
 
 
 class FilterHH(Filter):
-    """Класс для настройки фильтра запроса на сайт HeadHunter"""
+    """
+    Класс для настройки фильтра запроса на сайт HeadHunter
+    и последующей фильтрации полученных вакансий
+    """
 
     # ссылка на ресурс, возвращающий весь перечень регионов/городов
     _AREA_CODES = urls_hh.AREA_CODES
@@ -27,7 +30,7 @@ class FilterHH(Filter):
     def __init__(self) -> None:
         """
         Инициализатор фильтра. Устанавливает значения фильтра по умолчанию,
-        либо запрашивает более специализированную настройку у пользователя
+        получает и устанавливает некоторые словари с допустимыми значениями, получаемые с сайта
         """
 
         # в этих полях находятся словари сайта с перечнем допустимых значений фильтра
@@ -55,15 +58,20 @@ class FilterHH(Filter):
         }
 
     def __str__(self) -> str:
+        """Строковое представление экземпляра фильтра"""
+
         parameters = "\n".join([f"{key}: {value}" for key, value in self.get_filtering_parameters().items()])
         return f"Фильтр для поиска вакансий. Значения:\n" \
                f"{parameters}"
 
     def __repr__(self) -> str:
+        """Строковое представление экземпляра фильтра в режиме отладки"""
+
         parameters = self.get_all_parameters()
         return f"{self.__class__.__name__}(self._parameters={repr(parameters)})"
 
     def set_request_parameters(self) -> None:
+        """Устанавливает параметры фильтра, использующиеся при отправке запроса на сайт"""
 
         self.parameters["host"] = self.ask_host()
         self.parameters["only_with_salary"] = self.ask_only_with_salary()
@@ -81,6 +89,8 @@ class FilterHH(Filter):
         self.parameters["order_by"] = self.ask_order_by()
 
     def get_filtering_parameters(self) -> dict:
+        """Возвращает параметры фильтра, использующиеся для фильтрации полученных вакансий"""
+
         f_parameters = ("experience",
                         "employment",
                         "salary",
@@ -90,6 +100,7 @@ class FilterHH(Filter):
         return {key: value for key, value in self.parameters.items() if key in f_parameters and value is not None}
 
     def set_filtering_parameters(self) -> None:
+        """Устанавливает параметры фильтра, использующиеся для фильтрации полученных вакансий"""
 
         print("\nУстановка фильтра для HeadHunter")
 
@@ -102,6 +113,7 @@ class FilterHH(Filter):
             self.parameters["currency"] = self.ask_currency()
 
     def compare_parameters(self, vacancy_dict: dict) -> bool:
+        """Проверяет вакансию на соответствие установленным значениям фильтра"""
 
         salary = vacancy_dict.get("salary")
         min_salary = 0
